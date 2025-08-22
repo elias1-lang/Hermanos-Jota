@@ -1,0 +1,336 @@
+:root{
+    --color-principal: #A0522D;
+        /* Color principal de marca, títulos principales */
+    --color-secundario: #87A96B;
+        /* Acento secundario, sustentabilidad */
+    --color-fondo-principal: #F5E6D3;
+        /* Fondos principales, fotografía */
+    --color-detallesPremium: #D4A437;
+    /* Detalles premium, acentos */
+    --color-detallesSuaves:#C47A6D;
+    /* Acentos suaves, detalles femeninos */
+
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+header{
+    background-color: whitesmoke;
+    width: 100%;
+    height: 150px;
+}
+
+.base_main_envoltorio{
+    max-width: 2000px;
+    width: 100vw;
+    min-width: 300px;
+    min-height: 100vh;
+    margin: 0 auto 0 auto;
+    /*margin: top right bottom left*/
+}
+
+main{
+    flex: 1;
+        /*
+            flex: 1;  equivale a: 
+                flex-grow: 1;
+                    -> El elemento puede crecer para ocupar espacio disponible.
+                flex-shrink: 1;
+                    -> El elemento puede encogerse si no hay suficiente espacio.
+                flex-basis: 0%; 
+                    -> El tamaño base inicial es 0, así que el crecimiento se reparte equitativamente.
+        */
+    min-height: 150vh;
+    background-color: lightgray;
+    background-color: var(--color-detallesSuaves);
+}
+
+footer
+{
+    background-color: whitesmoke;
+    width: 100%;
+    height:auto;
+}
+
+
+.base_header_contenedor{
+    max-width: 2000px;
+    min-width: 300px;
+    height: 100%;
+    margin: 0 auto 0 auto;
+    display: grid;
+    grid-template-areas: 'menu logo carrito'
+                         'busqueda busqueda busqueda';
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 60% 40%;
+}
+
+.base_menu{
+    grid-area: menu;
+    text-align: start;
+}
+
+.base_menu img{
+    max-width: 30%;
+    height: 100%;
+    margin-left: 20%;
+}
+
+.base_menu img:hover{
+    cursor: pointer;
+}
+
+.base_logo{
+    grid-area: logo;
+    text-align: center;
+}
+
+.base_logo img{
+    max-width: 100%;
+    height: 100%;
+}
+
+.base_carrito{
+    grid-area: carrito;
+    text-align: end;
+}
+
+.base_carrito img{
+    max-width: 30%;
+    height: 100%;
+    margin-right: 20%;
+}
+
+.base_carrito img:hover{
+    cursor: pointer;
+}
+
+.base_barraBusqueda{
+    grid-area: busqueda;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.base_barraBusqueda input{
+    width: 70%;
+    height: 75%;
+    padding: 10px;
+    border:solid 1px lightgray;
+    padding-right: 35px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    font-size: 0.8rem;
+}
+
+.base_barraBusqueda button{
+    background-color: var(--color-principal);
+    border:solid 1px var(--color-principal);
+    border-radius: 0 5px 5px 0;
+    color: white;
+    height: 75%;
+    width: 10%;
+    min-width: 40px;
+    max-width: 50px;
+}
+
+.base_barraBusqueda button{
+    cursor: pointer;
+}
+
+.base_barraBusqueda button img{
+    height: 60%;
+}
+
+.base_header_nav{
+    display: none;
+    font-size: 1.2em;
+    border-top: 1px lightgray solid;
+}
+.base_header_nav ul{
+    list-style: none;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.base_header_nav li{
+    display: inline-block;
+}
+
+.base_header_nav li a{
+    text-decoration: none;
+    color: var(--color-principal);
+    font-weight: 700;
+}
+.base_header_nav li:not(:last-child){
+    padding-right: 2em;
+}
+
+@media (min-width:800px){
+
+    header{
+        height: 120px;
+    }
+    .base_logo{
+        text-align: right;
+    }
+    .base_menu{
+        display: none !important;
+    }
+    .base_header_contenedor{
+        grid-template-areas: 'logo busqueda carrito'
+                              'nav nav nav';
+        grid-template-columns: 15% 70% 15%;
+    }
+
+    .base_header_nav{
+        display: block;
+        grid-area: nav;
+    }
+
+    .base_carrito{
+        text-align: center;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+    
+    .base_carrito img{
+        margin: 0;
+        height: 50%;
+        margin-left: 15%;
+    }
+
+    .base_barraBusqueda{
+        justify-content: flex-end;
+    }
+    .base_barraBusqueda button{
+        width: 10%;
+        max-width: 60px;
+        height: 60%;
+    }
+    .base_barraBusqueda input{
+        width: 50%;
+        height: 60%;
+    }
+}
+
+.base_footer_contenedor{
+    max-width: 2000px;
+    min-width: 300px;
+    height: 100%;
+    margin: 0 auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    
+}
+.base_footer_contenedor div{
+    width: 100%;
+    /* height: auto; */
+}
+
+
+.base_footer_logo{
+    font-size: 0.5em;
+}
+
+.base_footer_logo img{
+    width: 10rem;
+    min-width: 120px;
+}
+
+.base_footer_infoPagina{
+    height: 100%;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.base_footer_infoElem{
+    font-size: 1rem;
+}
+
+.base_footer_infoElem h2{
+    font-size: 1em;
+    border-left: 2px var(--color-principal) solid;
+    padding-left: 3%;
+    margin-left: 3%;
+    color: var(--color-principal);
+}
+
+.base_footer_infoElem p{
+    text-align: justify;
+    padding-left: 7%;
+    padding-right: 1%;
+    font-size: 0.9em;
+}
+
+.base_footer_infoElem ul{
+    padding-left: 10%;
+    padding-top: 2%;
+    display: flex;
+    flex-direction: column;
+    gap:0.8rem;
+}
+
+.base_footer_infoElem li{
+    list-style: none;
+    display: flex;
+    font-size: 0.9em;
+}
+
+.base_footer_infoElem li img{
+    height: 0.9em;
+}
+.base_footer_infoElem a{
+    text-decoration: none;
+    color: black;
+}
+
+.base_footer_infoDesarrollo{
+    height: auto !important;
+    font-size: 0.5rem;
+    text-align: center;
+    margin: 3rem 0 1rem 0;
+    width: 100%;
+}
+@media (min-width:800px) {
+    .base_footer_contenedor{
+        flex-direction: column;
+        gap:1rem;
+    }
+    .base_footer_logo img{
+        width: 14rem !important;
+    }
+    .base_footer_contenedor div{
+        width: auto;
+    }
+    
+    .base_footer_infoPagina{
+        flex-direction: row;
+        justify-content: center;
+        font-size: 20px;
+    }
+
+    .base_footer_infoElem{
+        width: 23% !important;
+        font-size: 20px;
+    }
+
+    .base_footer_infoDesarrollo{
+        font-size: 1rem;
+    }
+}
