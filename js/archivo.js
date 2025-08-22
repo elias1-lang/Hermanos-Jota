@@ -1,99 +1,146 @@
 const productos = [
   {
-    id: 1,
+    id: "silla-belgrano",
     name: "Silla de Trabajo Belgrano",
+    description: "",
+    measures: "",
+    finish: "",
+    material: "",
     price: 25000,
     image: "/img/Silla de Trabajo Belgrano.png",
     alt: "Silla ergonómica de trabajo modelo Belgrano",
-    link: "/producto.html?id=1"
+    link: "/producto.html?id=silla-belgrano"
   },
   {
-    id: 2,
+    id: "aparador-uspallata",
     name: "Aparador Uspallata",
+    description: "",
+    measures: "",
+    finish: "",
+    material: "",
     price: 48000,
     image: "/img/Aparador Uspallata.png",
     alt: "Aparador Uspallata",
-    link: "/producto.html?id=2"
-    
+    link: "/producto.html?id=aparador-uspallata"
   },
   {
-    id: 3,
+    id: "biblioteca-recoleta",
     name: "Biblioteca Recoleta",
+    description: "",
+    measures: "",
+    finish: "",
+    material: "",
     price: 35000,
     image: "/img/Biblioteca Recoleta.png",
     alt: "Biblioteca Recoleta",
-    link: "/producto.html?id=3"
+    link: "/producto.html?id=biblioteca-recoleta"
   },
   {
-    id: 4,
+    id: "butaca-mendoza",
     name: "Butaca Mendoza",
+    description: "",
+    measures: "",
+    finish: "",
+    material: "",
     price: 60000,
     image: "/img/Butaca Mendoza.png",
     alt: "Butaca Mendoza",
-    link: "/producto.html?id=4"
+    link: "/producto.html?id=butaca-mendoza"
   },
   {
-    id: 5,
+    id: "escritorio-costa",
     name: "Escritorio Costa",
+    description: "",
+    measures: "",
+    finish: "",
+    material: "",
     price: 70000,
     image: "/img/Escritorio Costa.png",
     alt: "Escritorio Costa",
-    link: "/producto.html?id=5"
+    link: "/producto.html?id=escritorio-costa"
   },
   {
-    id: 6,
+    id: "mesa-comedor-pampa",
     name: "Mesa Comedor Pampa",
+    description: "",
+    measures: "",
+    finish: "",
+    material: "",
     price: 80000,
     image: "/img/Mesa Comedor Pampa.png",
     alt: "Mesa Comedor Pampa",
-    link: "/producto.html?id=6"
+    link: "/producto.html?id=mesa-comedor-pampa"
   },
   {
-    id: 7,
+    id: "mesa-centro-araucaria",
     name: "Mesa de Centro Araucaria",
+    description: "",
+    measures: "",
+    finish: "",
+    material: "",
     price: 80000,
     image: "/img/Mesa de Centro Araucaria.png",
     alt: "Mesa de Centro Araucaria",
-    link: "/producto.html?id=7"
+    link: "/producto.html?id=mesa-centro-araucaria"
   },
   {
-    id: 8,
+    id: "mesa-noche-aconcagua",
     name: "Mesa de Noche Aconcagua",
+    description: "",
+    measures: "",
+    finish: "",
+    material: "",
     price: 40000,
     image: "/img/Mesa de Noche Aconcagua.png",
     alt: "Mesa de Noche Aconcagua",
-    link: "/producto.html?id=8"
+    link: "/producto.html?id=mesa-noche-aconcagua"
   },
   {
-    id: 9,
+    id: "silla-belgrano-premium",
     name: "Silla de Trabajo Belgrano",
+    description: "",
+    measures: "",
+    finish: "",
+    material: "",
     price: 250000,
     image: "/img/Silla de Trabajo Belgrano.png",
     alt: "Silla ergonómica de trabajo modelo Belgrano",
-    link: "/producto.html?id=9"
+    link: "/producto.html?id=silla-belgrano-premium"
   },
   {
-    id: 10,
+    id: "sillas-cordoba",
     name: "Sillas Córdoba",
+    description: "",
+    measures: "",
+    finish: "",
+    material: "",
     price: 30000,
     image: "/img/Sillas Córdoba.png",
     alt: "Sillas modelo Córdoba",
-    link: "/producto.html?id=10"
+    link: "/producto.html?id=sillas-cordoba"
   },
   {
-    id: 11,
+    id: "sillon-copacabana",
     name: "Sillón Copacabana",
+    description: "",
+    measures: "",
+    finish: "",
+    material: "",
     price: 120000,
     image: "/img/Sillón Copacabana.png",
     alt: "Sillón modelo Copacabana",
-    link: "/producto.html?id=11"
+    link: "/producto.html?id=sillon-copacabana"
   },
   {
-    id: 12,
+    id: "sofa-patagonia",
     name: "Sofá Patagonia",
+    description: "",
+    measures: "",
+    finish: "",
+    material: "",
     price: 150000,
     image: "/img/Sofá Patagonia.png",
     alt: "Sofá modelo Patagonia",
-    link: "/producto.html?id=12"
+    link: "/producto.html?id=sofa-patagonia"
   }
 ];
