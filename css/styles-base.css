@@ -30,7 +30,6 @@ header{
     max-width: 2000px;
     width: 100vw;
     min-width: 300px;
-    min-height: 100vh;
     margin: 0 auto 0 auto;
     /*margin: top right bottom left*/
 }
@@ -47,8 +46,19 @@ main{
                     -> El tamaño base inicial es 0, así que el crecimiento se reparte equitativamente.
         */
     min-height: 150vh;
-    background-color: lightgray;
     background-color: var(--color-detallesSuaves);
+    display: column;
+    justify-content: space-between;
+    padding-top: 2%;
+}
+
+.contentInfo_Main{
+    height: 200px;
+    width: 100%;
+        
+        /* MODIFICAR PARA USAR DESPUES */
+        background-color: gray;
+        border: solid 1px black;
 }
 
 footer
@@ -221,6 +231,15 @@ footer
         width: 50%;
         height: 60%;
     }
+
+    main{
+        padding-top: 2%;
+    }
+
+    .contentInfo_Main{
+        width: 80%;
+        margin: 0 10% 0 10%;
+    }
 }
 
 .base_footer_contenedor{
@@ -274,7 +293,7 @@ footer
 .base_footer_infoElem p{
     text-align: justify;
     padding-left: 7%;
-    padding-right: 1%;
+    padding-right: 2%;
     font-size: 0.9em;
 }
 
