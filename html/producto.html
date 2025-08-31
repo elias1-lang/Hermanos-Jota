@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles-base.css">
+    <link rel="stylesheet" href="../css/producto.css">
+    <link rel="icon" type="image/x-icon" href="../images/logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <!-- 
+        Importado Fuente: Inter / Sans-Serif del Sistema: Texto del cuerpo, elementos de UI, aplicaciones digitales 
+                Light (300) — Textos secundarios y leyendas
+                Regular (400) — Texto principal
+                Medium (500) — Énfasis y subtítulos
+                Bold (700) — Títulos y CTAs
+        font-family: "Inter", sans-serif;
+    -->
+    <!-- 
+        Importado Fuente: Playfair Display / Georgia: Títulos editoriales, citas destacadas, contenido premium
+
+            Regular (400) — Títulos elegantes
+            Bold (700) — Énfasis editorial
+        font-family: "Playfair Display", serif;
+    -->
+    <title>Mueblería Hermanos Jota</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="base_header_contenedor">
+            <div class="base_menu" >
+                <img src="../img/list.svg" alt="Menu del sitio">
+            </div>
+
+            <div class="base_logo">
+                <a href="../html/index.html"><img src="../img/logo.svg" alt="Logo del Sitio Web"></a>
+            </div>
+
+            <div class="base_carrito">
+                <img src="../img/cart.svg" alt="Carrito de compras">
+            </div>
+
+            <div class="base_barraBusqueda">
+                <input type="text" placeholder="Buscar">
+                <button>
+                    <img src="../img/search.svg" alt="Boton buscar">
+                </button>
+            </div>
+
+            <nav class="base_header_nav">
+                <ul>
+                    <li><a href="../html/contacto.html">Inicio</a></li>
+                    <li><a href="../html/productos.html">Catálogo</a></li>
+                    <li><a href="../html/nosotros.html">Nosotros</a></li>
+                    <li><a href="../html/contacto.html">Contacto</a></li>
+                    <li><a href="../html/faq.html">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="base_main_envoltorio">
+
+      <main id="detalle-producto">
+
+        <h1 id="name"></h1>
+        <img id="image" alt="">
+        <p id="description"></p>
+        <div id="atributos"></div>
+        <p class="precio-producto"><strong>Precio: $ <span id="price"></span></strong></p>
+      
+        <button class="boton-comprar">Comprar ahora</button>
+
+      </main>
+
+    </div>
+    <footer>
+        <div class="base_footer_contenedor">
+
+            <div class="base_footer_logo">
+                <img src="../img/logo.svg" alt="Logo del sitio web">
+            </div>
+            
+            <div class="base_footer_infoPagina">
+                <div class="base_footer_infoElem">
+                    <h2>Hermanos Jota</h2>
+                    <p>Es el redescubrimiento de un arte olvidado: crear muebles que no solo sirven una función, sino que alimentan el alma.</p>
+                </div>
+
+                <div class="base_footer_infoElem">
+                    <h2>Navegación</h2>
+                    <ul>
+                        <li><a href="../html/index.html">Inicio</a></li>
+                        <li><a href="../html/productos.html">Catálogo</a></li>
+                        <li><a href="../html/nosotros.html">Nosotros</a></li>
+                        <li><a href="../html/contacto.html">Contacto</a></li>
+                        <li><a href="../html/faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="base_footer_infoElem">
+                    <h2>Contacto</h2>
+                    <ul>
+                        <li><img src="../img/instagram-brands-solid-full.svg" alt="Instagram del negocio"><a
+                                href="https://alt-5a31a0302d72d.blackboard.com/bbcswebdav/pid-982156-dt-content-rid-14612411_1/courses/FSD.00-43441/Instagram%20copy/index.html?one_hash=6967BD068213D25797444EA0669D2F94&f_hash=6F6AD1194D5FD4C6A0D0771CCCB68860">
+                            @hermanosjota_ba
+                            </a>
+                        </li>
+                        <li><img src="../img/phone-solid-full.svg" alt="Numero de Telefono">+54 11 4567-8900</li>
+                        <li> <img src="../img/envelope-solid-full.svg" alt="Email de contacto">info@hermanosjota.com.ar</li>
+                        <li> <img src="../img/envelope-solid-full.svg" alt="Email de contacto">ventas@hermanosjota.com.ar</li>
+                    </ul>
+                </div>
+                <div class="base_footer_infoElem">
+                    <h2>Dónde encontrarnos</h2>
+                    <ul>
+                        <li><img src="../img/location-dot-solid-full.svg" alt="Ubicacion del local">Av. San Juan 2847,<br>San Cristóbal (C1232AAB),<br>CABA, Argentina</li>
+                        <li> <img src="../img/clock-solid-full.svg" alt="Horario dias habiles">Lunes a Viernes: 10 a 19hs</li>
+                        <li><img src="../img/clock-solid-full.svg" alt="Horario sabados.">Sábados: 10 a 14hs</li>
+                    </ul>
+                </div>
+                <div class="base_footer_infoElem">
+                    <h2>Información Adicional</h2>
+                    <ul>
+                        <li><a href="../html/faq.html#envios">Envíos y Devoluciones</a></li>
+                        <li><a href="../html/faq.html#pagos">Formas de Pago</a></li>
+                        <li><a href="../html/faq.html#terminos">Términos y Condiciones</a></li>
+                        <li><a href="../html/faq.html#garantias">Garantías de Servicio</a></li>
+                    </ul>
+                </div>
+            </div>   
+                
+            <div class="base_footer_infoDesarrollo">
+                <p>©2025 Mueblería Hermanos Jota. Todos los derechos reservados. | Diseñado por grupo 12</p>
+            </div> 
+        </div>
+    </footer>
+    <script src="../js/archivo.js"></script>
+    <script src="../js/producto.js"></script>
+</body>
+</html>

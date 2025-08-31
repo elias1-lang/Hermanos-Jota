@@ -1,0 +1,117 @@
+/* Contenedor principal del detalle */
+#detalle-producto {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    padding: 2.5rem 2rem;
+    max-width: 700px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    transition: box-shadow 0.2s;
+}
+#detalle-producto:hover {
+    box-shadow: 0 8px 40px rgba(0,0,0,0.16);
+}
+
+/* Título del producto */
+#detalle-producto h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 2.2rem;
+    color: var(--color-principal);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Imagen del producto */
+#detalle-producto img#image {
+    max-width: 350px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    margin-bottom: 1.2rem;
+    object-fit: cover;
+}
+#detalle-producto img#image:hover {
+    transform: scale(1.04) rotate(-1deg);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+}
+
+/* Descripción y datos */
+#detalle-producto p#description {
+    font-family: "Inter", sans-serif;
+    font-size: 1.08rem;
+    color: #444;
+    margin: 0.2rem 0 0.7rem 0;
+    text-align: center;
+    line-height: 1.7;
+    font-weight: 400;
+}
+#detalle-producto #atributos {
+    width: 100%;
+    margin-bottom: 0.7rem;
+}
+#detalle-producto #atributos p {
+    font-family: "Inter", sans-serif;
+    font-size: 1.02rem;
+    color: #333;
+    margin: 0.18rem 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#detalle-producto strong {
+    font-weight: 700;
+    color: var(--color-principal);
+}
+
+/* Precio destacado */
+#detalle-producto .precio-producto {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-principal);
+    margin-top: 1.2rem;
+    text-align: center;
+}
+
+#detalle-producto .boton-comprar {
+    display: inline-block;
+    background: linear-gradient(90deg, #f7e7d6 0%, #fbeee6 100%);
+    color: #7a4e2d;
+    font-family: "Inter", sans-serif;
+    font-size: 1.08rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0.03em;
+    border: 1.5px solid #e2c9b0;
+    border-radius: 22px;
+    padding: 0.7rem 2.1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 8px rgba(184,92,46,0.06);
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, border 0.18s;
+}
+#detalle-producto .boton-comprar:hover {
+    background: #fbeee6;
+    color: #b85c2e;
+    border: 1.5px solid #d8b08c;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #detalle-producto {
+        padding: 1.2rem 0.5rem;
+        max-width: 98vw;
+    }
+    #detalle-producto img#image {
+        max-width: 95vw;
+    }
+}
