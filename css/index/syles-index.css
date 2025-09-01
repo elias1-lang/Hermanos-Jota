@@ -1,0 +1,109 @@
+:root{
+    --color-principal: #A0522D;
+        /* Color principal de marca, títulos principales */
+    --color-secundario: #87A96B;
+        /* Acento secundario, sustentabilidad */
+    --color-fondo-principal: #F5E6D3;
+        /* Fondos principales, fotografía */
+    --color-detallesPremium: #D4A437;
+    /* Detalles premium, acentos */
+    --color-detallesSuaves:#C47A6D;
+    /* Acentos suaves, detalles femeninos */
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+main{
+    padding-top: 0 !important;
+}
+
+.index_heroBanner_div{
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.index_heroBanner_div img{
+    display: block;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    filter: brightness(50%);
+    top: 0; /* sirve en caso de un div como este, donde tiene una altura definida, en caso de que la altura no este definida esta edición no se pone ; */
+    right: 0; /* se debe usar para que margin 0 auto funcione */
+    left: 0; /* se debe usar para que margin 0 auto funcione */
+    margin: 0 auto; /* Esto lo centra */
+}
+
+.index_heroBanner_divTexto{
+    position: absolute;
+    top: 0; 
+    right: 0; 
+    left: 0;
+    bottom: 0;
+    background-color:rgba(0,0,0,50%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    gap:15px;
+    font-size: 10px;
+}
+
+
+.index_heroBanner_divTexto h1{
+    color: var(--color-principal);
+    color: white;
+}
+
+.index_heroBanner_divTexto p{
+    color: gray;
+}
+
+.index_heroBanner_divTexto button{
+    border-radius: 3px;
+    font-size: 10px;
+    border: none;
+    height: auto;
+    width: auto;
+    padding: 0.6em 1em 0.6em 1em;
+    background-color: var(--color-principal);
+    color:lightgray;
+    font-weight: bolder;
+}
+
+.index_heroBanner_divTexto button:hover{
+    cursor: pointer;
+}
+
+ @media (min-width: 800px){
+
+    .index_heroBanner_div{
+        height: 85vh;
+    }
+    .index_heroBanner_divTexto{
+        font-size: 16px;
+    }
+
+    .index_heroBanner_divTexto button{
+        font-size: 0.9rem;
+    }
+
+    .index_heroBanner_divTexto{
+        opacity: 0;               /* Oculto visualmente */
+        transition: opacity 0.4s ease; /*  Animación suave */
+        pointer-events: none;     /* No interfiere con el hover */
+    }
+
+    .index_heroBanner_div:hover .index_heroBanner_divTexto{
+        opacity: 1;               /* 👀 Se muestra suavemente */
+        pointer-events: auto;     /* Activa interacción si querés */
+    }
+
+ }
