@@ -19,6 +19,7 @@
 
 main{
     padding-top: 0 !important;
+    background-color: #EDEDED;
 }
 
 .index_heroBanner_div{
@@ -82,10 +83,178 @@ main{
     cursor: pointer;
 }
 
+
+.index_main_divInfo{
+    width: 100%;
+    height: auto;
+        
+        /* MODIFICAR PARA USAR DESPUES */
+        
+    font-size: 16px;
+}
+
+#index_main_Destacados_Contenedor{
+    height: auto;
+    font-size: 16px;
+}
+
+    #index_main_Destacados_Contenedor>h2{
+        height: 2.5em;
+        font-size: 1.2em;
+            font-weight: bolder;
+            color: var(--color-principal);
+            font-family: "Inter", sans-serif;
+
+        display: flex;
+            flex-direction: row;
+            align-items: center;
+
+        border-bottom: 1px solid lightgray;
+    }
+
+
+
+.index_main_destacados_Productos{
+    display: grid;
+        grid-template-columns: repeat(4,22%);
+        gap: 15px;
+        justify-content: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+@media (min-width: 600px) and (max-width: 1000px){
+    
+    #index_main_Destacados_Contenedor>h2{
+        font-size: 1em;
+    }
+
+    .index_main_destacados_Productos{
+        grid-template-columns: repeat(2,40%);
+        grid-template-rows: auto auto;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 600px){
+    #index_main_Destacados_Contenedor>h2{
+        font-size: .8em;
+    }
+
+    .index_main_destacados_Productos{
+        grid-template-columns: 60%;
+        grid-template-rows: repeat(4,auto);
+        gap: 15px;
+    }
+    .index_productoDestacado_Producto{
+        max-height: 320px;
+    }
+}
+
+
+.index_productoDestacado_Producto{
+    display: flex;
+        flex-direction: column;
+        
+    width: 100%;
+    height: 100%;
+    
+    background-color: #FFFFFF;
+    border-radius: 3%;
+    
+    font-size: 10px;
+    min-width: 100px;
+    min-height: 120px;
+}
+
+@media (min-width:800px) and (max-width: 1000px){
+
+    .index_productoDestacado_Producto{
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1500px){
+    .index_productoDestacado_Producto{
+        font-size: 16px;
+    }
+}
+
+
+    .index_productoDestacado_Producto_Imagen{
+        width: 100%;
+        height: 55%;
+        background-color: lightgray;
+        border-radius: 3%;
+    }
+            .index_productoDestacado_Producto_Imagen img{
+                width: 100%;
+                height: 100%;
+                object-fit: scale-down;
+            }
+            
+    .index_productoDestacado_Producto_Titulo{
+        width: 100%;
+        height: 20%;
+        padding: 4%;
+
+        overflow: hidden;
+        
+        font-size: .9em;
+        font-family: "Inter", sans-serif;
+        text-align: justify;
+    }
+
+    .index_productoDestacado_Producto_Titulo>h2{
+        margin-bottom: 3%;
+    }
+
+    .index_productoDestacado_Producto_Precio{
+        width: 100%;
+        height: 15%;
+        padding: 5%;
+
+        font-weight: bolder;
+            color: var(--color-detallesPremium);
+            font-size: .9em;
+            font-family: "Inter", sans-serif;
+
+        display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+    }
+
+    .index_productoDestacado_Producto_Boton{
+        height: 10%;
+        width: 100%;
+        display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+    }
+
+            .index_productoDestacado_Producto_Boton>button{
+                width: 90%;
+                height: 60%;
+                
+                border: none;
+                    border-radius: 3px;
+
+                font-size: .9em;
+                    font-weight: bolder;
+                    font-family: "Inter", sans-serif;
+                background-color: var(--color-principal);
+                color: white;
+            }
+
+
+
  @media (min-width: 800px){
 
     .index_heroBanner_div{
         height: 85vh;
+        margin-bottom: 1em;
     }
     .index_heroBanner_divTexto{
         font-size: 16px;
@@ -106,4 +275,15 @@ main{
         pointer-events: auto;     /* Activa interacción si querés */
     }
 
+    .index_main_divInfo{
+        width: 80%;
+        margin: 0 9% 0 9%;
+        font-size: 1rem;
+    }
+
  }
+
+
+.base_main_envoltorio{
+    height: auto;
+}
