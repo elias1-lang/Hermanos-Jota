@@ -19,7 +19,7 @@
 
 main{
     padding-top: 0 !important;
-    background-color: #EDEDED;
+    background-color: #c47a6d38;
 }
 
 .index_heroBanner_div{
@@ -87,11 +87,138 @@ main{
 .index_main_divInfo{
     width: 100%;
     height: auto;
-        
         /* MODIFICAR PARA USAR DESPUES */
-        
     font-size: 16px;
 }
+
+
+#index_main_Categorias{
+    font-size: 16px;
+    display: flex;
+        flex-direction: column;
+}
+
+        #index_main_Categorias>h2{
+            font-size: .8em;
+                font-weight: bolder;
+                color: var(--color-principal);
+                font-family: "Inter", sans-serif;
+            height: 2.5em;
+            display:flex;
+                align-items: center;
+            border-bottom: 1px solid lightgray;
+        }
+
+    .index_main_Categorias_Contenedor{
+        width: 100%;
+        height: 180px;
+        gap: 5px;   
+        display: grid;
+        padding: 2%;
+        grid-template-columns: repeat(5,15%);
+        grid-template-rows: repeat(3,30%);
+        grid-template-areas: 
+        "cat1 cat1 cat1 cat2 cat2"
+        "cat3 cat3 cat4 cat4 cat4"
+        "cat5 cat5 cat5 cat5 cat5";
+        
+        justify-content: center;
+        align-content: center;
+    }
+
+    
+    .index_main_Categorias_Contenedor_item{
+        border-radius: 5px;
+        background-color: var(--color-principal);
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+            .index_cat_titulo{
+                
+                font-family: "Inter", sans-serif;
+                    font-weight: bolder;
+                    color: whitesmoke;
+                    font-size: .8em;
+
+                width: 100%;
+                    height: 100%;
+                    border-radius: 5px;
+                
+                display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                opacity: 1;
+                transition: opacity 0.4s ease;
+            }
+            
+            .index_cat_imagen{
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                width: 100%;
+                height: 100%;
+                object-fit: scale-down;
+                overflow: hidden;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: gray;
+                z-index: 10;
+            }
+
+        .index_main_Categorias_Contenedor_item:hover .index_cat_titulo{
+            opacity: 0;       
+        }
+          
+        .index_main_Categorias_Contenedor_item:hover .index_cat_imagen{
+            opacity: 1;         
+        }
+          
+
+        #index_cat1{
+            grid-area: cat1;
+        }
+
+        #index_cat2{
+            grid-area: cat2;
+        }
+
+        #index_cat3{
+            grid-area: cat3;
+        }
+        #index_cat4{
+            grid-area: cat4;
+        }
+
+        #index_cat5{
+            grid-area: cat5;
+        }
+
+@media (min-width: 800px){
+    #index_main_Categorias>h2{
+        font-size: 1.2em;
+    }
+
+   .index_main_Categorias_Contenedor{
+        
+        height: 300px;
+        grid-template-columns: repeat(5,15%);
+        grid-template-rows: repeat(3,30%);
+        grid-template-areas: 
+        "cat1 cat1 cat1 cat2 cat2"
+        "cat3 cat3 cat4 cat4 cat4"
+        "cat5 cat5 cat5 cat5 cat5";
+        justify-content: center;
+        align-content: center;
+    }
+
+    .index_cat_titulo{
+        font-size: 1.2em;
+    }
+}
+
+
 
 #index_main_Destacados_Contenedor{
     height: auto;
@@ -111,8 +238,6 @@ main{
 
         border-bottom: 1px solid lightgray;
     }
-
-
 
 .index_main_destacados_Productos{
     display: grid;
@@ -271,7 +396,7 @@ main{
     }
 
     .index_heroBanner_div:hover .index_heroBanner_divTexto{
-        opacity: 1;               /* 👀 Se muestra suavemente */
+        opacity: 1;               /*  Se muestra suavemente */
         pointer-events: auto;     /* Activa interacción si querés */
     }
 
