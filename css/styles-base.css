@@ -46,7 +46,7 @@ main{
                     -> El tamaño base inicial es 0, así que el crecimiento se reparte equitativamente.
         */
     min-height: 150vh;
-    background-color: var(--color-detallesSuaves);
+    background-color: #fff;
     display: column;
     justify-content: space-between;
     padding-top: 2%;
