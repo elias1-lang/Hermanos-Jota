@@ -1,15 +1,16 @@
 * { 
   box-sizing: border-box; 
 }
+
 body { 
   margin: 0; 
   font-family: system-ui, Arial, sans-serif; 
-  background:#f6f6f6; 
   color:#222; 
 }
+
 main {  
   margin: 0 auto; 
-  padding: 24px; 
+  padding: 24px;
 }
 
 .catalogo h2 { 
@@ -37,6 +38,7 @@ main {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .productos-grid article:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 18px rgba(0,0,0,.12);
@@ -75,3 +77,47 @@ main {
   color: var(--color-principal); 
   margin: 4px 0 6px; 
 }
+
+/* --- BOTONES --- */
+.acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px; 
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+  width: auto;          
+  text-align: center;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-carrito {
+  background: var(--color-principal);
+  color: #fff;
+}
+
+.btn-carrito:hover {
+  background: var(--color-detallesSuaves);
+}
+
+.btn-comprar {
+  background: var(--color-principal);
+  color: #fff;
+}
+
+.btn-comprar:hover {
+  background: var(--color-detallesSuaves);
+}
+
+
