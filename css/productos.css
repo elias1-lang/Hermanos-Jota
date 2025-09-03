@@ -120,4 +120,19 @@ main {
   background: var(--color-detallesSuaves);
 }
 
+/* --- MOBILE: 2 productos por fila --- */
+@media (max-width: 768px) {
+  .productos-grid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+  .productos-grid img {
+    height: 120px; 
+  }
+
+  .btn {
+    font-size: 0.8rem; 
+    padding: 5px;
+  }
+}
 
