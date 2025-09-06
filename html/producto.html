@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles-base.css">
     <link rel="stylesheet" href="../css/producto.css">
+    <link rel="stylesheet" href="../css/index/syles-index.css">
     <link rel="icon" type="image/x-icon" href="../img/logo.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,17 +73,32 @@
 
     <div class="base_main_envoltorio">
 
-      <main id="detalle-producto">
-
-        <h1 id="name"></h1>
-        <img id="image" alt="">
-        <p id="description"></p>
-        <div id="atributos"></div>
-        <p class="precio-producto"><strong>Precio: $ <span id="price"></span></strong></p>
-      
-        <button class="boton-comprar">Comprar ahora</button>
-
-      </main>
+        <main id="detalle-producto">
+            <h1 id="name"></h1>
+            <div class="producto-contenido">
+                <div class="producto-imagen">
+                    <img id="image" alt="" style="cursor:zoom-in;">
+                </div>
+                <div class="producto-detalles">
+                    <p id="description"></p>
+                    <div id="atributos"></div>
+                    <p class="precio-producto"><strong>Precio: $ <span id="price"></span></strong></p>
+                    <button class="boton-comprar">Comprar ahora</button>
+                </div>
+            </div>
+            <div id="modal-img" class="modal-img"> <!-- para ver imagen en pantalla completa -->
+                <span class="modal-img-close" id="modal-img-close">&times;</span>
+                <img id="modal-img-content" src="" alt="Imagen ampliada">
+            </div>
+            <div class="producto-otros" id="producto-otros_contenedor">
+                <h2 class="producto-otros_titulo">También te puede interesar</h2>
+                <div id="producto-otros-destacados_contenedor">
+                </div>
+                <h2 class="producto-otros_titulo">Otras categorías</h2>
+                <div id="producto-otros-categorias_contenedor">
+                </div>
+            </div>
+        </main>
 
     </div>
 
