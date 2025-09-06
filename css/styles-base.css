@@ -361,3 +361,76 @@ footer
         font-size: 1rem;
     }
 }
+
+/* Menu Hambuerguesa */
+
+
+.menu_hamb{
+    
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+        top: 0;
+    padding: 0% 0% 0% 0%;
+    display: flex;
+        flex-direction: column;
+
+    background-color: whitesmoke;
+}
+
+.menu_hamb_disable{
+    display:none;
+}
+
+
+.disable_content{
+    display:none !important;
+}
+
+.menu_hamb_nav{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+    padding-left: 5%;
+    height: 80%;
+}
+
+.menu_hamb_div_botones{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: var(--color-fondo-principal);
+    padding: 0 3% 0 0;
+}
+
+        .menu_hamb_disable_bot{
+            width: 30px;
+            height: 30px;
+            font-family: "Inter", sans-serif;
+                font-weight: 700;
+
+            background-color: var(--color-principal);
+            color: white;
+            border-radius: 30%;
+            border: none;
+        }
+
+.menu_hamb_nav > ul{
+    list-style: none;
+}
+    .menu_hamb_nav > ul > li{
+        border-bottom: solid 1px lightgray;
+        height: 30%;
+        display: flex;
+        align-items: center;
+    }
+
+    .menu_hamb_nav > ul > li> a{
+        text-decoration: none;
+        font-family: "Inter", sans-serif;
+            font-weight: 700;
+            color: var(--color-principal);
+            font-size: 1.2em;
+    }
