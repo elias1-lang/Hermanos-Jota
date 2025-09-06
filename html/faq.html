@@ -124,6 +124,21 @@
 
 
 
+    <section class="menu_hamb menu_hamb_disable">
+
+         <div class="menu_hamb_div_botones">
+             <button class="menu_hamb_disable_bot">X</button>
+         </div>
+        <nav class="menu_hamb_nav">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Catálogo</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="FAQ.html">FAQ</a></li>
+            </ul>
+        </nav>
+    </section>
 
     <footer>
         <div class="base_footer_contenedor">
@@ -186,5 +201,36 @@
             </div> 
         </div>
     </footer>
+
+    <script>
+        // MALA PRACTICA, COPIAR LUEGO EN ARCHIVO JS DE ESTE DOCUMENTO HTML O DEJAR SI NO ES NECESARIO QUE ESTE DOCUMENTO TENGA ARCHIVO JS PROPIO
+        function configuracionesMenu(habilitacion){
+            const selectorMenuHamb = document.querySelector(".menu_hamb");
+            const selectorHeader = document.querySelector("header");
+            const selectorFooter = document.querySelector("footer");
+            const selectorContenido = document.querySelector(".base_main_envoltorio");
+
+            if(habilitacion){
+                selectorMenuHamb.classList.remove("menu_hamb_disable");
+                selectorHeader.classList.add("disable_content");
+                selectorFooter.classList.add("disable_content");
+                selectorContenido.classList.add("disable_content");  
+                return 1;
+            }
+            
+            selectorMenuHamb.classList.add("menu_hamb_disable");
+            selectorHeader.classList.remove("disable_content");
+            selectorFooter.classList.remove("disable_content");
+            selectorContenido.classList.remove("disable_content");
+            return 1;
+        }
+
+        const selectorMenuBoton = document.querySelector(".base_menu");
+        const selectorMenuDisable = document.querySelector(".menu_hamb_disable_bot");
+
+        selectorMenuBoton.addEventListener('click', ()=>{configuracionesMenu(1)});
+        selectorMenuDisable.addEventListener('click',()=>{configuracionesMenu(0)});
+    </script>
+
 </body>
 </html>
