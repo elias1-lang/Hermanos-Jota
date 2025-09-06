@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles-base.css">
+    <link rel="stylesheet" href="../css/contacto.css">
     <link rel="icon" type="image/x-icon" href="../images/logo.svg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +26,7 @@
             Bold (700) — Énfasis editorial
         font-family: "Playfair Display", serif;
     -->
-    <title>Mueblería Hermanos Jota</title>
+    <title>Contacto - Mueblería Hermanos Jota</title>
 </head>
 
 <body>
@@ -66,19 +67,51 @@
 
 
 
-    <div class="base_main_envoltorio">
-        <!-- LOS ENVOLTORIOS ESTAN PARA LIMITAR LA AMPLIACION Y CONTRACCION EXCESIVA DE LA PAGINA. SEGURO HAYA UNA MEJOR FORMA DE HACERLO-->
-        
+    <div class="base_main_envoltorio">     
         <main>
             <!-- MODIFICAR A PARTIR DE ACA, DUPLICAR "mod/modelopag.html" EN LA CARPETA RAIZ (PARA QUE SE CONECTE AUTOMATICAMENTE AL STYLES-BASE.CSS)-->
             <!-- CREAR PROPIA HOJA DE ESTILOS PARA CADA PAGINA, NO MODIFICAR EL STYLES-BASE-CSS -->
             <!-- ES POSIBLE QUE UN HTML TENGA MAS DE UN LINK STYLESHEET-->
             
-            <div class="contentInfo_Main">
-                <!-- CREAR ESTE CONTENEDOR EN LA HOJA DE ESTILO INDIVIDUAL DE CADA PAGINA, ESTE ES SOLO UN MODELO: BORRAR DESPUES-->
-                <!-- TIENE MARGENES LATERALES QUE TIENEN CIERTA SIMETRIA CON LOS ICONOS Y LOGO DEL HEADER -->
-                <!-- DESARROLLADO EN; LINEA 55 DE STYLES-BASE.CSS Y MODIFICADO EN EL QUERY DE LINEA 239, MISMO ARCHIVO-->
+            <div class="contentInfo_Main contacto-contenedor">  <!-- todavia no es una clase eso-->
+                <div class="contacto-header">
+                    <h1>Contacto</h1>
+                    <p class="contacto-subtitulo">
+                        Durante más de 30 años, hemos transformado madera en piezas con alma. 
+                        Cuéntanos tu idea y creemos juntos el mueble perfecto para tu espacio.
+                    </p>
+                </div>
+                <div class="contacto-grid">
+                    <div class="contacto-formulario">
+                        <h2></h2>             
+                        <form id="formulario-contacto" class="formulario-estilo">                  
+                            <div class="form-group">                      
+                                <label for="nombre">Nombre Completo:</label>                      
+                                <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Perez">                      
+                                <span class="error-mensaje" id="error-nombre"></span>  
+                            </div>
+                            
+                            <div class="form-group">                     
+                                <label for="email">Correo Electronico: </label>                        
+                                <input type="email" id="email" name="email" required placeholder="Ej: juanp@gmail.com">   
+                                <span class="error-mensaje" id="error-email"></span>
+                            </div>
+                            
+                            <div class="form-group">                      
+                                <label for="mensaje">Mensaje: </label>       
+                                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                                <span class="error-mensaje" id="error-mensaje"></span>
+                            </div>
+                            
+                            <button type="submit" class="boton-enviar">
+                                <span>Enviar Mensaje</span>
+                            </button>
+                            
+                        </form>
+                    </div>
+                </div>
             </div>
+
             
         </main>
         <!-- BORRAR LOS COMENTARIOS -->
@@ -148,5 +181,7 @@
             </div> 
         </div>
     </footer>
+
+    <script src=""></script>
 </body>
 </html>
