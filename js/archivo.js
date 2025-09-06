@@ -11,7 +11,8 @@ const productos = [
     precio: 25000,
     image: "../img/Silla de Trabajo Belgrano.png",
     alt: "Silla ergonómica de trabajo modelo Belgrano",
-    link: "/producto.html?id=silla-belgrano"
+    link: "../html/producto.html?id=silla-belgrano",
+    categoria: "SILLAS"
   },
   {
     id: "aparador-uspallata",
@@ -25,7 +26,8 @@ const productos = [
     precio: 48000,
     image: "../img/Aparador Uspallata.png",
     alt: "Aparador Uspallata",
-    link: "/producto.html?id=aparador-uspallata"
+    link: "../html/producto.html?id=aparador-uspallata",
+    categoria: "APARADORES"
   },
   {
     id: "biblioteca-recoleta",
@@ -39,7 +41,8 @@ const productos = [
     precio: 35000,
     image: "../img/Biblioteca Recoleta.png",
     alt: "Biblioteca Recoleta",
-    link: "/producto.html?id=biblioteca-recoleta"
+    link: "../html/producto.html?id=biblioteca-recoleta",
+    categoria: "ESTANTERÍAS"
   },
   {
     id: "butaca-mendoza",
@@ -53,7 +56,8 @@ const productos = [
     precio: 60000,
     image: "../img/Butaca Mendoza.png",
     alt: "Butaca Mendoza",
-    link: "/producto.html?id=butaca-mendoza"
+    link: "../html/producto.html?id=butaca-mendoza",
+    categoria: "SILLAS"
   },
   {
     id: "escritorio-costa",
@@ -67,7 +71,8 @@ const productos = [
     precio: 70000,
     image: "../img/Escritorio Costa.png",
     alt: "Escritorio Costa",
-    link: "/producto.html?id=escritorio-costa"
+    link: "../html/producto.html?id=escritorio-costa",
+    categoria: "ESCRITORIOS"
   },
   {
     id: "mesa-comedor-pampa",
@@ -81,7 +86,8 @@ const productos = [
     precio: 80000,
     image: "../img/Mesa Comedor Pampa.png",
     alt: "Mesa Comedor Pampa",
-    link: "/producto.html?id=mesa-comedor-pampa"
+    link: "../html/producto.html?id=mesa-comedor-pampa",
+    categoria: "MESAS"
   },
   {
     id: "mesa-centro-araucaria",
@@ -95,7 +101,8 @@ const productos = [
     precio: 80000,
     image: "../img/Mesa de Centro Araucaria.png",
     alt: "Mesa de Centro Araucaria",
-    link: "/producto.html?id=mesa-centro-araucaria"
+    link: "../html/producto.html?id=mesa-centro-araucaria",
+    categoria: "MESAS"
   },
   {
     id: "mesa-noche-aconcagua",
@@ -109,7 +116,8 @@ const productos = [
     precio: 40000,
     image: "../img/Mesa de Noche Aconcagua.png",
     alt: "Mesa de Noche Aconcagua",
-    link: "/producto.html?id=mesa-noche-aconcagua"
+    link: "../html/producto.html?id=mesa-noche-aconcagua",
+    categoria: "MESAS"
   },
   {
     id: "silla-belgrano-premium",
@@ -123,7 +131,8 @@ const productos = [
     precio: 250000,
     image: "../img/Silla de Trabajo Belgrano.png",
     alt: "Silla ergonómica de trabajo modelo Belgrano",
-    link: "/producto.html?id=silla-belgrano-premium"
+    link: "../html/producto.html?id=silla-belgrano-premium",
+    categoria: "SILLAS"
   },
   {
     id: "sillas-cordoba",
@@ -137,7 +146,8 @@ const productos = [
     precio: 30000,
     image: "../img/Sillas Córdoba.png",
     alt: "Sillas modelo Córdoba",
-    link: "/producto.html?id=sillas-cordoba"
+    link: "../html/producto.html?id=sillas-cordoba",
+    categoria: "SILLAS"
   },
   {
     id: "sillon-copacabana",
@@ -151,7 +161,8 @@ const productos = [
     precio: 120000,
     image: "../img/Sillón Copacabana.png",
     alt: "Sillón modelo Copacabana",
-    link: "/producto.html?id=sillon-copacabana"
+    link: "../html/producto.html?id=sillon-copacabana",
+    categoria: "SOFÁS Y SILLONES"
   },
   {
     id: "sofa-patagonia",
@@ -163,6 +174,59 @@ const productos = [
     precio: 150000,
     image: "../img/Sofá Patagonia.png",
     alt: "Sofá modelo Patagonia",
-    link: "/producto.html?id=sofa-patagonia"
+    link: "../producto.html?id=sofa-patagonia",
+    categoria: "SOFÁS Y SILLONES"
   }
 ];
+
+// Diccionario de mapeo para mostrar nombres amigables
+  const map = {
+    medidas: "Medidas",
+    terminacion: "Terminación",
+    material: "Material",
+    regulacion: "Regulación",
+    certificacion: "Certificación",
+    peso: "Peso",
+    capacidad: "Capacidad",
+    modular: "Modularidad",
+    tapizado: "Tapizado",
+    confort: "Confort",
+    storage: "Almacenamiento",
+    cables: "Pasacables",
+    precio: "Precio",
+    extension: "Extensión",
+    carga: "Carga máxima",
+    apilables: "Apilables",
+    incluye: "Incluye",
+    rotacion: "Rotación",
+    garantia: "Garantía"
+  };
+  const principalesCategorias = [
+    {
+        nombre: "MESAS",
+        orden: 1,
+        urlImagen: "../img/index-categorias/CAT1.png"
+    },
+    {
+        nombre: "SILLAS",
+        orden: 2,
+        urlImagen: "../img/index-categorias/CAT2.png"
+    },
+    {
+        nombre: "APARADORES",
+        orden: 3,
+        urlImagen: "../img/index-categorias/CAT3.png"
+    },
+    {
+        nombre: "ESTANTERÍAS",
+        orden: 4,
+        urlImagen: "../img/index-categorias/CAT4.png"
+    },
+    {
+        nombre: "SOFÁS Y SILLONES",
+        orden: 5,
+        urlImagen: "../img/index-categorias/CAT5.png"
+    },
+];
+
+const productosDestacados = ["aparador-uspallata", "escritorio-costa", "butaca-mendoza", "biblioteca-recoleta"];

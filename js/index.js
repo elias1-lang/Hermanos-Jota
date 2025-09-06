@@ -1,72 +1,38 @@
-const productosDestacados = [ 
+// const productosDestacados = [ 
     
-    {
-        id: 1,
-        nombre: "Aparador Uspallata",
-        descripcion: "Elegante aparador de seis puertas fabricado en nogal sostenible con tiradores metálicos en acabado latón",
-        precio: 48000,
-        urlImagen: "../img/index-productos-destacados/PROD1.png",
-        urlProducto: "producto.html?id=aparador-uspallata"
-    },
-    {
-        id: 2,
-        nombre: "Escritorio Costa",
-        descripcion: "Escritorio minimalista compacto con cajón organizado y tapa pasacables integrada en bambú laminado.",
-        precio:70000,
-        urlImagen: "../img/index-productos-destacados/PROD2.png",
-        urlProducto: "producto.html?id=escritorio-costa"
-    },
-    {
-        id: 3,
-        nombre: "Butaca Mendoza",
-        descripcion: "Butaca tapizada en bouclé Dusty Rose con base de madera de guatambú.",
-        precio: 60000,
-        urlImagen: "../img/index-productos-destacados/PROD3.png",
-        urlProducto: "producto.html?id=butaca-mendoza"
-    },
-    {
-        id: 4,
-        nombre: "Biblioteca Recoleta",
-        descripcion: "Sistema modular de estantes abierto que combina estructura de acero Sage Green y repisas en roble claro.",
-        precio: 35000,
-        urlImagen: "../img/index-productos-destacados/PROD4.png",
-        urlProducto: "producto.html?id=biblioteca-recoleta"
-    }
-];
-
-const principalesCategorias = [
-
-    {
-        nombre: "MESAS",
-        orden: 1,
-        urlImagen: "../img/index-categorias/CAT1.png"
-    },
-
-    {
-        nombre: "SILLAS",
-        orden: 2,
-        urlImagen: "../img/index-categorias/CAT2.png"
-    },
-
-    {
-        nombre: "APARADORES",
-        orden: 3,
-        urlImagen: "../img/index-categorias/CAT3.png"
-    },
-
-    {
-        nombre: "ESTANTERÍAS",
-        orden: 4,
-        urlImagen: "../img/index-categorias/CAT4.png"
-    },
-
-    {
-        nombre: "SOFÁS Y SILLONES",
-        orden: 5,
-        urlImagen: "../img/index-categorias/CAT5.png"
-    },
-
-];
+//     {
+//         id: 1,
+//         nombre: "Aparador Uspallata",
+//         descripcion: "Elegante aparador de seis puertas fabricado en nogal sostenible con tiradores metálicos en acabado latón",
+//         precio: 48000,
+//         urlImagen: "../img/index-productos-destacados/PROD1.png",
+//         urlProducto: "producto.html?id=aparador-uspallata"
+//     },
+//     {
+//         id: 2,
+//         nombre: "Escritorio Costa",
+//         descripcion: "Escritorio minimalista compacto con cajón organizado y tapa pasacables integrada en bambú laminado.",
+//         precio:70000,
+//         urlImagen: "../img/index-productos-destacados/PROD2.png",
+//         urlProducto: "producto.html?id=escritorio-costa"
+//     },
+//     {
+//         id: 3,
+//         nombre: "Butaca Mendoza",
+//         descripcion: "Butaca tapizada en bouclé Dusty Rose con base de madera de guatambú.",
+//         precio: 60000,
+//         urlImagen: "../img/index-productos-destacados/PROD3.png",
+//         urlProducto: "producto.html?id=butaca-mendoza"
+//     },
+//     {
+//         id: 4,
+//         nombre: "Biblioteca Recoleta",
+//         descripcion: "Sistema modular de estantes abierto que combina estructura de acero Sage Green y repisas en roble claro.",
+//         precio: 35000,
+//         urlImagen: "../img/index-productos-destacados/PROD4.png",
+//         urlProducto: "producto.html?id=biblioteca-recoleta"
+//     }
+// ];
 
 function crearProductoDestacado(imagen,nombre,descripcion,precio,urlProducto){
     const producto = 
@@ -107,7 +73,8 @@ function crearCategoriaPrincipal(orden,nombre,urlImagen){
 
 const selectorDivProductosDestacados = document.querySelector('.index_main_destacados_Productos');
 productosDestacados.forEach((p)=>{
-    selectorDivProductosDestacados.innerHTML+=crearProductoDestacado(p.urlImagen,p.nombre,p.descripcion,p.precio,p.urlProducto);
+    producto = productos.find(prod => prod.id === p);
+    selectorDivProductosDestacados.innerHTML+=crearProductoDestacado(producto.image,producto.nombre,producto.descripcion,producto.precio,producto.link);
 });
 
 
