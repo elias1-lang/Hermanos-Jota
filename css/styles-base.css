@@ -112,14 +112,62 @@ footer
 
 .base_carrito{
     grid-area: carrito;
-    text-align: end;
+
+    display: flex;
+        flex-direction: column;
+        align-items: flex-end;
 }
 
-.base_carrito img{
+.base_carrito_content_grid{
+    max-width: 35%;
+    min-width: 31%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 20%;
+}
+
+.base_carrito_img_div{
+    width: 100%;
+    position: relative;
+}
+
+.base_carrito_img_div > img{
+    width: 100%;    
+    height: 100%;
+    display: block; 
+}
+
+.base_carrito_img_div > p{
+    
+    position: absolute;
+        bottom: 0;  
+        right: 0;
+        width: 50%;
+        height: 50%;
+    overflow: hidden;
+    font-size: 9px;
+    
+    color: black;
+        text-align: center;
+        font-weight: bolder;
+    
+    display: flex;
+        justify-content: center;
+        align-items: center;
+
+    border-radius: 50%;
+    background-color: var(--color-detallesPremium);
+}
+
+
+/* .base_carrito img{
     max-width: 30%;
     height: 100%;
     margin-right: 20%;
-}
+    border: solid 1px red;
+} */
 
 .base_carrito img:hover{
     cursor: pointer;
@@ -211,16 +259,18 @@ footer
     }
 
     .base_carrito{
-        text-align: center;
-        display: flex;
         justify-content: start;
-        align-items: center;
+        align-items: flex-start;
+        padding-left: 10%;
     }
     
-    .base_carrito img{
-        margin: 0;
-        height: 50%;
-        margin-left: 15%;
+    .base_carrito_content_grid{
+        flex-direction: column;
+        align-items: center;
+    }
+    .base_carrito_img_div{
+        max-width: 50%;
+        min-width: 35px;
     }
 
     .base_barraBusqueda{
@@ -363,7 +413,6 @@ footer
 }
 
 /* Menu Hambuerguesa */
-
 
 .menu_hamb{
     
