@@ -79,7 +79,6 @@ main {
 }
 
 /* --- MENSAJE DE CARGA DE PRODUCTOS --- */
-/* --- LOADING FULL SCREEN --- */
 .loading {
   position: fixed;                /* ocupa la pantalla completa */
   top: 0;
