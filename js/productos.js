@@ -1,8 +1,21 @@
-document.addEventListener("DOMContentLoaded", () => {
+function fetchProductos() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(productos);
+    }, 1000); //simula un retraso de 1 segundo 
+  });
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
   const grid = document.getElementById("productos");
   if (!grid) return;
 
-  if (!Array.isArray(productos) || productos.length === 0) {
+  document.body.insertAdjacentHTML("beforeend", `<div class="loading">Cargando productos...</div>`); // mensaje de carga 
+
+  //espera la simulación de carga
+  const productosCargados = await fetchProductos();
+
+  if (!Array.isArray(productosCargados) || productosCargados.length === 0) {
     grid.innerHTML = `<p>No hay productos disponibles.</p>`;
     return;
   }
@@ -34,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     a.appendChild(h3);
     a.appendChild(price);
 
-    // 🔥 Botones de acción
+    // Botones de acción
     const actions = document.createElement("div");
     actions.className = "acciones";
 
@@ -63,5 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     frag.appendChild(article);
   });
 
+  // reemplaza el "Cargando" por los productos
+  document.querySelector(".loading")?.remove();
   grid.appendChild(frag);
 });
