@@ -56,7 +56,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     btnCarrito.textContent = "Agregar al carrito";
     btnCarrito.addEventListener("click", (e) => {
       e.preventDefault();
-      console.log(`Producto agregado: ${producto.nombre}`);
+      if (typeof agregarAlCarrito === "function") {
+        agregarAlCarrito(producto.id);
+      } else {
+        console.log(`Producto agregado: ${producto.nombre} (ID: ${producto.id})`);
+      }
     });
 
     const btnComprar = document.createElement("button");
