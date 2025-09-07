@@ -127,7 +127,7 @@ if (producto) {
   if (botonComprar) {
     botonComprar.addEventListener('click', function() {
       if (typeof agregarAlCarrito === 'function') {
-        agregarAlCarrito();
+        agregarAlCarrito(producto.id);
       }
     });
   }

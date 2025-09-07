@@ -231,18 +231,40 @@ const productos = [
 
 const productosDestacados = ["aparador-uspallata", "escritorio-costa", "butaca-mendoza", "biblioteca-recoleta"];
 
-let contadorCarrito = 0;
+let contadorCarrito = {};
+// inicializa el objeto desde sessionStorage
+if (sessionStorage.getItem('contadorCarrito')) {
+    try {
+        contadorCarrito = JSON.parse(sessionStorage.getItem('contadorCarrito'));
+    } catch(e) {
+        contadorCarrito = {};
+    }
+} else {
+    contadorCarrito = {};
+}
 
-// contador de productos en el carrito
 function actualizarContadorCarrito() {
+    // suma todas las cantidades de todos los productos
+    let cantidad = 0;
+    for (const key in contadorCarrito) {
+        cantidad += contadorCarrito[key];
+    }
     const contador = document.querySelector('.base_carrito_img_div #carrito-contador');
     if (contador) {
-        contador.textContent = contadorCarrito > 99 ? '99+' : contadorCarrito;
+        contador.textContent = cantidad > 99 ? '99+' : cantidad;
+        contador.style.display = cantidad > 0 ? 'flex' : 'none';
     }
 }
-window.addEventListener('DOMContentLoaded', actualizarContadorCarrito);
 
-function agregarAlCarrito() {
-    contadorCarrito++;
+function agregarAlCarrito(idProducto) {
+    // suma 1 al producto correspondiente
+    if (!contadorCarrito[idProducto]) {
+        contadorCarrito[idProducto] = 1;
+    } else {
+        contadorCarrito[idProducto]++;
+    }
+    sessionStorage.setItem('contadorCarrito', JSON.stringify(contadorCarrito));
     actualizarContadorCarrito();
 }
+
+window.addEventListener('DOMContentLoaded', actualizarContadorCarrito);
