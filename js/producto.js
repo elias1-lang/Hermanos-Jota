@@ -20,7 +20,7 @@ if (producto) {
 
   // como el resto son atributos variables según el producto:
   // atributos a excluir, que ya se los pasamos al HTML arriba
-  const exclude = ["id", "nombre", "descripcion", "precio", "image", "alt", "link"];
+  const exclude = ["id", "nombre", "descripcion", "precio", "image", "alt", "link", "categoria"];
   // sección del HTML donde vamos a poner los atributos que faltan (<div id="atributos">)
   const atributosDiv = document.querySelector("#atributos");
   atributosDiv.innerHTML = "";
