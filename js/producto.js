@@ -1,4 +1,3 @@
-
 // si llamo al html como producto.html?id=silla-belgrano, obtengo el id de la url
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
@@ -123,7 +122,15 @@ if (producto) {
       modalImg.style.cursor = 'zoom-in';
     }
   });
-
+  // botón agregar al carrito
+  const botonComprar = document.querySelector('.boton-comprar');
+  if (botonComprar) {
+    botonComprar.addEventListener('click', function() {
+      if (typeof agregarAlCarrito === 'function') {
+        agregarAlCarrito();
+      }
+    });
+  }
 
 } else {
   const detalleProductoDiv = document.querySelector("#detalle-producto");

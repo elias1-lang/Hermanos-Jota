@@ -230,3 +230,19 @@ const productos = [
 ];
 
 const productosDestacados = ["aparador-uspallata", "escritorio-costa", "butaca-mendoza", "biblioteca-recoleta"];
+
+let contadorCarrito = 0;
+
+// contador de productos en el carrito
+function actualizarContadorCarrito() {
+    const contador = document.querySelector('.base_carrito_img_div #carrito-contador');
+    if (contador) {
+        contador.textContent = contadorCarrito > 99 ? '99+' : contadorCarrito;
+    }
+}
+window.addEventListener('DOMContentLoaded', actualizarContadorCarrito);
+
+function agregarAlCarrito() {
+    contadorCarrito++;
+    actualizarContadorCarrito();
+}
