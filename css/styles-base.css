@@ -483,3 +483,56 @@ footer
             color: var(--color-principal);
             font-size: 1.2em;
     }
+
+
+
+/* Carrito */
+#carrito-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+#carrito-modal.activo {
+  display: flex;
+}
+#carrito-modal .carrito-modal-contenido {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90vw;
+  max-height: 80vh;
+  overflow: auto;
+  position: relative;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.13);
+}
+#carrito-modal-cerrar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #b85c2e;
+}
+#carrito-modal-lista > div {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+#carrito-modal-lista strong {
+  color: #b85c2e;
+}
+#carrito-modal h2 {
+  font-size: 1.2rem;
+  color: #b85c2e;
+  margin-bottom: 1rem;
+}
