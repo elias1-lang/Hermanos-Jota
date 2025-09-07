@@ -445,7 +445,7 @@ footer
 }
 
 .menu_hamb_div_botones{
-    height: 50px;
+    height: 60px;
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -455,8 +455,8 @@ footer
 }
 
         .menu_hamb_disable_bot{
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             font-family: "Inter", sans-serif;
                 font-weight: 700;
 
@@ -471,7 +471,7 @@ footer
 }
     .menu_hamb_nav > ul > li{
         border-bottom: solid 1px lightgray;
-        height: 30%;
+        height: 50%;
         display: flex;
         align-items: center;
     }
