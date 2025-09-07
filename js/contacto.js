@@ -119,4 +119,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-});
+    function simularEnvioFormulario() {
+        const botonEnviar = formulario.querySelector('.boton-enviar');
+        const textoOriginal = botonEnviar.querySelector('span').textContent;
+        
+        botonEnviar.disabled = true;
+        botonEnviar.querySelector('span').textContent = 'Enviando...';
+        botonEnviar.style.opacity = '0.7';
+        
+        setTimeout(() => {
+            mostrarNotificacionExito();
+            formulario.reset();
+            setTimeout(() => {
+                botonEnviar.disabled = false;
+                botonEnviar.querySelector('span').textContent = textoOriginal;
+                botonEnviar.style.opacity = '1';
+            }, 2000);
+            
+        },2000);
+    }
+    function mostrarNotificacionExito() {
+        const notificacion = document.createElement('div');
+        notificacion.className = 'notificacion-exito';
+        notificacion.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span>Mensaje enviado con éxito! Te contactaremos pronto.</span>
+            </div>
+        `;
+        
+        document.body.appendChild(notificacion);
+        
+        setTimeout(() => {
+            if (notificacion.parentNode) {
+                notificacion.classList.add('saliendo');
+                    setTimeout(() => {
+                        if (notificacion.parentNode) {
+                            document.body.removeChild(notificacion);
+                        }
+                    }, 300);
+            }
+        }, 5000);
+    }
+})
