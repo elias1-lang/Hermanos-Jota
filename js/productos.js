@@ -1,7 +1,15 @@
+const params = new URLSearchParams(window.location.search);
+const cat = params.get("cat");
+const busc = params.get("busc");
+let prodFilt = productos;
+if(cat){prodFilt = productos.filter(p=>p.categoria===cat)};
+if(busc){prodFilt = productos.filter(p=>p.nombre.toLowerCase().includes(busc))};
+if(prodFilt.length===0){prodFilt = productos};
+
 function fetchProductos() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(productos);
+      resolve(prodFilt);
     }, 1000); //simula un retraso de 1 segundo 
   });
 }
@@ -14,15 +22,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   //espera la simulación de carga
   const productosCargados = await fetchProductos();
-
+  
   if (!Array.isArray(productosCargados) || productosCargados.length === 0) {
     grid.innerHTML = `<p>No hay productos disponibles.</p>`;
+    console.log("SALIR");
     return;
   }
 
   const frag = document.createDocumentFragment();
 
-  productos.forEach((producto) => {
+  prodFilt.forEach((producto) => {
     const article = document.createElement("article");
     article.id = producto.id;
 
@@ -112,3 +121,11 @@ const selectorMenuDisable = document.querySelector(".menu_hamb_disable_bot");
 
 selectorMenuBoton.addEventListener('click', ()=>{configuracionesMenu(1)});
 selectorMenuDisable.addEventListener('click',()=>{configuracionesMenu(0)});
+
+const selectorBarraBusqueda = document.querySelector("#header_barra_busq");
+const selectorBotonBusqueda = document.querySelector("#header_bot_busq");
+selectorBotonBusqueda.addEventListener("click",()=>{
+    const textoBuscado = selectorBarraBusqueda.value.toLowerCase();
+    const url = `../html/productos.html?busc=${textoBuscado}`;
+    window.open(url, '_self');
+});

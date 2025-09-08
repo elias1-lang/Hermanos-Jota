@@ -162,7 +162,7 @@ const selectorDivCategorias = document.querySelector('#producto-otros-categorias
 if (selectorDivCategorias) {
   principalesCategorias.forEach((c) => { // principalesCategorias está en archivo.js
     selectorDivCategorias.innerHTML += `
-        <div class="producto-otros-categorias_Categoria" id="producto-otros-categorias-${c.orden}">
+        <div class="producto-otros-categorias_Categoria" id="producto-otros-categorias-${c.orden}" onclick="window.location.href='${c.urlCat}'">
             <h2 class="producto-otros-categorias_Categoria_Titulo">${c.nombre}</h2>
             <img class="producto-otros-categorias_Categoria_Imagen" src="${c.urlImagen}" alt="${c.nombre}">
         </div>
@@ -196,3 +196,11 @@ const selectorMenuDisable = document.querySelector(".menu_hamb_disable_bot");
 
 selectorMenuBoton.addEventListener('click', ()=>{configuracionesMenu(1)});
 selectorMenuDisable.addEventListener('click',()=>{configuracionesMenu(0)});
+
+const selectorBarraBusqueda = document.querySelector("#header_barra_busq");
+const selectorBotonBusqueda = document.querySelector("#header_bot_busq");
+selectorBotonBusqueda.addEventListener("click",()=>{
+    const textoBuscado = selectorBarraBusqueda.value.toLowerCase();
+    const url = `../html/productos.html?busc=${textoBuscado}`;
+    window.open(url, '_self');
+});

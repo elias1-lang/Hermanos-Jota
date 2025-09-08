@@ -24,10 +24,10 @@ function crearProductoDestacado(imagen,nombre,descripcion,precio,urlProducto){
     return producto;
 };
 
-function crearCategoriaPrincipal(orden,nombre,urlImagen){
+function crearCategoriaPrincipal(orden,nombre,urlImagen,urlCategoria){
     const categoria = 
     `
-        <div class="index_main_Categorias_Contenedor_item" id="index_cat${orden}">
+        <div class="index_main_Categorias_Contenedor_item" id="index_cat${orden}" onclick="window.location.href='${urlCategoria}'">
             <h2 class="index_cat_titulo">${nombre}</h2>
             <img class="index_cat_imagen" src="${urlImagen}" alt="${nombre}">
         </div>
@@ -44,7 +44,7 @@ productosDestacados.forEach((p)=>{
 
 const selectorDivCategorias = document.querySelector(".index_main_Categorias_Contenedor");
 principalesCategorias.forEach((c)=>{
-    selectorDivCategorias.innerHTML+=crearCategoriaPrincipal(c.orden,c.nombre,c.urlImagen);
+    selectorDivCategorias.innerHTML+=crearCategoriaPrincipal(c.orden,c.nombre,c.urlImagen,c.urlCat);
 });
 
 
@@ -76,3 +76,10 @@ const selectorMenuDisable = document.querySelector(".menu_hamb_disable_bot");
 selectorMenuBoton.addEventListener('click', ()=>{configuracionesMenu(1)});
 selectorMenuDisable.addEventListener('click',()=>{configuracionesMenu(0)});
 
+const selectorBarraBusqueda = document.querySelector("#header_barra_busq");
+const selectorBotonBusqueda = document.querySelector("#header_bot_busq");
+selectorBotonBusqueda.addEventListener("click",()=>{
+    const textoBuscado = selectorBarraBusqueda.value.toLowerCase();
+    const url = `../html/productos.html?busc=${textoBuscado}`;
+    window.open(url, '_self');
+});

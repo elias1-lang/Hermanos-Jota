@@ -161,3 +161,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 })
+
+const selectorBarraBusqueda = document.querySelector("#header_barra_busq");
+const selectorBotonBusqueda = document.querySelector("#header_bot_busq");
+selectorBotonBusqueda.addEventListener("click",()=>{
+    const textoBuscado = selectorBarraBusqueda.value.toLowerCase();
+    const url = `../html/productos.html?busc=${textoBuscado}`;
+    window.open(url, '_self');
+});

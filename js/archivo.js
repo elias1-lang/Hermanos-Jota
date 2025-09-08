@@ -205,27 +205,32 @@ const productos = [
     {
         nombre: "MESAS",
         orden: 1,
-        urlImagen: "../img/index-categorias/CAT1.png"
+        urlImagen: "../img/index-categorias/CAT1.png",
+        urlCat: "../html/productos.html?cat=MESAS"
     },
     {
         nombre: "SILLAS",
         orden: 2,
-        urlImagen: "../img/index-categorias/CAT2.png"
+        urlImagen: "../img/index-categorias/CAT2.png",
+        urlCat: "../html/productos.html?cat=SILLAS"
     },
     {
         nombre: "APARADORES",
         orden: 3,
-        urlImagen: "../img/index-categorias/CAT3.png"
+        urlImagen: "../img/index-categorias/CAT3.png",
+        urlCat: "../html/productos.html?cat=APARADORES"
     },
     {
         nombre: "ESTANTERÍAS",
         orden: 4,
-        urlImagen: "../img/index-categorias/CAT4.png"
+        urlImagen: "../img/index-categorias/CAT4.png",
+        urlCat: "../html/productos.html?cat=ESTANTERÍAS"
     },
     {
         nombre: "SOFÁS Y SILLONES",
         orden: 5,
-        urlImagen: "../img/index-categorias/CAT5.png"
+        urlImagen: "../img/index-categorias/CAT5.png",
+        urlCat: "../html/productos.html?cat=SOFÁS Y SILLONES"
     },
 ];
 
