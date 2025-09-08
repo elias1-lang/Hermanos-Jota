@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     btnComprar.addEventListener("click", (e) => {
       e.preventDefault();
       console.log(`Compra directa: ${producto.nombre}`);
-      window.location.href = `../html/carrito.html?id=${producto.id}`;
+      window.location.href = `../html/producto.html?id=${producto.id}`;
     });
 
     actions.appendChild(btnCarrito);
