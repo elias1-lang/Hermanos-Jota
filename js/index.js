@@ -1,39 +1,3 @@
-// const productosDestacados = [ 
-    
-//     {
-//         id: 1,
-//         nombre: "Aparador Uspallata",
-//         descripcion: "Elegante aparador de seis puertas fabricado en nogal sostenible con tiradores metálicos en acabado latón",
-//         precio: 48000,
-//         urlImagen: "../img/index-productos-destacados/PROD1.png",
-//         urlProducto: "producto.html?id=aparador-uspallata"
-//     },
-//     {
-//         id: 2,
-//         nombre: "Escritorio Costa",
-//         descripcion: "Escritorio minimalista compacto con cajón organizado y tapa pasacables integrada en bambú laminado.",
-//         precio:70000,
-//         urlImagen: "../img/index-productos-destacados/PROD2.png",
-//         urlProducto: "producto.html?id=escritorio-costa"
-//     },
-//     {
-//         id: 3,
-//         nombre: "Butaca Mendoza",
-//         descripcion: "Butaca tapizada en bouclé Dusty Rose con base de madera de guatambú.",
-//         precio: 60000,
-//         urlImagen: "../img/index-productos-destacados/PROD3.png",
-//         urlProducto: "producto.html?id=butaca-mendoza"
-//     },
-//     {
-//         id: 4,
-//         nombre: "Biblioteca Recoleta",
-//         descripcion: "Sistema modular de estantes abierto que combina estructura de acero Sage Green y repisas en roble claro.",
-//         precio: 35000,
-//         urlImagen: "../img/index-productos-destacados/PROD4.png",
-//         urlProducto: "producto.html?id=biblioteca-recoleta"
-//     }
-// ];
-
 function crearProductoDestacado(imagen,nombre,descripcion,precio,urlProducto){
     const producto = 
     `
