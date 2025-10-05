@@ -16,6 +16,7 @@ export default function IndexPrincipalesCategorias(){
                                 orden={cat.orden}
                                 nombre={cat.nombre}
                                 urlImagen={cat.urlImagen}
+                                urlCategoria={cat.urlCat}
                             />
                         ))
                     }

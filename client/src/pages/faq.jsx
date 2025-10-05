@@ -6,6 +6,7 @@ import BaseMenu from "../components/BaseMenu";
 import IndexFAQ from "../components/index/IndexFAQ";
 
 export default function faq(){
+
     return (
         <React.Fragment>
             <BaseHeader />

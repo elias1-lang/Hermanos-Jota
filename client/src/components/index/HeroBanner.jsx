@@ -1,11 +1,15 @@
-import react from "react";
-
+//import react from "react";
+import { useNavigate } from 'react-router-dom';
 import heroBannerImg from "../../img/herobanner/unsplash_spacejoy.jpg"
-import style_index from "../../styles/styles-index.css";
+//import style_index from "../../styles/styles-index.css";
 
 export default function HeroBanner(){
-    const urlCatalogo = "/catalogo";
-    const accionBoton = "window.location.href='"+urlCatalogo+"'";
+
+    const navigate = useNavigate();
+    const irCatalogo = ()=>{
+        navigate('/catalogo');
+    };
+
     return (
         <div className="index_heroBanner_div">
             <img src={heroBannerImg} alt="Imagen de salon decorado con sillones y cuadros" />
@@ -15,7 +19,7 @@ export default function HeroBanner(){
                     <br />
                     Diseñamos más que muebles: creamos escenarios para tu vida.
                 </p>
-                    <button onclick={accionBoton}>Ver Catálogo</button>
+                    <button onClick={irCatalogo}>Ver Catálogo</button>
                 </div>
         </div>
     );

@@ -1,8 +1,10 @@
-import react from "react";
-import style_index from "../../styles/styles-index.css";
+import { useNavigate } from "react-router-dom";
+//import react from "react";
+//import style_index from "../../styles/styles-index.css";
 
 export default function IndexUnDestacado({imagen,nombre,descripcion,precio,urlProducto}){
-    const accionConcatenada = "window.location.href='"+urlProducto+"'";
+    const navigate = useNavigate();
+    const irProducto = () => {navigate(urlProducto);}
 
     return (
         <div className="index_productoDestacado_Producto">
@@ -21,7 +23,7 @@ export default function IndexUnDestacado({imagen,nombre,descripcion,precio,urlPr
             </div>
                                 
             <div className="index_productoDestacado_Producto_Boton">
-             <button onclick="window.location.href='{urlProducto}'">Ver Detalle</button>
+             <button onClick={irProducto}>Ver Detalle</button>
             </div>
 
         </div>
