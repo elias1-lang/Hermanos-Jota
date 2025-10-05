@@ -7,12 +7,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
   //necesario para que funcione react-router
 import PaginaIndex from './pages/Index'
 
+import PaginaContactoPruebaRutas from './pages/ContactoPruebaRutas'
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<PaginaIndex />}/>
+        <Route path="/contacto" element={<PaginaContactoPruebaRutas />}/>
       </Routes>
     </Router>
   )

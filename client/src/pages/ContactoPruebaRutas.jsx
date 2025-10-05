@@ -21,9 +21,10 @@ export default function Index(){
                 estadoMenu={estadoMenu}
             />
 
-            <IndexMain 
+            <BaseFooter 
                 estadoMenu={estadoMenu}
             />
+            
             <BaseFooter 
                 estadoMenu={estadoMenu}
             />

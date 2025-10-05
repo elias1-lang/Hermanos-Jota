@@ -1,21 +1,26 @@
-import react from "react";
+import react, { useState } from "react";
 import stylesbase from "../styles/base/styles-base.css";
+import {Link} from 'react-router-dom';
 
 
-export default function BaseMenu(){
-    const [inicio, catalogo, nosotros, contacto, faq] = ["#","#","#","#","#"];
+export default function BaseMenu({estadoMenu,cambiarEstado}){
+
+    if(!estadoMenu) return null; //no renderiza la pagina directamente si el estado es null
+
+    const [inicio, catalogo, nosotros, contacto, faq] = ["/","/catalogo","/nosotros","/contacto","/faq"];
+
     return (
-        <section className="menu_hamb menu_hamb_disable">
+        <section className="menu_hamb">
          <div className="menu_hamb_div_botones">
-             <button className="menu_hamb_disable_bot">X</button>
+             <button onClick={cambiarEstado} className="menu_hamb_disable_bot" >X</button>
          </div>
         <nav className="menu_hamb_nav">
             <ul>
-                <li><a href={inicio}>Inicio</a></li>
-                <li><a href={catalogo}>Catálogo</a></li>
-                <li><a href={nosotros}>Nosotros</a></li>
-                <li><a href={contacto}>Contacto</a></li>
-                <li><a href={faq}>FAQ</a></li>
+                <li><Link to={inicio}>Inicio</Link></li>
+                <li><Link to={catalogo}>Catálogo</Link></li>
+                <li><Link to={nosotros}>Nosotros</Link></li>
+                <li><Link to={contacto}>Contacto</Link></li>
+                <li><Link to={faq}>FAQ</Link></li>
             </ul>
         </nav>
     </section>
