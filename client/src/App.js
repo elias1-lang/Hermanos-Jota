@@ -15,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PaginaIndex />}/>
         <Route path="/contacto" element={<PaginaContactoPruebaRutas />}/>
+        <Route path="/faq" element={<PaginaFaq />}/>
       </Routes>
     </Router>
   )
