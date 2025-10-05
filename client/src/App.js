@@ -6,7 +6,8 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
   //necesario para que funcione react-router
 import PaginaIndex from './pages/Index'
-
+import PaginaFaq from './pages/faq'
+import PaginaNosotros from './pages/Nosotros'
 import PaginaContactoPruebaRutas from './pages/ContactoPruebaRutas'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<PaginaIndex />}/>
         <Route path="/contacto" element={<PaginaContactoPruebaRutas />}/>
         <Route path="/faq" element={<PaginaFaq />}/>
+        <Route path="/nosotros" element={<PaginaNosotros />}/>
       </Routes>
     </Router>
   )
