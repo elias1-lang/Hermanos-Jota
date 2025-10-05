@@ -51,6 +51,11 @@ section[id] p,
         padding: 2.2rem 4rem 1.2rem 4rem;
         gap: 1.5rem;
         margin-bottom: 0.7rem;
+        max-width: 900px;
+        margin: 1.5rem auto;
+        background-color: fff;
+        border-radius: 8px;
+        border: 1px solid #e5e5e5;
     }
     section[id] h2 {
         font-size: 2.3rem;
@@ -62,3 +67,4 @@ section[id] p,
         font-size: 1.08rem;
     }
 }
+
