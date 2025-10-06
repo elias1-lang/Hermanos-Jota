@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-
-
-
 function ProductoOtrosDestacados({id}) {
 
     const [productosDestacados, setProductosDestacados] = useState([]);

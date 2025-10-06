@@ -4,7 +4,6 @@ import BaseHeader from "../components/BaseHeader";
 import BaseFooter from "../components/BaseFooter";
 import BaseMenu from "../components/BaseMenu";
 import ProductoContenido from "../components/producto/ProductoContenido";
-import ProductoModalImg from "../components/producto/ProductoModalImg";
 import ProductoOtrosDestacados from "../components/producto/ProductoOtrosDestacados";
 import ProductoOtrasCategorias from "../components/producto/ProductoOtrasCategorias";
 

@@ -86,5 +86,6 @@ export default function ProductoContenido({ id }) {
                 </div>
             </div>
         </main>
+        // TODO: modal image que estaba en la entrega anterior
     );
 }
