@@ -1,16 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import productosDestacados from '../../data/archivoProductosDestacados.js';
-import productos from '../../data/productos.js';
 
-function ProductoOtrosDestacados() {
+
+
+
+function ProductoOtrosDestacados({id}) {
+
     const [productosDestacados, setProductosDestacados] = useState([]);
+    const [error, setError] = useState(null);
+    
+    // esto no era necesario, no vimos fetch todavía pero para probar conectar a la API
+    useEffect(() => {
+        const fetchProductosDestacados = async () => {
+            const response = await fetch(`http://localhost:4000/api/productos/${id}/destacados`);
+            // TODO: la url debería estar en una variable global
+            if (!response.ok) {
+                setError('Error al obtener el producto');
+                return;
+            } 
+            if (response.status === 404) {
+                setError('Producto no encontrado');
+                return;
+            }
+            const data = await response.json();
+            setProductosDestacados(data);
+            
+        };
+        fetchProductosDestacados();
+    }, [id]);
 
-    const params = new URLSearchParams(window.location.search);
-    const currentId = params.get("id");
-
-    const destacados = productosDestacados.filter((producto) => producto.id !== currentId);
-    setProductosDestacados(destacados);
-
+    if (error) {
+        return <p>{error}</p>;
+    }
+    if (!productosDestacados) {
+        return <p>Cargando productos destacados...</p>;
+    }
     return (
         <div className="producto-otros" id="producto-otros_contenedor">
             <h2 className="producto-otros_titulo">También te puede interesar</h2>

@@ -1,6 +1,6 @@
-
-const express = require('express');
-const productosRoutes = require('./routes/productos');
+import productosRoutes from './routes/productos.js';
+import express from 'express';
+import cors from 'cors';
 
 const app = express();
 const PORT = 4000;
@@ -14,12 +14,16 @@ const logger = (req, res, next) => {
 };
 app.use(logger);
 
+app.use(cors({ // para que no tire error No 'Access-Control-Allow-Origin'
+    origin: 'http://localhost:3000', // URL de tu frontend React
+    credentials: true
+}));
 
 // RUTAS con express.Router
 app.use('/api/productos', productosRoutes);
 
 // RUTAS NO ENCONTRADAS
-app.use('*', (req, res) => {
+app.use((req, res) => {
     res.status(404).json({ 
         error: 'Ruta no encontrada',
         message: `La ruta ${req.originalUrl} no existe en este servidor`

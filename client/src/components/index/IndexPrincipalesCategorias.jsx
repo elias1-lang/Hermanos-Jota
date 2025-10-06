@@ -1,6 +1,6 @@
 import React from 'react';
 import IndexCategoria from './IndexCategoria';
-import principalesCategorias from '../../data/principalesCategorias'
+import principalesCategorias from '../../data/principalesCategorias.js';
 
 
 export default function IndexPrincipalesCategorias(){

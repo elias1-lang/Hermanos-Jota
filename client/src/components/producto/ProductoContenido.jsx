@@ -1,33 +1,58 @@
-import React, { useState } from 'react';
-import productos from '../../data/productos.js';
+import React, { useState, useEffect} from 'react';
 
-export default function ProductoContenido() {
-    const [atributos, setAtributos] = useState([]);
+// import ProductoModalImg from './ProductoModalImg';
 
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id"); // obtengo id de producto desde URL
+
+export default function ProductoContenido({ id }) {
+
+    const [producto, setProducto] = useState(null);
+    const [error, setError] = useState(null);
+
+    // esto no era necesario, no vimos fetch todavía pero para probar conectar a la API
+    useEffect(() => {
+        const fetchProducto = async () => {
+            const response = await fetch(`http://localhost:4000/api/productos/${id}`); //espero a que termine el fetch
+            // TODO: la url debería estar en una variable global
+            if (!response.ok) {
+                setError('Error al obtener el producto');
+                return;
+            } 
+            if (response.status === 404) {
+                setError('Producto no encontrado');
+                return;
+            }
+            const data = await response.json();
+            setProducto(data);
+        };
+        fetchProducto();
+    }, [id]); //depende del id, cada vez que cambie el id, se vuelve a ejecutar fetchProducto()
+
+    if (error) {
+        return <p>{error}</p>;
+    }
+    if (!producto) {
+        return <p>Cargando producto...</p>;
+    }
     
-    // busco el producto
-    const producto = productos.find(p => p.id === id);
 
-    if (producto) {
-        const excluir = ["id", "nombre", "descripcion", "precio", "image", "alt", "link", "categoria"];
-        const atributos = Object.entries(producto).filter(([key, value]) => 
-            !excluir.includes(key) && value
-        );
-        setAtributos(atributos);
+    const excluir = ["id", "nombre", "descripcion", "precio", "image", "alt", "link", "categoria"];
+    const atributos = Object.entries(producto).filter(([key, value]) => 
+        !excluir.includes(key) && value
+    );
+
+    // TODO: hacer en global
+    const agregarAlCarrito = (id) => {
+        console.log('No implementado');
+        return
     }
 
     const handleComprar = () => {
         if (typeof agregarAlCarrito === 'function') {
             agregarAlCarrito(producto.id);
+            return
         }
     };
-
-    if (!producto) {
-        return <p>Producto no encontrado.</p>;
-    }
-
+   
     return (
         <main id="detalle-producto">
             <h1>{producto.nombre}</h1>
@@ -41,7 +66,7 @@ export default function ProductoContenido() {
                     />
                 </div>
                 <div className="producto-detalles">
-                    <p>{producto.descripcion}</p>
+                    <p id="description">{producto.descripcion}</p>
                     <div id="atributos">
                         {atributos.map(([key, value]) => {
                             const label = key.charAt(0).toUpperCase() + key.slice(1);

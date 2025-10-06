@@ -3,12 +3,14 @@
   //recordar que para iniciar react: npm run start
 
 import './App.css';
+import './styles/base/styles-base.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
   //necesario para que funcione react-router
 import PaginaIndex from './pages/Index'
 import PaginaFaq from './pages/faq'
 import PaginaNosotros from './pages/Nosotros'
 import PaginaContactoPruebaRutas from './pages/ContactoPruebaRutas'
+import ProductDetail from './pages/ProductDetail';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path="/contacto" element={<PaginaContactoPruebaRutas />}/>
         <Route path="/faq" element={<PaginaFaq />}/>
         <Route path="/nosotros" element={<PaginaNosotros />}/>
+        <Route path="/productos/:id" element={<ProductDetail />}/>
       </Routes>
     </Router>
   )

@@ -11,7 +11,7 @@ export const productos = [
     precio: 25000,
     image: "/img/Silla de Trabajo Belgrano.png",
     alt: "Silla ergonómica de trabajo modelo Belgrano",
-    link: "../html/producto.html?id=silla-belgrano",
+    link: "/productos/silla-belgrano",
     categoria: "SILLAS"
   },
   {
@@ -26,7 +26,7 @@ export const productos = [
     precio: 48000,
     image: "/img/Aparador Uspallata.png",
     alt: "Aparador Uspallata",
-    link: "../html/producto.html?id=aparador-uspallata",
+    link: "/productos/aparador-uspallata",
     categoria: "APARADORES"
   },
   {
@@ -41,7 +41,7 @@ export const productos = [
     precio: 35000,
     image: "/img/Biblioteca Recoleta.png",
     alt: "Biblioteca Recoleta",
-    link: "../html/producto.html?id=biblioteca-recoleta",
+    link: "/productos/biblioteca-recoleta",
     categoria: "ESTANTERÍAS"
   },
   {
@@ -56,7 +56,7 @@ export const productos = [
     precio: 60000,
     image: "/img/Butaca Mendoza.png",
     alt: "Butaca Mendoza",
-    link: "../html/producto.html?id=butaca-mendoza",
+    link: "/productos/butaca-mendoza",
     categoria: "SILLAS"
   },
   {
@@ -71,7 +71,7 @@ export const productos = [
     precio: 70000,
     image: "/img/Escritorio Costa.png",
     alt: "Escritorio Costa",
-    link: "../html/producto.html?id=escritorio-costa",
+    link: "/productos/escritorio-costa",
     categoria: "ESCRITORIOS"
   },
   {
@@ -86,7 +86,7 @@ export const productos = [
     precio: 80000,
     image: "/img/Mesa Comedor Pampa.png",
     alt: "Mesa Comedor Pampa",
-    link: "../html/producto.html?id=mesa-comedor-pampa",
+    link: "/productos/mesa-comedor-pampa",
     categoria: "MESAS"
   },
   {
@@ -101,7 +101,7 @@ export const productos = [
     precio: 80000,
     image: "/img/Mesa de Centro Araucaria.png",
     alt: "Mesa de Centro Araucaria",
-    link: "../html/producto.html?id=mesa-centro-araucaria",
+    link: "/productos/mesa-centro-araucaria",
     categoria: "MESAS"
   },
   {
@@ -116,7 +116,7 @@ export const productos = [
     precio: 40000,
     image: "/img/Mesa de Noche Aconcagua.png",
     alt: "Mesa de Noche Aconcagua",
-    link: "../html/producto.html?id=mesa-noche-aconcagua",
+    link: "/productos/mesa-noche-aconcagua",
     categoria: "MESAS"
   },
   {
@@ -131,7 +131,7 @@ export const productos = [
     precio: 250000,
     image: "/img/Silla de Trabajo Belgrano.png",
     alt: "Silla ergonómica de trabajo modelo Belgrano",
-    link: "../html/producto.html?id=silla-belgrano-premium",
+    link: "/productos/silla-belgrano-premium",
     categoria: "SILLAS"
   },
   {
@@ -146,7 +146,7 @@ export const productos = [
     precio: 30000,
     image: "/img/Sillas Córdoba.png",
     alt: "Sillas modelo Córdoba",
-    link: "../html/producto.html?id=sillas-cordoba",
+    link: "/productos/sillas-cordoba",
     categoria: "SILLAS"
   },
   {
@@ -161,7 +161,7 @@ export const productos = [
     precio: 120000,
     image: "/img/Sillón Copacabana.png",
     alt: "Sillón modelo Copacabana",
-    link: "../html/producto.html?id=sillon-copacabana",
+    link: "/productos/sillon-copacabana",
     categoria: "SOFÁS Y SILLONES"
   },
   {
@@ -174,7 +174,7 @@ export const productos = [
     precio: 150000,
     image: "/img/Sofá Patagonia.png",
     alt: "Sofá modelo Patagonia",
-    link: "../producto.html?id=sofa-patagonia",
+    link: "/productos/sofa-patagonia",
     categoria: "SOFÁS Y SILLONES"
   }
 ];

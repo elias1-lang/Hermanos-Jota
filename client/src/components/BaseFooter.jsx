@@ -23,18 +23,18 @@ if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
     return (
         <footer>
             <div className="base_footer_contenedor">
-                <div class="base_footer_logo">
+                <div className="base_footer_logo">
                     <img src={logoSitio} alt="Logo del sitio web" />
                 </div>
 
 
                 <div className="base_footer_infoPagina">
-                    <div class="base_footer_infoElem">
+                    <div className="base_footer_infoElem">
                         <h2>Hermanos Jota</h2>
                         <p>Es el redescubrimiento de un arte olvidado: crear muebles que no solo sirven una función, sino que alimentan el alma.</p>
                     </div>
 
-                    <div class="base_footer_infoElem">
+                    <div className="base_footer_infoElem">
                         <h2>Navegación</h2>
                         <ul>
                             <li><Link to={inicio}>Inicio</Link></li>
@@ -45,7 +45,7 @@ if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
                         </ul>
                     </div>
 
-                    <div class="base_footer_infoElem">
+                    <div className="base_footer_infoElem">
                         <h2>Contacto</h2>
                         <ul>
                             <li><img src={instagramIco} alt="Instagram del negocio" /><a
@@ -60,7 +60,7 @@ if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
                     </div>
 
 
-                    <div class="base_footer_infoElem">
+                    <div className="base_footer_infoElem">
                         <h2>Dónde encontrarnos</h2>
                             <ul>
                                 <li>
@@ -77,7 +77,7 @@ if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
                             </ul>
                     </div>
 
-                    <div class="base_footer_infoElem">
+                    <div className="base_footer_infoElem">
                         <h2>Información Adicional</h2>
                         <ul>
                             <li><Link to={enviosDevoluciones}>Envíos y Devoluciones</Link></li>
@@ -89,7 +89,7 @@ if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
                 </div>
 
 
-                <div class="base_footer_infoDesarrollo">
+                <div className="base_footer_infoDesarrollo">
                     <p>©2025 Mueblería Hermanos Jota. Todos los derechos reservados. | Diseñado por grupo 12</p>
                 </div> 
             

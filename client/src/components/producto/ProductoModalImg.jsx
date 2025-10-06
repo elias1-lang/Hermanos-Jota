@@ -12,20 +12,36 @@ function ProductoModalImg() {
     const modalRef = useRef(null);
     const modalImgRef = useRef(null);
 
-    const imageElement = document.querySelector('#image');
+    // useEffect para manejar el event listener de la imagen
+    useEffect(() => {
+        const imageElement = document.querySelector('#image');
         
-    if (imageElement) {
-        const handleImageClick = () => {
-            setIsActive(true);
-            setImageSrc(imageElement.src);
-            setScale(1);
-            setPosition({ x: 0, y: 0 });
-            setZoomMode(false);
-        };
+        if (imageElement) {
+            const handleImageClick = () => {
+                setIsActive(true);
+                setImageSrc(imageElement.src);
+                setScale(1);
+                setPosition({ x: 0, y: 0 });
+                setZoomMode(false);
+            };
 
-        imageElement.addEventListener('click', handleImageClick);
-        return () => imageElement.removeEventListener('click', handleImageClick);
-    }
+            imageElement.addEventListener('click', handleImageClick);
+            return () => imageElement.removeEventListener('click', handleImageClick);
+        }
+    }, []); // Se ejecuta una sola vez al montar el componente
+
+    // useEffect para manejar el arrastre
+    useEffect(() => {
+        if (isDragging) {
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+            
+            return () => {
+                document.removeEventListener('mousemove', handleMouseMove);
+                document.removeEventListener('mouseup', handleMouseUp);
+            };
+        }
+    }, [isDragging, dragStart, zoomMode]);
 
     const handleModalImgClick = (e) => {
         e.stopPropagation();
@@ -83,18 +99,6 @@ function ProductoModalImg() {
     const handleMouseUp = () => {
         setIsDragging(false);
     };
-
-    useEffect(() => {
-        if (isDragging) {
-            document.addEventListener('mousemove', handleMouseMove);
-            document.addEventListener('mouseup', handleMouseUp);
-            
-            return () => {
-                document.removeEventListener('mousemove', handleMouseMove);
-                document.removeEventListener('mouseup', handleMouseUp);
-            };
-        }
-    }, [isDragging, dragStart, zoomMode]);
 
     const getCursor = () => {
         if (!zoomMode) return 'zoom-in';
