@@ -23,15 +23,27 @@ En estos sprints seguimos avanzando con "Muebleria Hermanos J", esta vez Node.js
 
 **INSTRUCCIONES DE INSTALACIÓN**
 
-1. **Iniciar el servidor backend:**
+1. **Instalar dependencias del backend:**
 ```bash
 cd backend
+npm install
+```
+
+2. **Instalar dependencias del cliente:**
+```bash
+cd ../client
+npm install
+```
+
+3. **Iniciar el servidor backend:**
+```bash
+cd ../backend
 node --watch server.js
 ```
 El servidor backend se ejecutará en `http://localhost:4000`
 
 
-2. **En una nueva terminal, iniciar el cliente React:**
+4. **En una nueva terminal, iniciar el cliente React:**
 ```bash
 cd ../client
 npm start
