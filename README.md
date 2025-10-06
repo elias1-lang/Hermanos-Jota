@@ -17,18 +17,23 @@ En estos sprints seguimos avanzando con "Muebleria Hermanos J", esta vez Node.js
 - Express
 - Postman
 
-<h2>ENLACE AL SITIO</h2> "Muebleria Hermanos J" - https://github.com/elias1-lang/Hermanos-Jota
+<h2>ENLACE AL SITIO</h2> 
+"Muebleria Hermanos J" - https://github.com/elias1-lang/Hermanos-Jota
+
 
 **INSTRUCCIONES DE INSTALACIÓN**
+
 1. **Iniciar el servidor backend:**
 ```bash
+cd backend
 node --watch server.js
 ```
 El servidor backend se ejecutará en `http://localhost:4000`
 
+
 2. **En una nueva terminal, iniciar el cliente React:**
 ```bash
-cd client
+cd ../client
 npm start
 ```
 El cliente se ejecutará en `http://localhost:3000`
