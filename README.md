@@ -17,7 +17,7 @@ En estos sprints seguimos avanzando con "Muebleria Hermanos J", esta vez Node.js
 - Express
 - Postman
 
-<h2>ENLACE AL SITIO</h2> 
+**ENLACE AL SITIO**
 "Muebleria Hermanos J" - https://github.com/elias1-lang/Hermanos-Jota
 
 
