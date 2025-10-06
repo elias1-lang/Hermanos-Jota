@@ -11,7 +11,7 @@ export default function Catalogo({ productos, loading, funcionAgregar }) {
           <div className="productos-grid">
             {productos.map((producto) => (
               <article key={producto.id} id={producto.id}>
-                <a href={`/producto/${producto.id}`}>
+                <a href={`/productos/${producto.id}`}>
                   <figure>
                     <img
                       src={producto.image}

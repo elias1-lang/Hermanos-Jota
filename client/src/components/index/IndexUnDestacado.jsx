@@ -23,7 +23,7 @@ export default function IndexUnDestacado({imagen,nombre,descripcion,precio,urlPr
             </div>
                                 
             <div className="index_productoDestacado_Producto_Boton">
-             <button onClick={()=>funcionAgregar(nombre)}>Ver Detalle</button>
+             <button onClick={() => window.location.href = urlProducto}>Ver Detalle</button>
             </div>
 
         </div>
