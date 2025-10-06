@@ -16,6 +16,7 @@ import ProductDetail from './pages/ProductDetail';
 import BaseHeader from './components/BaseHeader';
 import BaseFooter from './components/BaseFooter';
 import BaseMenu from './components/BaseMenu';
+import PaginaCatalogo from './pages/Catalogo';
 import { addCarrito, cantidadElementosCarrito} from './utils/carritoFunciones';
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
         <Route path="/faq" element={<PaginaFaq />}/>
         <Route path="/nosotros" element={<PaginaNosotros />}/>
         <Route path="/productos/:id" element={<ProductDetail funcionAgregar={actualizarCantidadCarrito}/>}/>
+        <Route path="/catalogo" element={<PaginaCatalogo funcionAgregar={actualizarCantidadCarrito} />}/>
       </Routes>
       
       <BaseFooter 
