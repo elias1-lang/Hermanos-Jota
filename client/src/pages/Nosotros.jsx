@@ -8,10 +8,7 @@ import IndexNosotros from "../components/index/IndexNosotros";
 export default function Nosotros(){
     return (
         <React.Fragment>
-            <BaseHeader />
             <IndexNosotros />
-            <BaseFooter />
-            <BaseMenu />
         </React.Fragment>
     );
 }

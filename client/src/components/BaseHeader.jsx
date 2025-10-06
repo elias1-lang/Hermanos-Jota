@@ -12,10 +12,13 @@ import menuIco from "../img/header-footer/list.svg";
 import carritoIco from "../img/header-footer/cart.svg";
 import botonbuscarIco from "../img/header-footer/search.svg";
 
-export default function BaseHeader({cambiarEstado, estadoMenu}){
+import {addCarrito, cantidadElementosCarrito} from "../utils/carritoFunciones"
+
+export default function BaseHeader({cambiarEstado, estadoMenu, cantidadCarritoEstado}){
+//const cantidadCarrito = cantidadElementosCarrito();
+
 if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
 const [inicio, catalogo, nosotros, contacto, faq] = ["/","/catalogo","/nosotros","/contacto","/faq"];
-
     return (
         <header>
         <div className="base_header_contenedor">
@@ -32,7 +35,7 @@ const [inicio, catalogo, nosotros, contacto, faq] = ["/","/catalogo","/nosotros"
                     <div className="base_carrito_img_div">
                         <img src={carritoIco} alt="Carrito de compras" />
                         {/*El contador debe ser un componente que se implementa con localstoragge y se calcula por cada renderizado*/}
-                        <p id="carrito-contador"></p>   
+                        { Boolean(cantidadCarritoEstado) && <p id="carrito-contador">{cantidadCarritoEstado>99?"99+":cantidadCarritoEstado}</p>}
                     </div>
                 </div>
             </div>

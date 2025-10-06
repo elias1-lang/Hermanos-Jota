@@ -3,7 +3,7 @@ import "../../styles/faq.css";
 
 export default function IndexFAQ() {
     return (
-        <div className="index_main_faq_contenedor">
+        <div className="contentInfo_Main">
             <section id="faq">
                 <h2>Preguntas Frecuentes</h2>
                 <div className="faq-list">

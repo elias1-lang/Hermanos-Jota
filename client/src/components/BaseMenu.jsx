@@ -16,11 +16,11 @@ export default function BaseMenu({estadoMenu,cambiarEstado}){
          </div>
         <nav className="menu_hamb_nav">
             <ul>
-                <li><Link to={inicio}>Inicio</Link></li>
-                <li><Link to={catalogo}>Catálogo</Link></li>
-                <li><Link to={nosotros}>Nosotros</Link></li>
-                <li><Link to={contacto}>Contacto</Link></li>
-                <li><Link to={faq}>FAQ</Link></li>
+                <li onClick={cambiarEstado}><Link to={inicio}>Inicio</Link></li>
+                <li onClick={cambiarEstado}><Link to={catalogo}>Catálogo</Link></li>
+                <li onClick={cambiarEstado}><Link to={nosotros}>Nosotros</Link></li>
+                <li onClick={cambiarEstado}><Link to={contacto}>Contacto</Link></li>
+                <li onClick={cambiarEstado}><Link to={faq}>FAQ</Link></li>
             </ul>
         </nav>
     </section>

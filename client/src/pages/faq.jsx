@@ -9,10 +9,7 @@ export default function faq(){
 
     return (
         <React.Fragment>
-            <BaseHeader />
             <IndexFAQ />
-            <BaseFooter />
-            <BaseMenu />
         </React.Fragment>
     );
 }

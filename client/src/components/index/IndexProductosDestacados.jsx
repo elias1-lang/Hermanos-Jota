@@ -1,11 +1,12 @@
 import react from "react";
 import IndexUnDestacado from "./IndexUnDestacado";
-
 import style_index from "../../styles/styles-index.css";
 import productosArray from "../../data/archivoProductos"
 import productosDestacadosArray from "../../data/archivoProductosDestacados"
 
-export default function IndexProductosDestacados(){
+export default function IndexProductosDestacados({funcionAgregar}){
+
+
     return (
         <div className="index_main_destacados_Productos">
             {
@@ -18,6 +19,7 @@ export default function IndexProductosDestacados(){
                             descripcion={item.descripcion}
                             precio={item.precio}
                             urlProducto={item.link}
+                            funcionAgregar={funcionAgregar}
                         />
                     );
                 })
