@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import principalesCategorias from '../../data/principalesCategorias.js';
 
 function ProductoOtrasCategorias() {
 
