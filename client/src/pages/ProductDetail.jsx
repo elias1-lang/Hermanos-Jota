@@ -9,7 +9,7 @@ import ProductoOtrasCategorias from "../components/producto/ProductoOtrasCategor
 
 import '../styles/producto.css';
 
-function ProductDetail(){
+function ProductDetail({funcionAgregar}){
     const [estadoMenu, setEstadoMenu] = useState(false);
     const cambiarEstado = () => {setEstadoMenu(!estadoMenu)};
 
@@ -18,25 +18,12 @@ function ProductDetail(){
 
     return (
         <React.Fragment>
-            
-            <BaseMenu 
-                estadoMenu={estadoMenu}
-                cambiarEstado={cambiarEstado}
-            />
-            <BaseHeader 
-                cambiarEstado={cambiarEstado}
-                estadoMenu={estadoMenu}
-            />
 
-            <ProductoContenido id={id} />
+            <ProductoContenido id={id} funcionAgregar={funcionAgregar}/>
             
             <ProductoOtrosDestacados id={id} />
             <ProductoOtrasCategorias />
             
-            <BaseFooter 
-                estadoMenu={estadoMenu}
-            />
-
         </React.Fragment>
     );
 }

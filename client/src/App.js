@@ -58,7 +58,7 @@ function App() {
         <Route path="/contacto" element={<PaginaContactoPruebaRutas estadoMenu={estadoMenu}/>}/>
         <Route path="/faq" element={<PaginaFaq />}/>
         <Route path="/nosotros" element={<PaginaNosotros />}/>
-        <Route path="/productos/:id" element={<ProductDetail />}/>
+        <Route path="/productos/:id" element={<ProductDetail funcionAgregar={actualizarCantidadCarrito}/>}/>
       </Routes>
       
       <BaseFooter 

@@ -3,7 +3,7 @@ import React, { useState, useEffect} from 'react';
 // import ProductoModalImg from './ProductoModalImg';
 
 
-export default function ProductoContenido({ id }) {
+export default function ProductoContenido({ id , funcionAgregar}) {
 
     const [producto, setProducto] = useState(null);
     const [error, setError] = useState(null);
@@ -46,12 +46,14 @@ export default function ProductoContenido({ id }) {
         return
     }
 
+    /*
     const handleComprar = () => {
         if (typeof agregarAlCarrito === 'function') {
             agregarAlCarrito(producto.id);
             return
         }
     };
+    */
    
     return (
         <main id="detalle-producto">
@@ -80,7 +82,7 @@ export default function ProductoContenido({ id }) {
                     <p className="precio-producto">
                         <strong>Precio: $ <span>{producto.precio}</span></strong>
                     </p>
-                    <button className="boton-comprar" onClick={handleComprar}>
+                    <button className="boton-comprar" onClick={()=>funcionAgregar(producto.nombre)}>
                         Comprar ahora
                     </button>
                 </div>
