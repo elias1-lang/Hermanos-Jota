@@ -11,6 +11,7 @@
 
 El proyecto consiste en un sitio web de e-commerce para una mueblería.
 En estos sprints seguimos avanzando con "Muebleria Hermanos J", esta vez Node.js. Las secciones desarroladas fueron: backend y client
+
 **TECNOLOGÍAS USADAS**
 -React
 -Express
