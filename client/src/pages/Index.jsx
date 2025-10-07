@@ -9,11 +9,9 @@ export default function Index({ estadoMenu }){
 
     return (
         <div className="base_main_envoltorio">
-            <main>
                 <HeroBanner />
                 <IndexPrincipalesCategorias />
                 <IndexProductosDestacados />
-            </main>
         </div>  
     );
 }
