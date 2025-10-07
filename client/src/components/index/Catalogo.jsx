@@ -34,7 +34,7 @@ export default function Catalogo({ productos, loading, funcionAgregar }) {
 
                   <button className="btn btn-comprar" onClick={(e) => {e.preventDefault(); 
                     console.log(`Compra directa: ${producto.nombre}`);
-                    window.location.href = `/carrito?id=${producto.id}`;
+                    window.location.href = `/productos/${producto.id}`;
                     }}>
                     Comprar ahora
                   </button>
