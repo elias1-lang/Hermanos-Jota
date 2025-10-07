@@ -27,8 +27,7 @@ export default function Catalogo({ productos, loading, funcionAgregar }) {
                 <div className="acciones">
                   <button className="btn btn-carrito" onClick={(e) => {
                     e.preventDefault();
-                    funcionAgregar(producto.id);
-                    window.location.href = `/carrito?id=${producto.id}`;
+                    funcionAgregar(producto.id,1);
                 }}>
                     Agregar al carrito
                   </button>

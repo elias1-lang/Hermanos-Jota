@@ -82,7 +82,7 @@ export default function ProductoContenido({ id , funcionAgregar}) {
                     <p className="precio-producto">
                         <strong>Precio: $ <span>{producto.precio}</span></strong>
                     </p>
-                    <button className="boton-comprar" onClick={()=>funcionAgregar(producto.nombre)}>
+                    <button className="boton-comprar" onClick={()=>funcionAgregar(producto.id,1)}>
                         Comprar ahora
                     </button>
                 </div>

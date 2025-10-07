@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
         //adicionalmente, mantiene la memoria
 
 import stylesbase from "../styles/base/styles-base.css";
-
 //Imagenes que usara el sitio que no estan en la carpeta publica: 
 import logoSitio from "../img/header-footer/logo.svg";
 import menuIco from "../img/header-footer/list.svg";
@@ -14,7 +13,7 @@ import botonbuscarIco from "../img/header-footer/search.svg";
 
 import {addCarrito, cantidadElementosCarrito} from "../utils/carritoFunciones"
 
-export default function BaseHeader({cambiarEstado, estadoMenu, cantidadCarritoEstado}){
+export default function BaseHeader({cambiarEstado, estadoMenu, cantidadElementosCarrito,cambiarEstadoCarrito}){
 //const cantidadCarrito = cantidadElementosCarrito();
 
 if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
@@ -32,10 +31,10 @@ const [inicio, catalogo, nosotros, contacto, faq] = ["/","/catalogo","/nosotros"
 
             <div className="base_carrito">
                 <div className="base_carrito_content_grid">
-                    <div className="base_carrito_img_div">
+                    <div className="base_carrito_img_div" onClick={cambiarEstadoCarrito}>
                         <img src={carritoIco} alt="Carrito de compras" />
                         {/*El contador debe ser un componente que se implementa con localstoragge y se calcula por cada renderizado*/}
-                        { Boolean(cantidadCarritoEstado) && <p id="carrito-contador">{cantidadCarritoEstado>99?"99+":cantidadCarritoEstado}</p>}
+                        { Boolean(cantidadElementosCarrito) && <p id="carrito-contador">{cantidadElementosCarrito>99?"99+":cantidadElementosCarrito}</p>}
                     </div>
                 </div>
             </div>

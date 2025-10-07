@@ -1,13 +1,8 @@
-//App.js es un componente
-  //importa el logo react y las clases del tipico logo de react girando, se usará para manejar las direcciones con: react-router-dom (se debe instalar antes: npm install react-router-dom)
-  //recordar que para iniciar react: npm run start
-
 import './App.css';
 import './styles/base/styles-base.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-  //necesario para que funcione react-router
 import PaginaIndex from './pages/Index'
 import PaginaFaq from './pages/faq'
 import PaginaNosotros from './pages/Nosotros'
@@ -17,24 +12,53 @@ import BaseHeader from './components/BaseHeader';
 import BaseFooter from './components/BaseFooter';
 import BaseMenu from './components/BaseMenu';
 import PaginaCatalogo from './pages/Catalogo';
-import { addCarrito, cantidadElementosCarrito} from './utils/carritoFunciones';
+import BaseCarritoModal from "./components/BaseCarritoModal"
 
 function App() {
   
   const [estadoMenu, setEstadoMenu] = useState(false);
   const cambiarEstado = () => {setEstadoMenu(!estadoMenu)};
 
-  const [cantidadCarrito, setCantidadCarrito] = useState(0);
+  const [estadoCarrito, setEstadoCarrito] = useState(false);
+  const cambiarEstadoCarrito = ()=> {setEstadoCarrito(!estadoCarrito)};
 
-    useEffect(() => {
-      setCantidadCarrito(cantidadElementosCarrito());
-    }, []);
+  const [carrito, setCarrito] = useState({});
 
-    const actualizarCantidadCarrito = (idCarrito) => {
-      addCarrito(idCarrito)
-      setCantidadCarrito(cantidadElementosCarrito());
-    };
+  useEffect(()=>{
+    const carritoAuxiliar = JSON.parse(sessionStorage.getItem("carrito")) || {};
+    setCarrito(carritoAuxiliar);
+  }, []); 
 
+  const sitioMontado = useRef(false);
+
+  useEffect(()=>{
+    if(sitioMontado.current){
+      sessionStorage.setItem("carrito",JSON.stringify(carrito));
+    }else{
+      sitioMontado.current = true;
+    }
+  }, [carrito]);
+
+  const actualizarCarrito = (idProducto,cantidad) => {
+    const nuevoCarrito = {...carrito};
+    if(nuevoCarrito[idProducto]){
+      nuevoCarrito[idProducto]+=cantidad;
+      if(nuevoCarrito[idProducto]==0){
+        delete nuevoCarrito[idProducto];
+      }
+    }else{
+      nuevoCarrito[idProducto] = cantidad;
+    }
+    setCarrito(nuevoCarrito);
+  }
+
+  const cantidadItemsCarrito = ()=>{
+    let cantidad = 0;
+    for(const key in carrito){
+      cantidad += carrito[key];
+    }
+    return cantidad;
+  }
 
   return (
     <Router>
@@ -46,25 +70,29 @@ function App() {
       <BaseHeader 
         cambiarEstado={cambiarEstado}
         estadoMenu={estadoMenu}
-        cantidadCarritoEstado={cantidadCarrito}
+        cantidadElementosCarrito={cantidadItemsCarrito()}
+        cambiarEstadoCarrito={cambiarEstadoCarrito}
       />
 
       <Routes>
-        <Route path="/" element={
-          <PaginaIndex 
-            estadoMenu={estadoMenu} 
-            funcionAgregar={actualizarCantidadCarrito}
-          />}/>
-
+        <Route path="/" element={<PaginaIndex estadoMenu={estadoMenu}/>}/>
+        
         <Route path="/contacto" element={<PaginaContactoPruebaRutas estadoMenu={estadoMenu}/>}/>
         <Route path="/faq" element={<PaginaFaq />}/>
         <Route path="/nosotros" element={<PaginaNosotros />}/>
-        <Route path="/productos/:id" element={<ProductDetail funcionAgregar={actualizarCantidadCarrito}/>}/>
-        <Route path="/catalogo" element={<PaginaCatalogo funcionAgregar={actualizarCantidadCarrito} />}/>
+        <Route path="/productos/:id" element={<ProductDetail funcionAgregar={actualizarCarrito}/>}/>
+        <Route path="/catalogo" element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}/>
       </Routes>
       
       <BaseFooter 
         estadoMenu={estadoMenu}
+      />
+
+      <BaseCarritoModal 
+        estadoCarrito={estadoCarrito}
+        cambiarEstadoCarrito={cambiarEstadoCarrito}
+        carrito={carrito}
+        funcionActualizarCarrito={actualizarCarrito}
       />
     </Router>
   )

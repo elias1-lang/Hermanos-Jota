@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 //import react from "react";
 //import style_index from "../../styles/styles-index.css";
 
-export default function IndexUnDestacado({imagen,nombre,descripcion,precio,urlProducto,funcionAgregar}){
+export default function IndexUnDestacado({imagen,nombre,descripcion,precio,urlProducto}){
     const navigate = useNavigate();
     const irProducto = () => {navigate(urlProducto);}
 

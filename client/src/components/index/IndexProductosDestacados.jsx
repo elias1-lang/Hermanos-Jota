@@ -4,7 +4,7 @@ import style_index from "../../styles/styles-index.css";
 import productosArray from "../../data/archivoProductos"
 import productosDestacadosArray from "../../data/archivoProductosDestacados"
 
-export default function IndexProductosDestacados({funcionAgregar}){
+export default function IndexProductosDestacados({}){
 
 
     return (
@@ -19,7 +19,6 @@ export default function IndexProductosDestacados({funcionAgregar}){
                             descripcion={item.descripcion}
                             precio={item.precio}
                             urlProducto={item.link}
-                            funcionAgregar={funcionAgregar}
                         />
                     );
                 })
