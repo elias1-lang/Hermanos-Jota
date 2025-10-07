@@ -8,21 +8,25 @@ export default function IndexProductosDestacados({}){
 
 
     return (
+    <div className="index_main_divInfo" id="index_main_Destacados_Contenedor">
+        <h2>PRODUCTOS DESTACADOS</h2>
         <div className="index_main_destacados_Productos">
             {
                 productosDestacadosArray.map(destacado => {
                     const item = productosArray.find(prod => prod.id === destacado);
                     return (
                         <IndexUnDestacado 
-                            imagen={item.image}
-                            nombre={item.nombre}
-                            descripcion={item.descripcion}
-                            precio={item.precio}
-                            urlProducto={item.link}
+                        key={item.id}
+                        imagen={item.image}
+                        nombre={item.nombre}
+                        descripcion={item.descripcion}
+                        precio={item.precio}
+                        urlProducto={item.link}
                         />
                     );
                 })
             }
         </div>
+    </div>
     );
 }

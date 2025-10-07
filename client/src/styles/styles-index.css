@@ -17,11 +17,29 @@
     box-sizing: border-box;
 }
 
-main{
+body{
+    background-color: whitesmoke;
+}
+.indexMain{
     padding-top: 0 !important;
-    background-color: #c47a6d38;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.index_main_envoltorio{
+    max-width: 2000px;
+    width: 100vw;
+    min-width: 300px;
+    margin: 0 auto 0 auto;
+    background-color: whitesmoke;
+}
+
+.indexMain_background_color{
+    padding: 0;
+    margin: 0;
+}
 .index_heroBanner_div{
     width: 100%;
     text-align: center;
@@ -87,7 +105,6 @@ main{
 .index_main_divInfo{
     width: 100%;
     height: auto;
-        /* MODIFICAR PARA USAR DESPUES */
     font-size: 16px;
 }
 
@@ -99,14 +116,16 @@ main{
 }
 
         #index_main_Categorias>h2{
-            font-size: .8em;
+            font-size: .9em;
                 font-weight: bolder;
                 color: var(--color-principal);
-                font-family: "Inter", sans-serif;
+                font-family: "Playfair Display", serif;
             height: 2.5em;
             display:flex;
                 align-items: center;
             border-bottom: 1px solid lightgray;
+            margin-left: 10px;
+            margin-right: 10px;
         }
 
     .index_main_Categorias_Contenedor{
@@ -123,7 +142,7 @@ main{
         "cat5 cat5 cat5 cat5 cat5";
         
         justify-content: center;
-        align-content: center;
+        align-content: center; 
     }
 
     
@@ -198,7 +217,8 @@ main{
 
 @media (min-width: 800px){
     #index_main_Categorias>h2{
-        font-size: 1.2em;
+        font-size: 1.5em;
+        margin: 0;
     }
 
    .index_main_Categorias_Contenedor{
@@ -224,15 +244,17 @@ main{
 #index_main_Destacados_Contenedor{
     height: auto;
     font-size: 16px;
+    
 }
 
     #index_main_Destacados_Contenedor>h2{
         height: 2.5em;
-        font-size: 1.2em;
+        font-size: 1.5em;
             font-weight: bolder;
             color: var(--color-principal);
             font-family: "Inter", sans-serif;
 
+        font-family: "Playfair Display", serif;
         display: flex;
             flex-direction: row;
             align-items: center;
@@ -242,29 +264,34 @@ main{
 
 .index_main_destacados_Productos{
     display: grid;
-        grid-template-columns: repeat(4,22%);
+        grid-template-columns: repeat(4,23%);
         gap: 15px;
         justify-content: center;
     padding-top: 1%;
     padding-bottom: 1%;
 }
 
-@media (min-width: 600px) and (max-width: 1000px){
-    
+@media (min-width: 100px) and (max-width: 800px){
     #index_main_Destacados_Contenedor>h2{
-        font-size: 1em;
+        font-size: .9em !important;
+        margin-left: 10px;
+        margin-right: 10px;
     }
+}
+@media (min-width: 450px) and (max-width: 1000px){
 
     .index_main_destacados_Productos{
         grid-template-columns: repeat(2,40%);
         grid-template-rows: auto auto;
-        gap: 15px;
+        gap: 20px;
     }
 }
 
-@media (max-width: 600px){
+@media (max-width: 450px){
     #index_main_Destacados_Contenedor>h2{
         font-size: .8em;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .index_main_destacados_Productos{
@@ -284,19 +311,20 @@ main{
         
     width: 100%;
     height: 100%;
-    
     background-color: #FFFFFF;
     border-radius: 3%;
     
     font-size: 10px;
     min-width: 100px;
-    min-height: 120px;
+    
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    
 }
 
 @media (min-width:800px) and (max-width: 1000px){
 
     .index_productoDestacado_Producto{
-        font-size: 14px;
+        font-size: 15px;
     }
 }
 
@@ -309,8 +337,8 @@ main{
 
     .index_productoDestacado_Producto_Imagen{
         width: 100%;
-        height: 55%;
-        background-color: lightgray;
+        height: 50%;
+        background-color: gainsboro;
         border-radius: 3%;
     }
             .index_productoDestacado_Producto_Imagen img{
@@ -321,9 +349,9 @@ main{
             
     .index_productoDestacado_Producto_Titulo{
         width: 100%;
-        height: 20%;
+        height: 40%;
         padding: 4%;
-        overflow: scroll;
+        overflow: hidden;
         font-size: .9em;
         font-family: "Inter", sans-serif;
         text-align: justify;
@@ -402,9 +430,20 @@ main{
     }
 
     .index_main_divInfo{
-        width: 80%;
-        margin: 0 9% 0 9%;
         font-size: 1rem;
+    }
+
+    .indexMain_background_color{
+        box-sizing: border-box;
+        width: 85%;
+        padding: 2%;
+        font-size: 1rem;
+        border-radius: 2%;
+        background-color: whitesmoke;
+        
+        box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        
+        margin-bottom: 30px;
     }
 
  }

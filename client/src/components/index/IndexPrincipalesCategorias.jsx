@@ -7,12 +7,13 @@ export default function IndexPrincipalesCategorias(){
 
     return (
         
-        <div class="index_main_divInfo" id="index_main_Categorias">
+        <div className="index_main_divInfo" id="index_main_Categorias">
             <h2>PRINCIPALES CATEGORIAS</h2>
-                <div class="index_main_Categorias_Contenedor">
+                <div className="index_main_Categorias_Contenedor">
                     {
                         principalesCategorias.map( cat => (
                             <IndexCategoria 
+                                key={cat.orden}
                                 orden={cat.orden}
                                 nombre={cat.nombre}
                                 urlImagen={cat.urlImagen}
@@ -21,6 +22,6 @@ export default function IndexPrincipalesCategorias(){
                         ))
                     }
                 </div>
-            </div>
+        </div>
     );
 }

@@ -8,10 +8,14 @@ export default function Index({ estadoMenu }){
     if(estadoMenu) return null;
 
     return (
-        <div className="base_main_envoltorio">
+        <div className="index_main_envoltorio">
+            <main className='indexMain'>
                 <HeroBanner />
-                <IndexPrincipalesCategorias />
-                <IndexProductosDestacados />
+                <div className='indexMain_background_color'>
+                    <IndexPrincipalesCategorias />
+                    <IndexProductosDestacados />
+                </div>
+            </main>
         </div>  
     );
 }

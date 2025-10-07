@@ -4,7 +4,7 @@ import "../../styles/productos.css";
 export default function Catalogo({ productos, loading, funcionAgregar }) {
     return (
     <>
-      <main>
+      <main className='productosMain'>
         <section className="catalogo">
           <h2>TODOS LOS PRODUCTOS</h2>
 

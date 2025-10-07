@@ -307,6 +307,7 @@ footer
     align-items: center;
     font-family: "Inter", sans-serif;
     font-size: 16px;
+    overflow: hidden;
     
 }
 .base_footer_contenedor div{
@@ -384,7 +385,7 @@ footer
     margin: 3rem 0 1rem 0;
     width: 100%;
 }
-@media (min-width:800px) {
+@media (min-width:1000px) {
     .base_footer_contenedor{
         flex-direction: column;
         gap:1rem;
