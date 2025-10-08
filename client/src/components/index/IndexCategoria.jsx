@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function IndexCategoria({orden, nombre,urlImagen,urlCategoria}){
     const idConcatenado = "index_cat"+orden;
     const navigate = useNavigate();
-    const irCategoria = () => {navigate(urlCategoria);}
+    const irCategoria = () => {navigate(urlCategoria); window.scrollTo(0, 0);}
 
     return (
         <div className="index_main_Categorias_Contenedor_item" id={idConcatenado} onClick={irCategoria}>
