@@ -76,12 +76,12 @@ function App() {
 
       <Routes>
         <Route path="/" element={<PaginaIndex estadoMenu={estadoMenu}/>}/>
-        
         <Route path="/contacto" element={<PaginaContactoPruebaRutas estadoMenu={estadoMenu}/>}/>
         <Route path="/faq" element={<PaginaFaq />}/>
         <Route path="/nosotros" element={<PaginaNosotros />}/>
         <Route path="/productos/:id" element={<ProductDetail funcionAgregar={actualizarCarrito}/>}/>
         <Route path="/catalogo" element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}/>
+        <Route path="/catalogo/:cat/:busq" element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}/>
       </Routes>
       
       <BaseFooter 

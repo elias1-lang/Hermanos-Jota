@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {Link} from 'react-router-dom';
+import {Link, Navigate, useNavigate} from 'react-router-dom';
     //Se importa Link, es analogo a <a> pero maneja mejor las direcciones dentro de react y no recarga la pagina por cada clic. Recordar que se trabaja sobre un solo archivo index.js que 
     //representa al componente App.js
         //adicionalmente, mantiene la memoria
@@ -14,7 +14,17 @@ import botonbuscarIco from "../img/header-footer/search.svg";
 import {addCarrito, cantidadElementosCarrito} from "../utils/carritoFunciones"
 
 export default function BaseHeader({cambiarEstado, estadoMenu, cantidadElementosCarrito,cambiarEstadoCarrito}){
-//const cantidadCarrito = cantidadElementosCarrito();
+    const [busqueda,setBusqueda] = useState('');
+    const navigate = useNavigate();
+
+    const manejadorBusqueda = (e)=>{
+        e.preventDefault();
+        const termino = busqueda.trim().toLowerCase();
+        if(termino){
+            setBusqueda("");
+            navigate(`/catalogo/a/${termino}`);
+        }
+    }
 
 if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
 const [inicio, catalogo, nosotros, contacto, faq] = ["/","/catalogo","/nosotros","/contacto","/faq"];
@@ -31,7 +41,7 @@ const [inicio, catalogo, nosotros, contacto, faq] = ["/","/catalogo","/nosotros"
 
             <div className="base_carrito">
                 <div className="base_carrito_content_grid">
-                    <div className="base_carrito_img_div" onClick={cambiarEstadoCarrito}>
+                    <div className="base_carrito_img_div">
                         <img src={carritoIco} alt="Carrito de compras" />
                         {/*El contador debe ser un componente que se implementa con localstoragge y se calcula por cada renderizado*/}
                         { Boolean(cantidadElementosCarrito) && <p id="carrito-contador">{cantidadElementosCarrito>99?"99+":cantidadElementosCarrito}</p>}
@@ -40,8 +50,8 @@ const [inicio, catalogo, nosotros, contacto, faq] = ["/","/catalogo","/nosotros"
             </div>
 
             <div className="base_barraBusqueda">
-                <input type="text" placeholder="Buscar" id="header_barra_busq" />
-                <button id="header_bot_busq">
+                <input type="text" placeholder="Buscar" id="header_barra_busq" value={busqueda} onChange={(e)=>setBusqueda(e.target.value)}/>
+                <button id="header_bot_busq" onClick={manejadorBusqueda}>
                     <img src={botonbuscarIco} alt="Boton buscar" />
                 </button>
             </div>

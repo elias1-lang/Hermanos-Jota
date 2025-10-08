@@ -5,7 +5,7 @@ import productos from "../data/archivoProductos";
 export default function PaginaCatalogo({funcionAgregar}) {
     return (
         <React.Fragment>
-            <Catalogo productos={productos} loading={false} funcionAgregar={funcionAgregar}/>
+            <Catalogo productosArray={productos} loading={false} funcionAgregar={funcionAgregar}/>
         </React.Fragment>
     );
 }
