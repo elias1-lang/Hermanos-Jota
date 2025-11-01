@@ -1,10 +1,12 @@
 {
-  "name": "backend",
+  "name": "mongodb---sprint5",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +14,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "repo-proyecto": "file:.."
+    "mongoose": "^8.19.2",
+    "nodemon": "^3.1.10"
   }
 }
