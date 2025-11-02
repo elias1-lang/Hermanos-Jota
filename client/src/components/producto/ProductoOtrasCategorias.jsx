@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import URL_BASE from '../../config/api';
 
 function ProductoOtrasCategorias() {
 
@@ -9,7 +10,7 @@ function ProductoOtrasCategorias() {
     useEffect(() => {
         const fetchCategorias = async () => {
             try {
-                const response = await fetch(`/api/categorias`);
+                const response = await fetch(`${URL_BASE}/categorias`);
                 if (!response.ok) {
                     throw new Error('Error al obtener las categorías');
                 } 

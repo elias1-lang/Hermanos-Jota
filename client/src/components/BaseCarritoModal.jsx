@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from "react";
 import stylesbase from "../styles/base/styles-base.css";
 import { retornarCarrito } from "../utils/carritoFunciones";
-
+import URL_BASE from "../config/api"
 import BaseCarritoItem from "./BaseCarritoItem";
 
 
@@ -16,7 +16,7 @@ export default function BaseCarritoModal({estadoCarrito, cambiarEstadoCarrito,ca
         if (!estadoCarrito) return; // solo cargar cuando el modal está abierto
         const fetchProductos = async () => {
             try {
-                const response = await fetch(`/api/productos`);
+                const response = await fetch(`${URL_BASE}/productos`);
                 if (!response.ok) {
                     throw new Error('Error al obtener los productos');
                 }
