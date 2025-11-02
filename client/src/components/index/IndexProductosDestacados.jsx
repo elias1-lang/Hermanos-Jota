@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import IndexUnDestacado from "./IndexUnDestacado";
 import style_index from "../../styles/styles-index.css";
+import URL_BASE from '../../config/api';
 
 export default function IndexProductosDestacados({}){
     const [productosDestacados, setProductosDestacados] = useState([]);
@@ -11,7 +12,7 @@ export default function IndexProductosDestacados({}){
     useEffect(() => {
         const fetchProductosDestacados = async () => {
             try {
-                const response = await fetch(`/api/productos/0/destacados`);
+                const response = await fetch(`${URL_BASE}/productos/0/destacados`);
                 if (!response.ok) {
                     throw new Error('Error al obtener el producto');
                 } 

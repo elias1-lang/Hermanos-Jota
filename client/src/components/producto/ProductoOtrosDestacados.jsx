@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import URL_BASE from '../../config/api';
 function ProductoOtrosDestacados({id}) {
 
     const [productosDestacados, setProductosDestacados] = useState([]);
@@ -9,7 +9,7 @@ function ProductoOtrosDestacados({id}) {
     useEffect(() => {
         const fetchProductosDestacados = async () => {
             try {
-                const response = await fetch(`/api/productos/${id}/destacados`);
+                const response = await fetch(`${URL_BASE}/productos/${id}/destacados`);
                 if (!response.ok) {
                     throw new Error('Error al obtener el producto');
                 } 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-
+import URL_BASE from '../../config/api';
 // import ProductoModalImg from './ProductoModalImg';
 
 
@@ -12,7 +12,7 @@ export default function ProductoContenido({ id , funcionAgregar}) {
     useEffect(() => {
         const fetchProducto = async () => {
             try {
-                const response = await fetch(`/api/productos/${id}`); //espero a que termine el fetch
+                const response = await fetch(`${URL_BASE}/productos/${id}`); //espero a que termine el fetch
                 if (!response.ok) {
                     throw new Error('Error al obtener el producto');
                 }
