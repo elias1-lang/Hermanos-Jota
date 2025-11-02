@@ -16,7 +16,7 @@ import correoIco from "../img/header-footer/envelope-solid-full.svg";
 
 export default function BaseFooter({estadoMenu}){
 if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
-    const [inicio, catalogo, nosotros, contacto, faq] = ["/","/catalogo","/nosotros","/contacto","/faq"];
+    const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/nosotros","/contacto","/faq","/admin/crear-producto"];
     const [enviosDevoluciones, formasPago, terminosCondiciones, garantiasUso] = ["/faq#envios","/faq#pagos","/faq#terminos","/faq#garantias"];
 
 
@@ -42,6 +42,7 @@ if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
                             <li><Link to={nosotros}>Nosotros</Link></li>
                             <li><Link to={contacto}>Contacto</Link></li>
                             <li><Link to={faq}>FAQ</Link></li>
+                            <li><Link to={carga}>Cargas</Link></li>
                         </ul>
                     </div>
 

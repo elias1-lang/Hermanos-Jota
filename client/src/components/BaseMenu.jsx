@@ -6,9 +6,8 @@ import {Link} from 'react-router-dom';
 export default function BaseMenu({estadoMenu,cambiarEstado}){
 
     if(!estadoMenu) return null; //no renderiza la pagina directamente si el estado es null
-
-    const [inicio, catalogo, nosotros, contacto, faq] = ["/","/catalogo","/nosotros","/contacto","/faq"];
-
+    
+    const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/nosotros","/contacto","/faq","/admin/crear-producto"];
     return (
         <section className="menu_hamb">
          <div className="menu_hamb_div_botones">
@@ -21,6 +20,7 @@ export default function BaseMenu({estadoMenu,cambiarEstado}){
                 <li onClick={cambiarEstado}><Link to={nosotros}>Nosotros</Link></li>
                 <li onClick={cambiarEstado}><Link to={contacto}>Contacto</Link></li>
                 <li onClick={cambiarEstado}><Link to={faq}>FAQ</Link></li>
+                <li onClick={cambiarEstado}><Link to={carga}>Cargas</Link></li>
             </ul>
         </nav>
     </section>

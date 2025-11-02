@@ -27,7 +27,7 @@ export default function BaseHeader({cambiarEstado, estadoMenu, cantidadElementos
     }
 
 if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
-const [inicio, catalogo, nosotros, contacto, faq] = ["/","/catalogo","/nosotros","/contacto","/faq"];
+const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/nosotros","/contacto","/faq","/admin/crear-producto"];
     return (
         <header>
         <div className="base_header_contenedor">
@@ -63,6 +63,7 @@ const [inicio, catalogo, nosotros, contacto, faq] = ["/","/catalogo","/nosotros"
                     <li><Link to={nosotros}>Nosotros</Link></li>
                     <li><Link to={contacto}>Contacto</Link></li>
                     <li><Link to={faq}>FAQ</Link></li>
+                    <li><Link to={carga}>Cargas</Link></li>
                 </ul>
             </nav>
         </div>

@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import PaginaIndex from './pages/Index'
 import PaginaFaq from './pages/faq'
 import PaginaNosotros from './pages/Nosotros'
+import PaginaCarga from "./pages/CargaForm"
 import PaginaContactoPruebaRutas from './pages/ContactoPruebaRutas'
 import ProductDetail from './pages/ProductDetail';
 import BaseHeader from './components/BaseHeader';
@@ -82,6 +83,7 @@ function App() {
         <Route path="/productos/:id" element={<ProductDetail funcionAgregar={actualizarCarrito}/>}/>
         <Route path="/catalogo" element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}/>
         <Route path="/catalogo/:cat/:busq" element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}/>
+        <Route path="/admin/crear-producto" element={<PaginaCarga estadoMenu={estadoMenu} />}/>
       </Routes>
       
       <BaseFooter 
