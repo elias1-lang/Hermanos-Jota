@@ -1,5 +1,4 @@
 const express = require("express");
-const cors = require("cors");
 const mongoose = require("mongoose")
 const Producto = require("./models/Producto");
 const Categoria = require("./models/Categoria");
@@ -9,9 +8,14 @@ const categoriaRouter = require("./routers/categoriaRouter");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-app.use(cors({ origin: 'http://127.0.0.1:5500' }));
 
-const DB_URI = process.env.VARIABLE_DB_URI;
+const DB_URI = process.env.VARIABLE_DB_URI; 
+    //para conectarse a la BDD (de necesitarse), reemplazar toda la variable process.env.VARIABLE_DB_URI
+        //ANTES DE HACER PULL reemplazarla con "process.env.VARIABLE_DB_URI" con la original, tal que la variable secreta no se copia al repositorio publico
+            //para ejecutar sin reemplazar nada, es decir con: const DB_URI = process.env.VARIABLE_DB_URI;
+            //crear archivo ".env", crear una variable de forma: VARIABLE_DB_URI = "[text]"; 
+            //siendo [text] la url de mongodb atlas
+                //luego en terminal bash: node --env-file .env app.js
 
 mongoose.connect(DB_URI)
 .then(()=>console.log("Conexión a la BDD"))
@@ -40,5 +44,4 @@ app.use((err,req,res,next)=>{
 app.listen(PORT, () => {
     console.log("Servidor Escuchando el Puerto:" + PORT);
     console.log("Acceso a: http://localhost:"+ PORT);
-    //console.log(process.env.VARIABLE_DB_URI); // para que no se mueste undefined, indicar que a node que debe cargar la variable de entorno: node --env-file .env app.js
 });

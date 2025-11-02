@@ -7,8 +7,8 @@ const router = express.Router();
 router.get("/", async (req,res,next)=>{
     try {
         const productos = await Producto.find({}).populate("categoria");
-        if(!productos.length)(res.status(204).send("No hay productos"));
-        res.status(200).send(productos)
+        if(!productos.length)(res.status(204).json({message:"No hay productos"}));
+        res.status(200).json(productos)
     } catch (error) {
         console.error("Error al obtener los productos del servidor: ", error.message);
         error.status = 400;
@@ -33,7 +33,7 @@ router.post("/", async (req,res,next)=>{
         const nuevoProducto = new Producto(productoPeticion);
         console.log(productoPeticion);
         await nuevoProducto.save();
-        res.status(202).send("cargado");
+        res.status(202).json(productoPeticion);
     } catch (error) {
         console.error("Error al cargar un producto al servidor: ", error.message);
         error.status = 400;
@@ -45,9 +45,9 @@ router.post("/", async (req,res,next)=>{
 router.get("/:id",async (req,res,next)=>{
     try {
         const idProducto = req.params.id;
-        const producto = await Producto.findOne({id:idProducto});
+        const producto = await Producto.findOne({id:idProducto}).populate("categoria");
 
-        if(!producto)(res.status(404).send("Producto inexistente"));
+        if(!producto)(res.status(404).json({message:"Producto inexistente"}));
 
         res.status(200).json(producto);
 
@@ -62,13 +62,13 @@ router.delete("/:id",async (req,res,next)=>{
     try {
         const idProducto = req.params.id;
         const productoEliminado = await Producto.findOneAndDelete({id:idProducto});
-        if(!productoEliminado)(res.status(404).send("Producto inexistente"));
+        if(!productoEliminado)(res.status(404).json({message:"Producto inexistente"}));
         res.status(200).json({mensaje:"Producto eliminado con exito",producto:productoEliminado});
     } catch (error) {
         console.error("Error al eliminar el producto del servidor",error.message);
         error.status = 400;
         next(error);  
     }
-})
+});
 
 module.exports = router;
