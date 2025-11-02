@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Catalogo from "../components/index/Catalogo";
-import productos from "../data/archivoProductos"; 
 import URL_BASE from '../config/api';
 export default function PaginaCatalogo({funcionAgregar}) {
 
