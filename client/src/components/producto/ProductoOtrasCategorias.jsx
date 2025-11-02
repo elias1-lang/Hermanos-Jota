@@ -4,23 +4,23 @@ function ProductoOtrasCategorias() {
 
     const [error, setError] = useState(null);
     const [categorias, setCategorias] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     // esto no era necesario, no vimos fetch todavía pero para probar conectar a la API
     useEffect(() => {
         const fetchCategorias = async () => {
-            const response = await fetch(`http://localhost:4000/api/productos/categorias`);
-            // TODO: la url debería estar en una variable global
-            if (!response.ok) {
-                setError('Error al obtener las categorías');
-                return;
-            } 
-            if (response.status === 404) {
-                setError('Categoría no encontrada');
-                return;
+            try {
+                const response = await fetch(`/api/categorias`);
+                if (!response.ok) {
+                    throw new Error('Error al obtener las categorías');
+                } 
+                const data = await response.json();
+                setCategorias(data);
+            } catch (err) {
+                setError(err);
+            } finally {
+                setLoading(false);
             }
-            const data = await response.json();
-            setCategorias(data);
-            
         };
         fetchCategorias();
     }, []);
@@ -28,7 +28,7 @@ function ProductoOtrasCategorias() {
     if (error) {
         return <p>{error}</p>;
     }
-    if (!categorias) {
+    if (loading) {
         return <p>Cargando categorías...</p>;
     }
 
