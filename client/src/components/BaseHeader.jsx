@@ -41,7 +41,7 @@ const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/no
 
             <div className="base_carrito">
                 <div className="base_carrito_content_grid">
-                    <div className="base_carrito_img_div">
+                    <div className="base_carrito_img_div" onClick={cambiarEstadoCarrito}>
                         <img src={carritoIco} alt="Carrito de compras" />
                         {/*El contador debe ser un componente que se implementa con localstoragge y se calcula por cada renderizado*/}
                         { Boolean(cantidadElementosCarrito) && <p id="carrito-contador">{cantidadElementosCarrito>99?"99+":cantidadElementosCarrito}</p>}

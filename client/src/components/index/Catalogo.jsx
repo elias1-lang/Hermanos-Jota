@@ -32,7 +32,7 @@ export default function Catalogo({ productosArray, loading, funcionAgregar }) {
                 <a href={`/productos/${producto.id}`}>
                   <figure>
                     <img
-                      src={producto.image}
+                      src={producto.imageUrl}
                       alt={producto.nombre || "Producto"}
                     />
                   </figure>
