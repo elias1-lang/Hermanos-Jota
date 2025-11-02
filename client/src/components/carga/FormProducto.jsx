@@ -71,7 +71,7 @@ function FormProducto({endpoint,categorias}){
 
     return(
         <>
-            <form onSubmit={manejadorEnvio}>
+            <form className="carga-form" onSubmit={manejadorEnvio}>
                 <fieldset>
                     <legend>Informacion del Producto</legend>
                     <FormImputText nameLabel={"Nombre del Producto"} nameCampo={"nombre"} onChange={manejadorCambios} value={formData.nombre}/>
@@ -95,7 +95,7 @@ function FormProducto({endpoint,categorias}){
 
                     <FormImputText nameLabel={"Precio del Producto"} nameCampo={"precio"} onChange={manejadorCambios} tipo={"number"} value={formData.precio}/>
                     <FormImputText nameLabel={"Stock del Producto"} nameCampo={"stock"} onChange={manejadorCambios} tipo={"number"} value={formData.stock}/>
-                    <FormImputText nameLabel={"Imagen del Producto"} nameCampo={"imageUrl"} onChange={manejadorCambios} value={formData.imageUrl}/>
+                    <FormImputText nameLabel={"Imagen del Producto"} nameCampo={"imageUrl"} onChange={manejadorCambios} tipo={"text"} value={formData.imageUrl}/>
                     <div>
                         <label htmlFor="descripcion">Descripción del Producto</label>
                         <br/>
@@ -111,7 +111,7 @@ function FormProducto({endpoint,categorias}){
                     <FormImputText nameLabel={"Peso"} nameCampo={"peso"} onChange={manejadorCambios} value={formData.peso}/>
                 </fieldset>
             
-                <button type="submit">Cargar Producto</button>
+                <button type="submit" className="carga-submit">Cargar Producto</button>
 
                 </fieldset>
             </form>

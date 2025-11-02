@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/styles-index.css";
+import "../styles/form.css";
 import FormProducto from "../components/carga/FormProducto";
 import FormCategoria from "../components/carga/FormCategoria";
 

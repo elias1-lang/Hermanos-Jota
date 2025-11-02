@@ -43,7 +43,7 @@ function FormCategoria({endpoint}){
 
     return(
         <>
-            <form onSubmit={manejadorEnvio}>    
+            <form className="carga-form" onSubmit={manejadorEnvio}>    
                 <fieldset>
                     <legend>Cargue una Categoria Nueva</legend>
                     <div>
@@ -54,7 +54,7 @@ function FormCategoria({endpoint}){
                             value={formData.nombre}
                         />
                     </div>
-                    <button type="submit">Cargar Categoria</button>
+                    <button type="submit" className="carga-submit">Cargar Categoria</button>
                 </fieldset>
             </form>
         </>
