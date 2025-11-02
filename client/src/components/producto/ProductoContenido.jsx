@@ -34,25 +34,10 @@ export default function ProductoContenido({ id , funcionAgregar}) {
         return <p>Cargando producto...</p>;
     }
 
-    const excluir = ["id", "nombre", "descripcion", "precio", "image", "alt", "link", "categoria"];
+    const excluir = ["id", "_id", "nombre", "descripcion", "precio", "imageUrl", "alt", "link", "categoria"];
     const atributos = Object.entries(producto).filter(([key, value]) => 
         !excluir.includes(key) && value
     );
-
-    // TODO: hacer en global
-    const agregarAlCarrito = (id) => {
-        console.log('No implementado');
-        return
-    }
-
-    /*
-    const handleComprar = () => {
-        if (typeof agregarAlCarrito === 'function') {
-            agregarAlCarrito(producto.id);
-            return
-        }
-    };
-    */
    
     return (
         <main id="detalle-producto">

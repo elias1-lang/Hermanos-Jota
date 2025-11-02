@@ -6,7 +6,6 @@ function ProductoOtrasCategorias() {
     const [categorias, setCategorias] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // esto no era necesario, no vimos fetch todavía pero para probar conectar a la API
     useEffect(() => {
         const fetchCategorias = async () => {
             try {
@@ -39,7 +38,7 @@ function ProductoOtrasCategorias() {
             <div id="producto-otros-categorias_contenedor">
                 {categorias.map((categoria) => (
                     <div 
-                        key={categoria.orden}
+                        key={categoria._id}
                         className="producto-otros-categorias_Categoria" 
                         id={`producto-otros-categorias-${categoria.orden}`}
                         style={{cursor: 'pointer'}}
@@ -49,7 +48,7 @@ function ProductoOtrasCategorias() {
                         </h2>
                         <img 
                             className="producto-otros-categorias_Categoria_Imagen" 
-                            src={categoria.urlImagen} 
+                            src={categoria.imageUrl} 
                             alt={categoria.nombre} 
                         />
                     </div>
