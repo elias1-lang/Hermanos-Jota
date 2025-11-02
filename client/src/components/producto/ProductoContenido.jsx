@@ -6,23 +6,23 @@ import React, { useState, useEffect} from 'react';
 export default function ProductoContenido({ id , funcionAgregar}) {
 
     const [producto, setProducto] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // esto no era necesario, no vimos fetch todavía pero para probar conectar a la API
     useEffect(() => {
         const fetchProducto = async () => {
-            const response = await fetch(`http://localhost:4000/api/productos/${id}`); //espero a que termine el fetch
-            // TODO: la url debería estar en una variable global
-            if (!response.ok) {
-                setError('Error al obtener el producto');
-                return;
-            } 
-            if (response.status === 404) {
-                setError('Producto no encontrado');
-                return;
+            try {
+                const response = await fetch(`/api/productos/${id}`); //espero a que termine el fetch
+                if (!response.ok) {
+                    throw new Error('Error al obtener el producto');
+                }
+                const data = await response.json();
+                setProducto(data);
+            } catch (err) {
+                setError(err);
+            } finally {
+                setLoading(false);
             }
-            const data = await response.json();
-            setProducto(data);
         };
         fetchProducto();
     }, [id]); //depende del id, cada vez que cambie el id, se vuelve a ejecutar fetchProducto()
@@ -30,10 +30,9 @@ export default function ProductoContenido({ id , funcionAgregar}) {
     if (error) {
         return <p>{error}</p>;
     }
-    if (!producto) {
+    if (loading) {
         return <p>Cargando producto...</p>;
     }
-    
 
     const excluir = ["id", "nombre", "descripcion", "precio", "image", "alt", "link", "categoria"];
     const atributos = Object.entries(producto).filter(([key, value]) => 
@@ -62,7 +61,7 @@ export default function ProductoContenido({ id , funcionAgregar}) {
                 <div className="producto-imagen">
                     <img 
                         id="image" 
-                        src={producto.image} 
+                        src={producto.imageUrl} 
                         alt={producto.alt || producto.nombre}
                         style={{cursor: 'zoom-in'}}
                     />
