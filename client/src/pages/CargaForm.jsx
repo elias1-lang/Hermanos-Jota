@@ -3,14 +3,15 @@ import "../styles/styles-index.css";
 import "../styles/form.css";
 import FormProducto from "../components/carga/FormProducto";
 import FormCategoria from "../components/carga/FormCategoria";
+import URL_BASE from "../config/api";
 
 function CargaForm({ estadoMenu }){
     const [categoria, setCategoria] = useState([]);
 
-    const [endpointProducto, endpointCategoria] = ["/api/productos/","/api/categorias/"]
+    const [endpointProducto, endpointCategoria] = [`${URL_BASE}/productos/`,`${URL_BASE}/categorias/`];
     
     const getCategorias = async () => {
-        const response = await fetch("/api/categorias");
+        const response = await fetch(`${URL_BASE}/categorias`);
         const data = await response.json(); //transforma de json a objeto
         setCategoria(data);
     }
