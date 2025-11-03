@@ -1,6 +1,6 @@
 import React from 'react';
 import "../../styles/productos.css";
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function filtrarProductos(productosArray,categoria,buscado){
   let productosFiltrados = {};
@@ -32,7 +32,8 @@ export default function Catalogo({ productosArray, loading, funcionAgregar }) {
           <div className="productos-grid">
             {productos.map((producto) => (
               <article key={producto.id} id={producto.id}>
-                <a href={`/productos/${producto.id}`}>
+
+                <Link to={`/productos/${producto.id}`}>
                   <figure>
                     <img
                       src={producto.imageUrl}
@@ -43,7 +44,7 @@ export default function Catalogo({ productosArray, loading, funcionAgregar }) {
                   <p className="price">
                     ${producto.precio.toLocaleString("es-AR")}
                   </p>
-                </a>
+                </Link>
 
                 <div className="acciones">
                   <button className="btn btn-carrito" onClick={(e) => {
