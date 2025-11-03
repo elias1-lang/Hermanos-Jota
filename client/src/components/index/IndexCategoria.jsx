@@ -1,5 +1,5 @@
 import React from 'react';
-//import style_index from "../../styles/styles-index.css";
+import "../../styles/styles-index.css";
 import { useNavigate } from 'react-router-dom';
 
 export default function IndexCategoria({orden, nombre,urlImagen,urlCategoria}){

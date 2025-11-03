@@ -19,7 +19,7 @@ const DB_URI = process.env.VARIABLE_DB_URI;
 //luego en terminal bash: node --env-file .env app.js
 
 app.use(cors({
-  origin: "*",
+  origin: "https://muebleria-hermanos-jota-k9wj.onrender.com", //la api solo permite ser consumida desde esa url -> poner "*", para que sea pueda ser consumida por cualquier sitio
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
 

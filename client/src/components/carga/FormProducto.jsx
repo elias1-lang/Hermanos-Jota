@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import FormImputText from "./FormInputText";
 import FormOption from "./FormOption";
+import { useNavigate } from "react-router-dom";
 
 
 function FormProducto({endpoint,categorias}){
-
+    const navigate = useNavigate();
     const [formData,setFormData] = useState({
         nombre:'',
         categoria:'',
@@ -50,6 +51,7 @@ function FormProducto({endpoint,categorias}){
         event.preventDefault();
         try {
             validacionesRevelantes(formData);
+
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers:{
@@ -61,9 +63,9 @@ function FormProducto({endpoint,categorias}){
             if(!response.ok){
                 throw new Error("La carga del producto falló.");
             }
-            //const result = await response.json(); -> solo si esta configurado el endpoint del backend para retornar un objeto json con copia identica al que hizo post, el endpoint no retorna json por ahora, daria error
-            alert(`El producto ${formData.nombre}, fue cargado.`);
+            const result = await response.json(); //se recibe como json el producto creado y se parsea a json
             setFormData({nombre:"", categoria:"", precio:"", stock:"", imageUrl:"", descripcion:"",medidas:"",material:"",terminacion:"",almacenamiento:"",capacidad:"",peso:""}); //reinicia el formulario
+            navigate(result.link);
         } catch (error) {
             alert(error.message);            
         }

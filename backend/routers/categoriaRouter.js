@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", async (req,res,next)=>{
     try {
-        const categorias = await Categoria.find({}).select("nombre _ID");
+        const categorias = await Categoria.find({}).select("nombre _ID orden imageUrl catUrl");
         if(!categorias.length)(res.status(404).json({message:"No hay categorias"}));
         res.status(200).json(categorias);
     } catch (error) {

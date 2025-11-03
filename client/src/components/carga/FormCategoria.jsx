@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import FormImputText from "./FormInputText";
 
-function FormCategoria({endpoint}){
+function FormCategoria({endpoint,actualizarPagina}){
     const [formData, setFormData] = useState({
         nombre:""
     });
-
+    
     const manejadorCambios = (e) => {
         const {name,value} = e.target;
         setFormData(estadoPrevio =>({...formData,[name]:value}));
@@ -18,9 +18,10 @@ function FormCategoria({endpoint}){
     };
 
     const manejadorEnvio = async (event) => {
+        event.preventDefault();
         try {
             validarNombre(formData.nombre);
-            
+    
             const response = await fetch(endpoint, {
                 method:"POST",
                 headers: {
@@ -32,10 +33,11 @@ function FormCategoria({endpoint}){
             if(!response.ok){
                 throw new Error("La carga de la categoria falló.");
             }
-            //const result = await response.json(); //el endpoint retorna res.status().send(...), no json, daria error esta conversión
             
+            //const result = await response.json(); //el endpoint retorna res.status().send(...), no json, daria error esta conversión
             alert("Se cargo la nueva categoria: " + formData.nombre);
             setFormData({nombre:""});
+            actualizarPagina();
         } catch (error) {
             alert(error.message);
         }

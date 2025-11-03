@@ -7,9 +7,14 @@ import URL_BASE from "../config/api";
 
 function CargaForm({ estadoMenu }){
     const [categoria, setCategoria] = useState([]);
-
+    const [refrescarPagina, setrefrescarPagina] = useState(0);
     const [endpointProducto, endpointCategoria] = [`${URL_BASE}/productos/`,`${URL_BASE}/categorias/`];
     
+    const manejadorRefresco = ()=>{
+        setrefrescarPagina(prevEstado => prevEstado + 1);
+        categoria.splice(0, categoria.length); //borra todos los elementos existentes en el array de categorias.
+    };
+
     const getCategorias = async () => {
         const response = await fetch(`${URL_BASE}/categorias`);
         const data = await response.json(); //transforma de json a objeto
@@ -25,6 +30,7 @@ function CargaForm({ estadoMenu }){
                 />
                 <FormCategoria
                     endpoint={endpointCategoria}
+                    actualizarPagina={manejadorRefresco}
                 />
             </>
         )
@@ -32,7 +38,7 @@ function CargaForm({ estadoMenu }){
 
     useEffect(()=>{
         getCategorias();
-    }, []);
+    }, [refrescarPagina]);
     
     if(estadoMenu) return null;
 
