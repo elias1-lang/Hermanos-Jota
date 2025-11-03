@@ -5,7 +5,10 @@ const categoriaSchema = mongoose.Schema({
         type:String,
         unique:true,
         required:true
-    }
+    },
+    imageUrl:{type: String},
+    catUrl:{type: String},
+    orden:{type: Number},
 },{timestamp:true}
 );
 

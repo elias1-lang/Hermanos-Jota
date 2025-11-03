@@ -22,10 +22,16 @@ router.post("/", async (req,res,next)=>{
         let categoriaPeticion = req.body;
         categoriaPeticion.nombre = categoriaPeticion.nombre.trim().toUpperCase();
         if(!categoriaPeticion.nombre.length)(res.status(404).json({message:"El nombre no puede ser vacio"}));
+        
+        const cantidadOrden = await Categoria.countDocuments() + 1;
         const catNombreEstandarizado =  categoriaPeticion.nombre.trim().toUpperCase().split(/\s+/).join("-");
+        
         categoriaPeticion.imageUrl = `/img/categorias/${catNombreEstandarizado}.png`;
         categoriaPeticion.catUrl = `/catalogo/${catNombreEstandarizado}/&`;
+        categoriaPeticion.orden = cantidadOrden;
+
         const nuevaCategoria = new Categoria(categoriaPeticion);
+
         await nuevaCategoria.save();
         res.status(200).json({nombre:nuevaCategoria.nombre});
     } catch (error) {
