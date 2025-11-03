@@ -1,6 +1,6 @@
 import './App.css';
 import './styles/base/styles-base.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom'; 
 import { useState, useEffect, useRef } from 'react';
 
 import PaginaIndex from './pages/Index'
@@ -62,18 +62,18 @@ function App() {
   }
 
   return (
-    <Router>
+    <BrowserRouter>
       <BaseMenu 
         estadoMenu={estadoMenu}
         cambiarEstado={cambiarEstado}
-      />
+        />
 
       <BaseHeader 
         cambiarEstado={cambiarEstado}
         estadoMenu={estadoMenu}
         cantidadElementosCarrito={cantidadItemsCarrito()}
         cambiarEstadoCarrito={cambiarEstadoCarrito}
-      />
+        />
 
       <Routes>
         <Route path="/" element={<PaginaIndex estadoMenu={estadoMenu}/>}/>
@@ -88,15 +88,15 @@ function App() {
       
       <BaseFooter 
         estadoMenu={estadoMenu}
-      />
+        />
 
       <BaseCarritoModal 
         estadoCarrito={estadoCarrito}
         cambiarEstadoCarrito={cambiarEstadoCarrito}
         carrito={carrito}
         funcionActualizarCarrito={actualizarCarrito}
-      />
-    </Router>
+        />
+    </BrowserRouter>
   )
 
 }
