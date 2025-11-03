@@ -1,6 +1,6 @@
 import React from 'react';
 import "../../styles/productos.css";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function filtrarProductos(productosArray,categoria,buscado){
   let productosFiltrados = {};
@@ -20,6 +20,9 @@ function filtrarProductos(productosArray,categoria,buscado){
 export default function Catalogo({ productosArray, loading, funcionAgregar }) {
   const {cat,busq} = useParams();
   const productos = filtrarProductos(productosArray,cat,busq);
+
+  const navigate = useNavigate();
+  const irProducto = (url) => {navigate(url)}
 
     return (
     <>
@@ -52,7 +55,8 @@ export default function Catalogo({ productosArray, loading, funcionAgregar }) {
 
                   <button className="btn btn-comprar" onClick={(e) => {e.preventDefault(); 
                     console.log(`Compra directa: ${producto.nombre}`);
-                    window.location.href = `/productos/${producto.id}`;
+                    irProducto(`/productos/${producto.id}`);
+                      //window.location.href = `/productos/${producto.id}`;
                     }}>
                     Comprar ahora
                   </button>
