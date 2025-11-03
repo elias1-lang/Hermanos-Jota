@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", async (req,res,next)=>{
     try {
-        const categorias = await Categoria.find({}).select("nombre _ID orden imageUrl catUrl");
+        const categorias = await Categoria.find({}).select("nombre _ID orden imageUrl catUrl").sort({orden:1});
         if(!categorias.length)(res.status(404).json({message:"No hay categorias"}));
         res.status(200).json(categorias);
     } catch (error) {
@@ -22,6 +22,9 @@ router.post("/", async (req,res,next)=>{
         let categoriaPeticion = req.body;
         categoriaPeticion.nombre = categoriaPeticion.nombre.trim().toUpperCase();
         if(!categoriaPeticion.nombre.length)(res.status(404).json({message:"El nombre no puede ser vacio"}));
+        const catNombreEstandarizado =  categoriaPeticion.nombre.trim().toUpperCase().split(/\s+/).join("-");
+        categoriaPeticion.imageUrl = `/img/categorias/${catNombreEstandarizado}.png`;
+        categoriaPeticion.catUrl = `/catalogo/${catNombreEstandarizado}/&`;
         const nuevaCategoria = new Categoria(categoriaPeticion);
         await nuevaCategoria.save();
         res.status(200).json({nombre:nuevaCategoria.nombre});

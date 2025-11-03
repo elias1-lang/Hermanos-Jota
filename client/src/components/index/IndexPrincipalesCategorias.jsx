@@ -16,7 +16,7 @@ export default function IndexPrincipalesCategorias(){
                     throw new Error('Error al obtener las categorías');
                 }
                 const data = await response.json();
-                setCategorias(data);
+                setCategorias(data.slice(0,5));
             } catch (err) {
                 setError(err);
             } finally {

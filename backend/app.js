@@ -31,7 +31,7 @@ mongoose
     mongoose.disconnect();
   });
 
-
+  
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true })); // Middleware para parsear datos del formulario
 app.use(express.json());
