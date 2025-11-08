@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FormImputText from "./FormInputText";
 import FormOption from "./FormOption";
 import { useNavigate } from "react-router-dom";
+import { fetchPostFormularioFuncion } from "../../utils/fetchFunciones";
 
 
 function FormProducto({endpoint,categorias}){
@@ -51,19 +52,7 @@ function FormProducto({endpoint,categorias}){
         event.preventDefault();
         try {
             validacionesRevelantes(formData);
-
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData), //objeto a json
-            });
-
-            if(!response.ok){
-                throw new Error("La carga del producto falló.");
-            }
-            const result = await response.json(); //se recibe como json el producto creado y se parsea a json
+            const result = await fetchPostFormularioFuncion(endpoint,formData,"La carga del producto falló.")
             setFormData({nombre:"", categoria:"", precio:"", stock:"", imageUrl:"", descripcion:"",medidas:"",material:"",terminacion:"",almacenamiento:"",capacidad:"",peso:""}); //reinicia el formulario
             navigate(result.link);
         } catch (error) {

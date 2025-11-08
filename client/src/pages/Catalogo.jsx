@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Catalogo from "../components/index/Catalogo";
 import URL_BASE from '../config/api';
+import { fetchStateFuncion } from '../utils/fetchFunciones';
 export default function PaginaCatalogo({funcionAgregar}) {
 
     const [catalogo, setCatalogo] = useState([]);
-
-    const getProductos = async () => {
-        const response = await fetch(`${URL_BASE}/productos`);
-        const data = await response.json(); //transforma de json a objeto
-        setCatalogo(data);
-    }
+    const [errorState,setErrorState] = useState("");
 
     useEffect(()=>{
-        getProductos();
+        fetchStateFuncion(`${URL_BASE}/productos`,setCatalogo,setErrorState,"Error en la recuperación del catalogo.")
     }, []);
 
     const mostrarCatalogo = ()=>{
@@ -23,7 +19,7 @@ export default function PaginaCatalogo({funcionAgregar}) {
 
     return (
         <React.Fragment>
-            {catalogo.length?mostrarCatalogo():"Cargando productos..."}
+            {errorState?errorState:catalogo.length?mostrarCatalogo():"Cargando productos..."}
         </React.Fragment>
     );
 }

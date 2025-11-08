@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FormImputText from "./FormInputText";
+import { fetchPostFormularioFuncion } from "../../utils/fetchFunciones";
 
 function FormCategoria({endpoint,actualizarPagina}){
     const [formData, setFormData] = useState({
@@ -21,20 +22,7 @@ function FormCategoria({endpoint,actualizarPagina}){
         event.preventDefault();
         try {
             validarNombre(formData.nombre);
-    
-            const response = await fetch(endpoint, {
-                method:"POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if(!response.ok){
-                throw new Error("La carga de la categoria falló.");
-            }
-            
-            //const result = await response.json(); //el endpoint retorna res.status().send(...), no json, daria error esta conversión
+            await fetchPostFormularioFuncion(endpoint,formData,"La carga de la categoria falló.");
             alert("Se cargo la nueva categoria: " + formData.nombre);
             setFormData({nombre:""});
             actualizarPagina();

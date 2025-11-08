@@ -45,7 +45,7 @@ main{
                 flex-basis: 0%; 
                     -> El tamaño base inicial es 0, así que el crecimiento se reparte equitativamente.
         */
-    min-height: 150vh;
+    /* min-height: 150vh; */
     background-color: #fff;
     display: column;
     justify-content: space-between;
