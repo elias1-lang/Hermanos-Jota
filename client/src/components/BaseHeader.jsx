@@ -17,7 +17,13 @@ export default function BaseHeader({cambiarEstado, estadoMenu, cantidadElementos
     const [busqueda,setBusqueda] = useState('');
     const navigate = useNavigate();
 
-    const manejadorBusqueda = (e)=>{
+    const manejadorTeclaEnter = (e) => {
+        if(e.key === "Enter"){
+            manejadorBusqueda(e);
+        }
+    };
+
+    const manejadorBusqueda = (e) => {
         e.preventDefault();
         const termino = busqueda.trim().toLowerCase();
         if(termino){
@@ -25,6 +31,7 @@ export default function BaseHeader({cambiarEstado, estadoMenu, cantidadElementos
             navigate(`/catalogo/a/${termino}`);
         }
     }
+
 
 if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
 const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/nosotros","/contacto","/faq","/admin/crear-producto"];
@@ -50,7 +57,7 @@ const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/no
             </div>
 
             <div className="base_barraBusqueda">
-                <input type="text" placeholder="Buscar" id="header_barra_busq" value={busqueda} onChange={(e)=>setBusqueda(e.target.value)}/>
+                <input type="text" placeholder="Buscar" id="header_barra_busq" value={busqueda} onChange={(e)=>setBusqueda(e.target.value)} onKeyDown={manejadorTeclaEnter}/>
                 <button id="header_bot_busq" onClick={manejadorBusqueda}>
                     <img src={botonbuscarIco} alt="Boton buscar" />
                 </button>

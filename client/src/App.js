@@ -81,8 +81,8 @@ function App() {
         <Route path="/faq" element={<PaginaFaq />}/>
         <Route path="/nosotros" element={<PaginaNosotros />}/>
         <Route path="/productos/:id" element={<ProductDetail funcionAgregar={actualizarCarrito}/>}/>
-        <Route path="/catalogo" element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}/>
         <Route path="/catalogo/:cat/:busq" element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}/>
+        <Route path="/catalogo" element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}/>
         <Route path="/admin/crear-producto" element={<PaginaCarga estadoMenu={estadoMenu} />}/>
       </Routes>
       

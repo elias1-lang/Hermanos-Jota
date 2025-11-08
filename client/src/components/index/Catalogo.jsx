@@ -2,24 +2,24 @@ import React from 'react';
 import "../../styles/productos.css";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-function filtrarProductos(productosArray,categoria,buscado){
-  let productosFiltrados = {};
-  if(categoria && categoria!="a"){ //cuando se busque por la barra, lo normal es que la categoria sea all. Ejemplo: catalogo/a/mesas, busca mesas de todo el catalogo
-    productosFiltrados = productosArray.filter(producto=>(producto.categoria==categoria));
-  }else{productosFiltrados=productosArray;}
-  if(buscado && buscado!="&"){
-    const productosBuscado = productosFiltrados.filter(producto=>{
-      return producto.nombre.toLowerCase().includes(buscado.toLowerCase());
-    });
-    productosFiltrados = productosBuscado; //cambio la referencia
-  }
-  //para buscar una categoria, indexar, ejemplo: catalogo/SILLA/&, ampersand indica que se debe mostrar todo, si es distinto de ampersand, busca sobre esa categoria
-  return productosFiltrados;
+function filtrarCatologo(catalogo,categoria,busqueda){
+    if(!catalogo.length){return};
+    if(!categoria || !busqueda){return catalogo;}; //en caso de que categoria o busqueda sean undefined cargar todo el catalogo
+                                                                    //son undefined cuando no existe el parámetro en la url
+    let catalogoFiltrado = catalogo;
+
+    if(categoria.length && categoria!=="a"){ //si hay una categoria configurada y no es "a" (all), filtrar el catalogo
+        catalogoFiltrado = catalogoFiltrado.filter(producto => producto.categoria.nombre == categoria);
+    }
+    if(busqueda.trim().length && busqueda!=="&"){ //si hay una busqueda y la busqueda es distingo de "&" filtrar el catalogo
+        catalogoFiltrado = catalogoFiltrado.filter(producto => producto.nombre.toLowerCase().includes(busqueda.toLowerCase()));
+    }
+    return catalogoFiltrado;
 }
 
 export default function Catalogo({ productosArray, loading, funcionAgregar }) {
-  const {cat,busq} = useParams();
-  const productos = filtrarProductos(productosArray,cat,busq);
+  const params = useParams();
+  const productosFiltrados = filtrarCatologo(productosArray,params.cat,params.busq);
 
   const navigate = useNavigate();
   const irProducto = (url) => {navigate(url)}
@@ -30,7 +30,7 @@ export default function Catalogo({ productosArray, loading, funcionAgregar }) {
         <section className="catalogo">
           <h2>TODOS LOS PRODUCTOS</h2>
           <div className="productos-grid">
-            {productos.map((producto) => (
+            {productosFiltrados.map((producto) => (
               <article key={producto.id} id={producto.id}>
 
                 <Link to={`/productos/${producto.id}`}>
@@ -57,7 +57,6 @@ export default function Catalogo({ productosArray, loading, funcionAgregar }) {
                   <button className="btn btn-comprar" onClick={(e) => {e.preventDefault(); 
                     console.log(`Compra directa: ${producto.nombre}`);
                     irProducto(`/productos/${producto.id}`);
-                      //window.location.href = `/productos/${producto.id}`;
                     }}>
                     Comprar ahora
                   </button>
