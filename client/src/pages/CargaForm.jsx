@@ -28,6 +28,10 @@ function CargaForm({ estadoMenu }){
                     endpoint={endpointCategoria}
                     actualizarPagina={manejadorRefresco}
                 />
+                <FormRegistro
+                    endpoint={`${URL_BASE}/users/register`}
+                    actualizarPagina={manejadorRefresco}
+                />
             </>
         )
     }

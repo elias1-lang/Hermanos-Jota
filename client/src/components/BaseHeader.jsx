@@ -13,7 +13,7 @@ import botonbuscarIco from "../img/header-footer/search.svg";
 
 import {addCarrito, cantidadElementosCarrito} from "../utils/carritoFunciones"
 
-export default function BaseHeader({cambiarEstado, estadoMenu, cantidadElementosCarrito,cambiarEstadoCarrito}){
+export default function BaseHeader({cambiarEstado, estadoMenu, cantidadElementosCarrito,cambiarEstadoCarrito, currentUser, onLogout}){
     const [busqueda,setBusqueda] = useState('');
     const navigate = useNavigate();
 
@@ -71,6 +71,18 @@ const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/no
                     <li><Link to={contacto}>Contacto</Link></li>
                     <li><Link to={faq}>FAQ</Link></li>
                     <li><Link to={carga}>Cargas</Link></li>
+                    {currentUser ? (
+                        <>
+                        <span>Bienvenido, {currentUser.username}</span>
+                        <Link to="/profile">Mi Perfil</Link>
+                        <button onClick={onLogout}>Logout</button>
+                        </>
+                    ) : (
+                        <>
+                        <Link to="/login">Login</Link>
+                        <Link to="/register">Registro</Link>
+                        </>
+                    )}
                 </ul>
             </nav>
         </div>
