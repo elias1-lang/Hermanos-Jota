@@ -3,6 +3,7 @@ import "../styles/styles-index.css";
 import "../styles/form.css";
 import FormProducto from "../components/carga/FormProducto";
 import FormCategoria from "../components/carga/FormCategoria";
+import FormRegistro from "../components/registro/FormRegistro"
 import URL_BASE from "../config/api";
 import { fetchStateFuncion } from "../utils/fetchFunciones";
 
@@ -28,10 +29,13 @@ function CargaForm({ estadoMenu }){
                     endpoint={endpointCategoria}
                     actualizarPagina={manejadorRefresco}
                 />
+
+                {/*
                 <FormRegistro
                     endpoint={`${URL_BASE}/users/register`}
                     actualizarPagina={manejadorRefresco}
                 />
+                */}
             </>
         )
     }

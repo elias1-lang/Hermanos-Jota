@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import FormImputText from "../carga/FormInputText"
 
 function FormRegistro({endpoint,actualizarPagina}){
     const [formData, setFormData] = useState({
         username: "", email: "", password: ""
     });
     
-    // const manejadorCambios = (e) => {
-    //     const {name,value} = e.target;
-    //     setFormData(estadoPrevio =>());
-    // };
+    const manejadorCambios = (e) => {
+        const {name,value} = e.target;
+        setFormData(estadoPrevio => ({...estadoPrevio,[name]:value}));
+     };
 
     
     const manejadorEnvio = async (event) => {

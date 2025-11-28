@@ -40,6 +40,7 @@ function App() {
     const carritoAuxiliar = JSON.parse(sessionStorage.getItem("carrito")) || {};
     setCarrito(carritoAuxiliar);
 
+    /*
     const token = localStorage.getItem("authToken");
     if (token) {
       try {
@@ -50,6 +51,8 @@ function App() {
         localStorage.removeItem("authToken");
       }
     }
+    */
+   
   }, []);
 
   const sitioMontado = useRef(false);
@@ -129,10 +132,14 @@ function App() {
           path="/admin/crear-producto"
           element={<PaginaCarga estadoMenu={estadoMenu} />}
         />
+        
+        {/* 
         <Route
           path="/login"
           element={<LoginPage onLoginSuccess={handleLoginSuccess} />}
         />
+        */}
+
       </Routes>
 
       <BaseFooter estadoMenu={estadoMenu} />

@@ -5,6 +5,7 @@ const Categoria = require("./models/Categoria");
 const cors = require("cors");
 const productoRouter = require("./routers/productoRouter");
 const categoriaRouter = require("./routers/categoriaRouter");
+const userRoutes = require("./routers/userRoutes");
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/productos/", productoRouter);
 app.use("/api/categorias/", categoriaRouter);
+app.use("/api/users/",userRoutes);
 
 app.use((req, res, next) => {
   res.status(404).send("Página no encontrada");

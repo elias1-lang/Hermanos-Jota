@@ -3,7 +3,8 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middleware/authMiddleware"); // Importamos nuestro guardia
-const userController = require("../controllers/userController"); // Importamos los controladores
+
+//const userController = require("../controllers/userController"); // Importamos los controladores -> todavia no existen, no se importan
 
 // RUTA PÚBLICA (cualquiera puede acceder)
 
@@ -92,6 +93,7 @@ router.post("/login", async (req, res) => {
 });
 
 // RUTA PROTEGIDA (solo usuarios con un JWT válido pueden acceder)
-router.get("/profile", authMiddleware, userController.getUserProfile);
+//router.get("/profile", authMiddleware, userController.getUserProfile); //aca se debe devolver informacion necesaria para representar el perfil del usuario, un simple get si authMiddleware autoriza
+  //por incompleto todavia no usar.
 
 module.exports = router;
