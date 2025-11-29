@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send("Error interno del servidor");
+  res.status(err.status || 500).send(err.message || "Error interno del servidor");
 });
 
 app.listen(PORT, () => {

@@ -42,8 +42,8 @@ const productoSchema = mongoose.Schema({
     terminacion:{type: String},
     material:{type: String},
     capacidad:{type: String},
-    peso:{type: String}
-    
+    peso:{type: String},
+    destacado:{type:Boolean, default: false},
 },{/*strict:false,*/ timestamp:true}); 
 
     //si strick:false, entonces se permine insertar campos no definidos en el esquema -> necesario, porque el archivo

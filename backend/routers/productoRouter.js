@@ -102,4 +102,44 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
+router.put("/:id",async (req,res,next)=>{
+  try {
+    const idProducto = req.params.id;
+    const datosActualizados = req.body;
+    const productoActualizado = await Producto.findOneAndUpdate({id:idProducto}, datosActualizados, {new: true, runValidators: true}).populate("categoria");
+    if(!productoActualizado){
+      const error = new Error("Producto no encontrado.");
+      error.status = 404;
+      return next(error);
+    }
+
+    res.status(201).json({message:"Producto actualizado", producto: productoActualizado});
+
+  } catch (error) {
+    console.error("Error al actualizar el producto del servidor", error.message);
+    error.status = 400; //Bad Request  -> Datos invalidos
+    next(error);
+  }
+});
+
+router.put("/destacar/:id", async (req, res, next)=>{
+  try {
+    const idProducto = req.params.id;
+    const productoADestacar = await Producto.findOne({id:idProducto});
+    if(!productoADestacar){
+      const error = new Error("Producto no encontrado.");
+      error.status = 404;
+      return next(error);   
+    }
+    const productoActualizado = await Producto.findByIdAndUpdate(productoADestacar._id,{$set:{destacado: !productoADestacar.destacado}},{new: true}).populate("categoria");
+    const mensajeFinal = productoActualizado.destacado ? "Producto destacado" : "Producto no destacado";
+    res.status(201).json({message:mensajeFinal, producto: productoActualizado});
+
+  } catch (error) {
+    console.error("Error al actualizar el producto del servidor", error.message);
+    error.status = 400; //Bad Request  -> Datos invalidos
+    next(error);
+  }
+});
+
 module.exports = router;
