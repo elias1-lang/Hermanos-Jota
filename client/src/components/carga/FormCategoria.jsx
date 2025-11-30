@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FormImputText from "./FormInputText";
 import { fetchPostFormularioFuncion } from "../../utils/fetchFunciones";
 
-function FormCategoria({endpoint,actualizarPagina}){
+function FormCategoria({endpoint,handleCargarCategoria,cambiarEstadoModal}){
     const [formData, setFormData] = useState({
         nombre:""
     });
@@ -22,10 +22,9 @@ function FormCategoria({endpoint,actualizarPagina}){
         event.preventDefault();
         try {
             validarNombre(formData.nombre);
-            await fetchPostFormularioFuncion(endpoint,formData,"La carga de la categoria falló.");
-            alert("Se cargo la nueva categoria: " + formData.nombre);
+            handleCargarCategoria(formData,endpoint);                
             setFormData({nombre:""});
-            actualizarPagina();
+            cambiarEstadoModal(false);
         } catch (error) {
             alert(error.message);
         }

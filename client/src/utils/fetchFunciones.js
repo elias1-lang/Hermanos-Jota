@@ -52,4 +52,43 @@ async function fetchPostFormularioFuncion(endpoint,formData,mensajeError="La car
     return result;
 }
 
-export {fetchStateFuncion,fetchPostFormularioFuncion}
+
+async function fetchPutFormularioFuncion(endpoint,formData,mensajeError="Error al actualizar el elemento"){
+    
+    const response = await fetch(endpoint, {
+        method:"PUT",
+        headers:{
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData),
+    });
+
+    if(!response.ok){
+        throw new Error(mensajeError);
+    }
+
+    const result = await response.json();
+
+    return result;
+}
+
+
+async function fetchDeleteElemento(endpoint,mensajeError="Error al eliminar el elemento"){
+    try {
+        const respuesta = await fetch(endpoint,{
+            method: "DELETE",
+            headers:{"Content-Type": "application/json"}
+        });
+        if(!respuesta.ok){
+            throw new Error(`Error al eliminar: ${respuesta.status}`);
+        }
+        const data = await respuesta.json(); 
+        return data;
+        
+    } catch (error) {
+        alert(error.message)
+        return null;
+    }
+}
+
+export {fetchStateFuncion,fetchPostFormularioFuncion,fetchPutFormularioFuncion,fetchDeleteElemento}

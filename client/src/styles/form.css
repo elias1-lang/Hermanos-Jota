@@ -112,3 +112,19 @@
 		flex-direction:column;
 	}
 }
+
+
+.Previsualizacion_Imagen_Carga_DIV{
+	width: 100%;
+	margin: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+	.Previsualizacion_Imagen_Carga_DIV img {
+		background-color: lightgray;
+		border-radius: 5px;
+		max-width: 250px;
+		aspect-ratio: 1/1;
+		object-fit: contain; /* mantiene proporción, puede dejar espacios */
+	}

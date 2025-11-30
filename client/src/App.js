@@ -7,7 +7,7 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-
+  
 import PaginaIndex from "./pages/Index";
 import PaginaFaq from "./pages/faq";
 import PaginaNosotros from "./pages/Nosotros";
@@ -19,6 +19,8 @@ import BaseFooter from "./components/BaseFooter";
 import BaseMenu from "./components/BaseMenu";
 import PaginaCatalogo from "./pages/Catalogo";
 import BaseCarritoModal from "./components/BaseCarritoModal";
+import PaginaTablero from "./pages/PaginaTablero";
+
 import jwt_decode from "jwt-decode";
 
 function App() {
@@ -128,9 +130,17 @@ function App() {
           path="/catalogo"
           element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}
         />
+
+        {/*
         <Route
           path="/admin/crear-producto"
           element={<PaginaCarga estadoMenu={estadoMenu} />}
+        />
+        */}
+
+        <Route 
+          path="/admin/crear-producto"
+          element={<PaginaTablero estadoMenu={estadoMenu}/>}
         />
         
         {/* 

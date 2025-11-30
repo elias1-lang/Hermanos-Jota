@@ -33,7 +33,7 @@ router.post("/", async (req,res,next)=>{
         const nuevaCategoria = new Categoria(categoriaPeticion);
 
         await nuevaCategoria.save();
-        res.status(200).json({nombre:nuevaCategoria.nombre});
+        res.status(200).json(nuevaCategoria);
     } catch (error) {
         console.error("Error al cargar la categoria a la BDD: ", error.message);
         error.status = 400;
