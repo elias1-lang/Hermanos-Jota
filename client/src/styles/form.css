@@ -128,3 +128,25 @@
 		aspect-ratio: 1/1;
 		object-fit: contain; /* mantiene proporción, puede dejar espacios */
 	}
+
+
+.Predefect_Width_80{
+	width: 80% !important;
+}
+
+.Disable_Submit_button{
+	background: rgb(85, 74, 74) !important;
+}
+
+.DIV_INVALID_VALUE{
+	margin-top: 1em;
+	margin-left: .3em;
+	font-size: .9em;
+	font-weight: 600;
+	color: red;
+	text-align: left;
+	font-style: italic;
+}
+.FORM_IMPUT_INVALID{
+	background-color: rgba(255, 0, 0, 0.103) !important;
+}

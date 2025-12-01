@@ -8,11 +8,14 @@ import FormEditarProducto from "../components/carga/FormEditarProducto";
 
 import "../styles/tablero-admin.css"
 import { useNavigate } from "react-router-dom";
+import FormUser from "../components/carga/FormUser";
+import FormSetUserPassword from "../components/carga/FormSetUserPassword";
 
 function PaginaTablero ({estadoMenu}){
     const [tableroConfiguraciones, setTableroConfiguraciones] = useState("Productos");
     const [productos, setProductos] = useState([]);
     const [categorias, setCategorias] = useState([]);
+    const [usuarios, setUsuarios] = useState([]);
         const[errorFetchConjunto,setErrorFetchConjunto] = useState("");
     const navigate = useNavigate();
 
@@ -34,7 +37,6 @@ function PaginaTablero ({estadoMenu}){
                 }
 
             }
-
         }
 
         const handleActualizaciones = async (formData,endpoint,IDProducto) => {
@@ -69,6 +71,39 @@ function PaginaTablero ({estadoMenu}){
             }
         }
 
+        const handleActualizacionesUsuarios = async (formData,endpoint,username) => {
+            try {
+                const result = await fetchPutFormularioFuncion(endpoint,formData);
+                const elementoActualizado = result.user;
+                const indiceUser = usuarios.findIndex(user=>user.username==username);
+                const usuariosActualizados = [...usuarios];
+                usuariosActualizados[indiceUser]=elementoActualizado;
+                setUsuarios(usuariosActualizados);
+            } catch (error) {
+                alert(error.message);            
+            }
+        };
+
+        const handleDeleteUser = (endpoint, username) => {
+            const indiceEliminar = usuarios.findIndex(u=>u.username == username);
+            if(indiceEliminar!==-1){
+                const data = fetchDeleteElemento(endpoint,"Error al eliminar el usuario");
+                    if(data){
+                        const usuariosFiltrados = usuarios.filter(u=>u.username!==username);
+                        setUsuarios(usuariosFiltrados);
+                    }
+            }
+        }
+
+        const handleCargarUsuario = async (formData,endpoint) =>{
+            try {
+                const result = await fetchPostFormularioFuncion(endpoint,formData,"La carga del usuario falló");
+                const newUsers = [...usuarios, result];
+                setUsuarios(newUsers);
+            } catch (error) {
+                alert(error.message);
+            }
+        };
     //FIN MANEJADORES DE CAMBIOS
 
     //FUNCIONES VARIAS:--->
@@ -81,10 +116,12 @@ function PaginaTablero ({estadoMenu}){
 
     const urlAPIProductos = `${URL_BASE}/productos`;
     const urlAPICategorias = `${URL_BASE}/categorias`;
+    const urlAPIUsuarios = `${URL_BASE}/users`;
 
     useEffect(()=>{
         fetchStateFuncion(urlAPIProductos,setProductos,setErrorFetchConjunto,"Error en la conexión con el servidor");
         fetchStateFuncion(urlAPICategorias,setCategorias,setErrorFetchConjunto,"Error en la conexión con el servidor");
+        fetchStateFuncion(urlAPIUsuarios,setUsuarios,setErrorFetchConjunto,"Error en la conexión con el servidor");
     },[]);
 
     if(estadoMenu)return null;
@@ -107,7 +144,11 @@ function PaginaTablero ({estadoMenu}){
                             manejadorCargasProducto = {handleCargasProducto}
                             handleCargarCategoria={handleCargarCategoria}
                         />
-                    :""}
+                    :
+                        <TableroUsuariosConfiguraciones 
+                            manejadorCargaUsuarios={handleCargarUsuario}
+                        />
+                    }
 
                     <table className="Tablero_Etiqueta_Tabla">
                         {tableroConfiguraciones=="Productos"?
@@ -115,7 +156,12 @@ function PaginaTablero ({estadoMenu}){
                             <TablaProductoHeaders />
                             {mappingProductosFilas(productos,handleDeleteProducto,datosGeneralesProductos,handleActualizaciones)}
                         </>
-                    :""}
+                        :
+                        <>
+                            <TablaUsuariosHeaders />
+                            {mappingUsuariosFilas(usuarios,handleActualizacionesUsuarios,handleDeleteUser)}
+                        </>
+                        }
 
                     </table>
 
@@ -157,6 +203,175 @@ const mappingProductosFilas = (productos,handleDeleteProducto,datosGeneralesProd
         </>
     );
 }
+
+//FUNCION DE MAPPING DE USUARIOS: GENERA FILAS DE TABLA DE USUARIOS: ...>
+
+const mappingUsuariosFilas = (usuarios,handleActualizacionesUsuarios,handleDeleteUser) => {
+    return(
+        <tbody>
+            {
+                usuarios.map(user => (
+                    <TablaUsuariosFila 
+                        key={user._id}
+                        name={user.name}
+                        email={user.email}
+                        username={user.username}
+                        role={user.role}
+                        handleActualizacionesUsuarios={handleActualizacionesUsuarios}
+                        handleDeleteUser={handleDeleteUser}
+                    />
+                ))
+            }
+        </tbody>
+    );
+};
+
+
+//COMPONENTES PARA LOS HEADERS DE LA TABLA DE USUARIOS
+
+
+
+const TablaUsuariosHeaders = () => {
+    return(
+        <thead>
+            <tr>
+                <th style={{width:"auto"}}>Nombre</th>
+                <th style={{width:"25%"}}>Email</th>
+                <th style={{width:"auto"}}>Usuario</th>
+                <th style={{width:"auto"}}>Rol</th>
+                <th style={{width:"40%"}}>Acciones</th>
+            </tr>
+        </thead>
+    );
+}
+
+const TableroUsuariosConfiguraciones = ({manejadorCargaUsuarios}) =>{
+
+    const [estadoModalCargaUsuario, setEstadoModalCargaUsuario] = useState(false);
+    const URLAPIPostUser = `${URL_BASE}/users/register`;
+    const handlePostUser = (formData) => {
+        const formDataEstandarPost = {name:formData.newName,email:formData.newEmail,username:formData.newUsername,role:formData.newRole,password:formData.newPassword}
+        manejadorCargaUsuarios(formDataEstandarPost,URLAPIPostUser);
+        setEstadoModalCargaUsuario(false);
+    }
+
+    return (
+        <div className="TABLERO_CONFIGURACIONES_PRODUCTOS">
+            <button onClick={()=>setEstadoModalCargaUsuario(true)}>Crear Usuario</button>
+
+            <ModalGenerico
+                titulo={`Creacion de Usuario`}
+                estado={estadoModalCargaUsuario}
+                cambiarEstado={setEstadoModalCargaUsuario}
+            >
+
+                <FormUser
+                    handlePost={handlePostUser}
+                />
+
+            </ModalGenerico>
+
+        </div>
+    );
+}
+
+const TablaUsuariosFila = ({name,email,username,role,handleActualizacionesUsuarios,handleDeleteUser}) => {
+    
+    const [estadoModalEditar, setEstadoModalEditar] = useState(false);
+    const [estadoModalCambiarContraseña, setEstadoModalCambiarContraseña] = useState(false);
+    const [estadoModalEliminar, setEstadoModalEliminar] = useState(false);
+
+    const URLAPIUpdateUser = `${URL_BASE}/users/change/data/${username}`;
+    const URLAPIDeleteUser = `${URL_BASE}/users/${username}`;
+
+    const handlePostUpdate = (formData) => {
+        handleActualizacionesUsuarios(formData,URLAPIUpdateUser,username);
+        setEstadoModalEditar(false);
+        setEstadoModalCambiarContraseña(false);
+    }
+
+    const handleConfirmDeleteUser = () => {
+        handleDeleteUser(URLAPIDeleteUser,username);
+        setEstadoModalEliminar(false);
+    }
+
+    return(
+        <>
+        
+        <tr>
+            <td>{name}</td>
+            <td>{email}</td>
+            <td>{username}</td>
+            <td>{role}</td>
+            <td>
+                <div className="Tablero_Etiqueta_Contenedor_TD_Boton">
+                    <button className="Tablero_Etiqueta_Boton_Editar" onClick={()=>(setEstadoModalEditar(true))}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                        </svg>
+                        Editar
+                    </button>
+
+                    <button className="Tablero_Etiqueta_Boton_Editar" onClick={()=>(setEstadoModalCambiarContraseña(true))}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                        </svg>
+                        Cambiar Contraseña
+                    </button>
+                    <button className="Tablero_Etiqueta_Boton_Borrar" onClick={()=>setEstadoModalEliminar(true)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                        </svg>
+                        Eliminar
+                    </button>
+                </div>
+            </td>
+        </tr>
+
+            <ModalGenerico
+                titulo={`Editar al Usuario "${username}"`}
+                estado={estadoModalEditar}
+                cambiarEstado={setEstadoModalEditar}
+            >
+                <FormUser
+                    name={name}
+                    email={email}
+                    username={username}
+                    role={role}
+                    handlePost={handlePostUpdate}
+                    enableSetPassword={false}
+                />
+
+            </ModalGenerico>
+            
+            <ModalGenerico
+                titulo={`Asignar contraseña al Usuario "${username}"`}
+                estado={estadoModalCambiarContraseña}
+                cambiarEstado={setEstadoModalCambiarContraseña}
+            >
+                <FormSetUserPassword 
+                    handlePost={handlePostUpdate}
+                />
+
+            </ModalGenerico>
+
+            <ModalGenerico
+                titulo={`Se eliminará al usuario "${username}"`}
+                estado={estadoModalEliminar}
+                cambiarEstado={setEstadoModalEliminar}
+            >
+                <div className="TABLERO_DIV_MODAL_CONFIRMACION_ELIMINAR">
+                    <button className="TABLERO_DIV_MODAL_CONFIRMACION_BOT_ELIMINAR" onClick={()=>handleConfirmDeleteUser()}>ELIMINAR</button>   
+                    <button className="TABLERO_DIV_MODAL_CONFIRMACION_BOT_MANTENER" onClick={()=>setEstadoModalEliminar(false)}>MANTENER</button>
+                </div>
+            </ModalGenerico>
+        </>
+    );
+}
+
+
 
 //COMPONENTE PARA CONFIGURACIONES REALIONADAS A LA TABLA DE PRODUCTOS: (POR AHORA SOLO AGREGAR UN PRODUCTO):
 const TablaProductoConfiguraciones = ({datosGeneralesProductos,manejadorCargasProducto,handleCargarCategoria}) => {
@@ -267,14 +482,14 @@ const TableroProductoFila = ({nombre,categoria,precio,stock,destacado,IDProducto
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-fill" viewBox="0 0 16 16" className={claseDestacadoSVG}>
                             <path d="M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-.342 1.174-.646 1.479-.126.125-.25.224-.354.298v4.431l.078.048c.203.127.476.314.751.555C12.36 7.775 13 8.527 13 9.5a.5.5 0 0 1-.5.5h-4v4.5c0 .276-.224 1.5-.5 1.5s-.5-1.224-.5-1.5V10h-4a.5.5 0 0 1-.5-.5c0-.973.64-1.725 1.17-2.189A6 6 0 0 1 5 6.708V2.277a3 3 0 0 1-.354-.298C4.342 1.674 4 1.179 4 .5a.5.5 0 0 1 .146-.354"/>
                         </svg>
-                        {estadoDestacado?"SI":"NO"}
+                        <spam className="claseDestacadoSpam">{estadoDestacado?"SI":"NO"}</spam>
                     </button>
                 </div>
             </td>
             
             <td>
                 <div className="Tablero_Etiqueta_Contenedor_TD_Boton">
-                    <button className="Tablero_Etiqueta_Boton_Editar" onClick={()=>setEstadoModalEditarProducto(true)}>
+                    <button className="Tablero_Etiqueta_Boton_Editar Predefect_Width_40" onClick={()=>setEstadoModalEditarProducto(true)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
@@ -282,7 +497,7 @@ const TableroProductoFila = ({nombre,categoria,precio,stock,destacado,IDProducto
                         Editar
                     </button>
                     
-                    <button className="Tablero_Etiqueta_Boton_Borrar" onClick={()=>setEstadoModalConfirmacionEliminar(true)}>
+                    <button className="Tablero_Etiqueta_Boton_Borrar Predefect_Width_45" onClick={()=>setEstadoModalConfirmacionEliminar(true)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                         <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
                         </svg>
@@ -293,7 +508,7 @@ const TableroProductoFila = ({nombre,categoria,precio,stock,destacado,IDProducto
         </tr>
 
         <ModalGenerico
-            titulo={`¿Desea Eliminar el Producto "${nombre}"?`}
+            titulo={`Se eliminará el Producto "${nombre}"`}
             estado={estadoModalConfirmacionEliminar}
             cambiarEstado={setEstadoModalConfirmacionEliminar}
         >

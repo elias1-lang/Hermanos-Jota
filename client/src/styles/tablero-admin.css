@@ -119,6 +119,11 @@
             height: 1.5em;
         }
 
+        .claseDestacadoSpam{
+            text-align: center;
+            width: 2em !important;
+            overflow: hidden;
+        }
 
         .Tablero_Etiqueta_Bot_SVG_Destacar{
             color:gray;
@@ -133,8 +138,7 @@
         }
 
         .Tablero_Etiqueta_Boton_Editar{
-            width: 40% !important;
-            background: yellow !important;
+            background: rgb(235, 235, 111) !important;
             border: 1.5px solid transparent !important;
             transition: border-color 0.3s ease !important;
         }
@@ -142,15 +146,22 @@
                 border-color: black !important; 
             }
 
+            .Predefect_Width_40{
+               width: 40% !important; 
+            }
+
 
         .Tablero_Etiqueta_Boton_Borrar{
-            width: 45% !important;
             background:rgb(212, 125, 125) !important;
             border: 1.5px solid transparent !important;
             transition: border-color 0.3s ease !important;
         }
             .Tablero_Etiqueta_Boton_Borrar:hover{
                 border-color: black !important; 
+            }
+
+            .Predefect_Width_45{
+                width: 45% !important;
             }
 
 

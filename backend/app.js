@@ -21,7 +21,7 @@ const DB_URI = process.env.VARIABLE_DB_URI;
 
 app.use(cors({
   origin: "https://muebleria-hermanos-jota-k9wj.onrender.com", //la api solo permite ser consumida desde esa url -> poner "*", para que sea pueda ser consumida por cualquier sitio
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  methods: ["GET", "POST", "PUT", "DELETE"], //remplazar * por : https://muebleria-hermanos-jota-k9wj.onrender.com
 }));
 
 mongoose
