@@ -137,7 +137,7 @@ function App() {
 
         <Route 
           path="/profile"
-          element={<UserProfile />}
+          element={<UserProfile estadoMenu={estadoMenu}/>}
         />
         
       </Routes>
