@@ -10,8 +10,12 @@
 */
 
 async function fetchStateFuncion(urlFuente, setterDatosFuncion,setterErrorFuncion, mensajeError="Error en la captura de datos."){
+    
+    const token = localStorage.getItem("authToken")?localStorage.getItem("authToken"):"";
+
     try {
-        const response = await fetch(urlFuente);
+        const response = await fetch(urlFuente,{method:"GET",headers:{'Content-Type': 'application/json','Authorization': `Bearer ${token}`}});
+        
         if(!response.ok){
             throw new Error(mensajeError);
         }
@@ -34,11 +38,14 @@ async function fetchStateFuncion(urlFuente, setterDatosFuncion,setterErrorFuncio
     Este funcion retorna lo que devuelve la base de datos al hacer el post, revisar endpoint relativos al fetch de cada api a usar (puede asignarse el retorno o despreciarse)
 */
 async function fetchPostFormularioFuncion(endpoint,formData,mensajeError="La carga a la base de datos falló."){
+   
+    const token = localStorage.getItem("authToken")?localStorage.getItem("authToken"):"";
 
     const response = await fetch(endpoint, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(formData), //objeto a json
     });
@@ -54,11 +61,14 @@ async function fetchPostFormularioFuncion(endpoint,formData,mensajeError="La car
 
 
 async function fetchPutFormularioFuncion(endpoint,formData,mensajeError="Error al actualizar el elemento"){
-    
+
+    const token = localStorage.getItem("authToken")?localStorage.getItem("authToken"):"";
+
     const response = await fetch(endpoint, {
         method:"PUT",
         headers:{
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(formData),
     });
@@ -75,9 +85,15 @@ async function fetchPutFormularioFuncion(endpoint,formData,mensajeError="Error a
 
 async function fetchDeleteElemento(endpoint,mensajeError="Error al eliminar el elemento"){
     try {
+        const token = localStorage.getItem("authToken")?localStorage.getItem("authToken"):"";
+
         const respuesta = await fetch(endpoint,{
             method: "DELETE",
-            headers:{"Content-Type": "application/json"}
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+            
         });
         if(!respuesta.ok){
             throw new Error(`Error al eliminar: ${respuesta.status}`);

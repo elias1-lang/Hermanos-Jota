@@ -53,7 +53,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     // 1. Buscamos al usuario por su email
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email.trim() });
     if (!user) {
       // Usamos un mensaje genérico por seguridad
       return res.status(400).json({ message: "Credenciales inválidas" });
@@ -145,10 +145,10 @@ router.put("/change/password", authMiddleware, async (req,res) => { //para que u
 
 router.put("/change/data",authMiddleware, async (req,res)=>{ //para que un usuario cambie cualquier otro dato que no sea la contraseña
   try {
-    const userDate = req.user;
+    const userData = req.user;
     let {newName, newEmail, newUsername} = req.body;
 
-    const user = await User.findById(userDate.id);
+    const user = await User.findById(userData.id);
     if(!user){return res.status(404).json({ message: "Error en la captura de recursos"})};
     
     newName = !newName.length?user.name:newName;
@@ -168,8 +168,14 @@ router.put("/change/data",authMiddleware, async (req,res)=>{ //para que un usuar
 
 //RUTAS SOLO PARA EL ADMINISTRADOR
 
-router.get("/",async (req,res,next)=>{ //agregar middleware de comprobacion de token administrador
+
+router.get("/", authMiddleware, async (req,res,next)=>{ //Obtiene la información sobre los usuarios.
   try {
+    const userData = req.user;
+    //buscar usuario en la bdd y se verifica si sigue teniendo el estatus de "admin", podría el token ser antiguo, con un payload de admin
+    const userRequest = await User.findById(userData.id);
+    if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
+    if(userRequest.role != "admin"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
 
       const users = await User.find({}).select("_id name username email role");
 
@@ -188,11 +194,18 @@ router.get("/",async (req,res,next)=>{ //agregar middleware de comprobacion de t
   }
 });
 
-router.delete("/:username", async (req,res,next)=>{ //agregar middleware de comprobacion de token administrador -> ver si existe forma de comprobar si se trata de un mismo usuario a si mismo y permitir eliminar
+  //endpoint para eliminar a un usuario con su username
+router.delete("/:username", authMiddleware, async (req,res,next)=>{ //agregar middleware de comprobacion de token administrador -> ver si existe forma de comprobar si se trata de un mismo usuario a si mismo y permitir eliminar
   try {
+      
+      const userData = req.user;
+      const userRequest = await User.findById(userData.id);
+      if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
+      if(userRequest.role!="admin"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
+      
       const usernameDelete = req.params.username;
       const user = await User.findOneAndDelete({username: usernameDelete}).select("_id name username email role");
-      
+
       if(!user){
         return res.status(404).json({message:"Usuario no encontrado."});
       }
@@ -206,8 +219,13 @@ router.delete("/:username", async (req,res,next)=>{ //agregar middleware de comp
   }
 });
 
-router.put("/change/password/:username",async (req,res,next)=>{ //asignar contraseña a un perfil solo si se es administrador
+router.put("/change/password/:username",authMiddleware,async (req,res,next)=>{ //EndPoint para cambiar la contraseña de un usuario solo con su username, solo para administradores
   try {
+      const userData = req.user;
+      const userRequest = await User.findById(userData.id);
+      if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
+      if(userRequest.role != "admin"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
+
       const usernameUpdate = req.params.username;
       const newPassword = req.body.newPassword;
       if(!newPassword || !newPassword.trim().length){return res.status(400).json({message:"La nueva contraseña no puede ser nula."})}
@@ -228,9 +246,15 @@ router.put("/change/password/:username",async (req,res,next)=>{ //asignar contra
   }
 });
 
-router.put("/change/data/:username",async (req,res,next)=>{ //asignar datos a un perfil solo si se es administrador
+router.put("/change/data/:username", authMiddleware, async (req,res,next)=>{ //endpoint para cambiar los datos generales de un usuario solo con su username, solo para administradores
 
   try {
+    
+    const userData = req.user;
+    const userRequest = await User.findById(userData.id);
+    if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
+    if(userRequest.role!="admin"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
+
     const usernameUpdate = req.params.username;
     let {newName, newEmail, newUsername, newRole, newPassword} = req.body;
 

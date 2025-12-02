@@ -1,7 +1,8 @@
 const express = require("express");
 
 const Categoria = require("../models/Categoria");
-
+const authMiddleware = require("../middleware/authMiddleware");
+const User = require("../models/User");
 const router = express.Router();
 
 router.get("/", async (req,res,next)=>{
@@ -17,8 +18,13 @@ router.get("/", async (req,res,next)=>{
 });
 
 
-router.post("/", async (req,res,next)=>{
+router.post("/", authMiddleware, async (req,res,next)=>{
     try {
+        const userData = req.user;
+        const userRequest = await User.findById(userData.id);
+        if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
+        if(userRequest.role!="admin" && userRequest.role!="editor"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
+
         let categoriaPeticion = req.body;
         categoriaPeticion.nombre = categoriaPeticion.nombre.trim().toUpperCase();
         if(!categoriaPeticion.nombre.length)(res.status(404).json({message:"El nombre no puede ser vacio"}));

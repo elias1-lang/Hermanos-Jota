@@ -3,6 +3,10 @@ const express = require("express");
 const Producto = require("../models/Producto");
 const ProductoDestacado = require("../models/ProductoDestacado");
 
+const authMiddleware = require("../middleware/authMiddleware");
+
+const User = require("../models/User");
+
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
@@ -21,8 +25,13 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", authMiddleware, async (req, res, next) => {
   try {
+    const userData = req.user;
+    const userRequest = await User.findById(userData.id);
+    if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
+    if(userRequest.role!="admin" && userRequest.role!="editor"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
+    
     const productoPeticion = req.body;
 
     let idProducto = productoPeticion.nombre;
@@ -81,8 +90,14 @@ router.get("/:id/destacados", async (req, res, next) => {
   }
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", authMiddleware, async (req, res, next) => {
   try {
+
+    const userData = req.user;
+    const userRequest = await User.findById(userData.id);
+    if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
+    if(userRequest.role!="admin" && userRequest.role!="editor"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
+
     const idProducto = req.params.id;
     const productoEliminado = await Producto.findOneAndDelete({
       id: idProducto,
@@ -102,8 +117,14 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-router.put("/:id",async (req,res,next)=>{
+router.put("/:id",authMiddleware, async (req,res,next)=>{
   try {
+
+    const userData = req.user;
+    const userRequest = await User.findById(userData.id);
+    if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
+    if(userRequest.role!="admin" && userRequest.role!="editor"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
+
     const idProducto = req.params.id;
     const datosActualizados = req.body;
     const productoActualizado = await Producto.findOneAndUpdate({id:idProducto}, datosActualizados, {new: true, runValidators: true}).populate("categoria");
@@ -122,8 +143,13 @@ router.put("/:id",async (req,res,next)=>{
   }
 });
 
-router.put("/destacar/:id", async (req, res, next)=>{
+router.put("/destacar/:id", authMiddleware, async (req, res, next)=>{
   try {
+      const userData = req.user;
+      const userRequest = await User.findById(userData.id);
+      if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
+      if(userRequest.role!="admin" && userRequest.role!="editor"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
+
     const idProducto = req.params.id;
     const productoADestacar = await Producto.findOne({id:idProducto});
     if(!productoADestacar){

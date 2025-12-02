@@ -459,7 +459,8 @@ const TableroProductoFila = ({nombre,categoria,precio,stock,destacado,IDProducto
     
     const manejadorDestacar = async () => {
         try {
-            const response = await fetch(urlDestacado,{method:"PUT"});
+            const token = localStorage.getItem("authToken")?localStorage.getItem("authToken"):"";
+            const response = await fetch(urlDestacado,{method:"PUT",headers:{'Authorization': `Bearer ${token}`}});
             if(!response.ok){
                 throw new Error("Error al destacar el producto");
             }
