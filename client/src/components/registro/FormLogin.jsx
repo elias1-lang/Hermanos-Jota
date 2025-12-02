@@ -1,58 +1,88 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import FormImputText from "../carga/FormInputText";
+import URL_BASE from "../../config/api";
 
 function FormLogin({endpoint,actualizarPagina}){
-    const [formData, setFormData] = useState({
-        username: "", email: "", password: ""
-    });
-    
-    // const manejadorCambios = (e) => {
-    //     const {name,value} = e.target;
-    //     setFormData(estadoPrevio =>());
-    // };
+    const [formData, setFormData] = useState({email: "", password: ""});
+    const [enableSend, setEnableSend] = useState(notEmptyString(formData.email)&&notEmptyString(formData.password));
+    const APIURLLogin = `${URL_BASE}/users/login`;
+    const manejadorCambios = (e) => {
+        const {name,value} = e.target;
+        setFormData(estadoPrevio =>({...estadoPrevio,[name]:value}));
+    };
 
-    
+    const handleKeyDown = (e) => { //si es invalido, que no se pueda enviar en formulario con un enter
+        if(e.key === "entrer" && !enableSend){
+            e.preventDefault();
+        }
+    }
+
+    useEffect(()=>{ //para cambiar el color del boton con cada cambio en el formulario
+        setEnableSend(notEmptyString(formData.email)&&notEmptyString(formData.password));
+    },[formData]);
+
+
     const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await fetch('/api/users/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData), // formData contiene { email, password }
-    });
- 
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message);
- 
-    // ¡Éxito! Aquí recibimos el token desde el backend.
-    console.log('Login exitoso, token:', data.token);
-    localStorage.setItem('authToken', data.token); // Guardamos el token
-    props.onLoginSuccess(data.user); // Actualizamos el estado de App.js
+        e.preventDefault();
+        try {
+            const response = await fetch(APIURLLogin, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData), // formData contiene { email, password }
+            });
+        
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.message);
+        
+            // ¡Éxito! Aquí recibimos el token desde el backend.
+            console.log('Login exitoso, token:', data.token);
+            setFormData({email: "", password: ""});
+            alert(`Login exitoso para el usuario: ${data.user.username}`);
+            //localStorage.setItem('authToken', data.token); // Guardamos el token
+            //props.onLoginSuccess(data.user); // Actualizamos el estado de App.js
 
-    // El siguiente paso es guardar este token en el cliente.
- 
-  } catch (error) {
-    alert(`Error en el login: ${error.message}`);
-  }
-};
+            // El siguiente paso es guardar este token en el cliente. e ir a la pagina de perfil
+        
+        } catch (error) {
+            alert(`Error en el login: ${error.message}`);
+        }
+    };
+
 
     return(
         <>
             <form className="carga-form" onSubmit={handleSubmit}>    
                 <fieldset>
-                    <legend>Cargue una Categoria Nueva</legend>
-                    <div>
+                    <legend>Iniciar Sesion</legend>
+
                         <FormImputText
-                            nameCampo={"nombre"}
-                            nameLabel={"Escriba el nombre de la Categoria"}
+                            nameCampo={"email"}
+                            nameLabel={"Ingrese su correo electronico"}
                             onChange={manejadorCambios}
-                            value={formData.nombre}
+                            value={formData.email}
+                            statusValid={notEmptyString(formData.email)}
+                            onKeyDown={handleKeyDown}
+
                         />
-                    </div>
-                    <button type="submit" className="carga-submit">Cargar Categoria</button>
+
+                        <FormImputText
+                            nameCampo={"password"}
+                            tipo={"password"}
+                            nameLabel={"Ingrese su contraseña"}
+                            onChange={manejadorCambios}
+                            value={formData.password}
+                            statusValid={notEmptyString(formData.password)}
+                            onKeyDown={handleKeyDown}
+                        />
                 </fieldset>
+                    <button type="submit" disabled={!enableSend} className={enableSend?"carga-submit":"carga-submit Disable_Submit_button"}>Iniciar Sesion</button>
             </form>
         </>
     );
 }
 
 export default FormLogin;
+
+const notEmptyString = (string) =>{
+    return (string && string.trim().length !== 0);
+}

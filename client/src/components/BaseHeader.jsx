@@ -74,13 +74,13 @@ const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/no
                     {currentUser ? (
                         <>
                         <span>Bienvenido, {currentUser.username}</span>
-                        <Link to="/profile">Mi Perfil</Link>
-                        <button onClick={onLogout}>Logout</button>
+                         <li><Link to="/profile">Mi Perfil</Link></li>
+                         <li><button onClick={onLogout}>Logout</button></li>
                         </>
                     ) : (
                         <>
-                        <Link to="/login">Login</Link>
-                        <Link to="/register">Registro</Link>
+                        <li><Link to="/login">Login</Link></li>
+                        <li><Link to="/register">Registro</Link></li>
                         </>
                     )}
                 </ul>

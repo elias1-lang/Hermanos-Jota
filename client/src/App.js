@@ -22,6 +22,7 @@ import BaseCarritoModal from "./components/BaseCarritoModal";
 import PaginaTablero from "./pages/PaginaTablero";
 
 import jwt_decode from "jwt-decode";
+import LoginRegisterPage from "./pages/LoginRegisterPage";
 
 function App() {
   const [estadoMenu, setEstadoMenu] = useState(false);
@@ -143,13 +144,16 @@ function App() {
           element={<PaginaTablero estadoMenu={estadoMenu}/>}
         />
         
-        {/* 
         <Route
           path="/login"
-          element={<LoginPage onLoginSuccess={handleLoginSuccess} />}
+          element={<LoginRegisterPage typeForm={"login"} onLoginSuccess={handleLoginSuccess} />}
         />
-        */}
 
+        <Route
+          path="/register"
+          element={<LoginRegisterPage typeForm={"register"} onLoginSuccess={handleLoginSuccess} />}
+        />
+        
       </Routes>
 
       <BaseFooter estadoMenu={estadoMenu} />

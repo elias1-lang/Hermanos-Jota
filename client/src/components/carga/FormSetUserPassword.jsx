@@ -37,7 +37,7 @@ export default function FormSetUserPassword({handlePost}){
 
     return(
         <>
-            <form onSubmit={handleSubmit} className="carga-form Predefect_Width_80">
+            <form onSubmit={handleSubmit} className="carga-form Predefect_Width_80" autoComplete="off">
                 <fieldset>
                     <legend>Asignación de Contraseña</legend>
                     <FormImputText nameLabel={"Contraseña"} nameCampo={"newPassword"} onChange={manejadorCambios} tipo={"password"} value={estatusPassword} statusValid={notEmptyString(estatusPassword)} onKeyDown={handleKeyDown}/>

@@ -150,3 +150,7 @@
 .FORM_IMPUT_INVALID{
 	background-color: rgba(255, 0, 0, 0.103) !important;
 }
+
+.SECRET_IMPUT{
+  -webkit-text-security: disc;
+}
