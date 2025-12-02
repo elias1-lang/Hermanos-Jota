@@ -4,8 +4,7 @@ import IndexProductosDestacados from '../components/index/IndexProductosDestacad
 import HeroBanner from '../components/index/HeroBanner';
 import style_index from "../styles/styles-index.css";
 
-export default function ContactoPruebaRutas({ estadoMenu, onAgregar }){
-    if(estadoMenu) return null;
+export default function ContactoPruebaRutas({ onAgregar }){
 
     return (
         <div className="base_main_envoltorio">

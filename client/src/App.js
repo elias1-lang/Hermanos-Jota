@@ -81,7 +81,6 @@ function App() {
 
       <BaseHeader
         cambiarEstado={cambiarEstado}
-        estadoMenu={estadoMenu}
         cantidadElementosCarrito={cantidadItemsCarrito()}
         cambiarEstadoCarrito={cambiarEstadoCarrito}
       />
@@ -89,12 +88,12 @@ function App() {
       <Routes>
 
         <Route path="/" 
-          element={<PaginaIndex estadoMenu={estadoMenu}/>} 
+          element={<PaginaIndex />} 
         />
       
         <Route
           path="/contacto"
-          element={<PaginaContactoPruebaRutas estadoMenu={estadoMenu} />}
+          element={<PaginaContactoPruebaRutas />}
         />
 
         <Route path="/faq" 
@@ -122,7 +121,7 @@ function App() {
 
         <Route 
           path="/admin/crear-producto"
-          element={<PaginaTablero estadoMenu={estadoMenu}/>}
+          element={<PaginaTablero />}
         />
         
         <Route
@@ -137,12 +136,12 @@ function App() {
 
         <Route 
           path="/profile"
-          element={<UserProfile estadoMenu={estadoMenu}/>}
+          element={<UserProfile />}
         />
         
       </Routes>
 
-      <BaseFooter estadoMenu={estadoMenu} />
+      <BaseFooter />
 
       <BaseCarritoModal
         estadoCarrito={estadoCarrito}

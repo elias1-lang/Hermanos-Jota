@@ -14,8 +14,8 @@ import relojIco from "../img/header-footer/clock-solid-full.svg";
 import correoIco from "../img/header-footer/envelope-solid-full.svg";
 
 
-export default function BaseFooter({estadoMenu}){
-if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
+export default function BaseFooter({}){
+
     const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/nosotros","/contacto","/faq","/admin/crear-producto"];
     const [enviosDevoluciones, formasPago, terminosCondiciones, garantiasUso] = ["/faq#envios","/faq#pagos","/faq#terminos","/faq#garantias"];
 

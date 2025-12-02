@@ -4,10 +4,9 @@ import IndexProductosDestacados from '../components/index/IndexProductosDestacad
 import HeroBanner from '../components/index/HeroBanner';
 import "../styles/styles-index.css";
 
-export default function Index({ estadoMenu }){
+export default function Index(){
     return (
         <>
-        {!estadoMenu&&(
             <div className="index_main_envoltorio">
                 <main className='indexMain'>
                     <HeroBanner />
@@ -17,7 +16,6 @@ export default function Index({ estadoMenu }){
                     </div>
                 </main>
             </div>  
-        )}
         </>
     );
 }

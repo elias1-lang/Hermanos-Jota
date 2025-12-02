@@ -1,4 +1,4 @@
-import react, { useContext, useState } from "react";
+import react, { useContext, useEffect, useState } from "react";
 import stylesbase from "../styles/base/styles-base.css";
 import {Link} from 'react-router-dom';
 import { AuthContext } from "../context/AuthContext";
@@ -10,26 +10,36 @@ export default function BaseMenu({estadoMenu,cambiarEstado}){
     
     const {currentUser, logout} = useContext(AuthContext);
     
-    if(!estadoMenu) return null; //no renderiza la pagina directamente si el estado es null
+    const [claseMenu,setClaseMenu] = useState(estadoMenu?"menu_hamb menu_hamb_enable":"menu_hamb");
+
+    const manejadorCierre = ()=>{setClaseMenu("menu_hamb"); cambiarEstado(false);};
+
+    useEffect(()=>{
+        setClaseMenu(estadoMenu?"menu_hamb menu_hamb_enable":"menu_hamb");
+    },[estadoMenu]);
 
     return (
-        <section className="menu_hamb">
+        <section className={claseMenu}>
          <div className="menu_hamb_div_botones">
-             <button onClick={cambiarEstado} className="menu_hamb_disable_bot" >X</button>
+             <button onClick={manejadorCierre} className="menu_hamb_disable_bot" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                </svg>
+             </button>
          </div>
         <nav className="menu_hamb_nav">
             <ul>
-                <li onClick={cambiarEstado}><Link to={inicio}>Inicio</Link></li>
-                <li onClick={cambiarEstado}><Link to={catalogo}>Catálogo</Link></li>
-                <li onClick={cambiarEstado}><Link to={nosotros}>Nosotros</Link></li>
-                <li onClick={cambiarEstado}><Link to={contacto}>Contacto</Link></li>
-                <li onClick={cambiarEstado}><Link to={faq}>FAQ</Link></li>
-                <li onClick={cambiarEstado}><Link to={carga}>Cargas</Link></li>
+                <li onClick={manejadorCierre}><Link to={inicio}>Inicio</Link></li>
+                <li onClick={manejadorCierre}><Link to={catalogo}>Catálogo</Link></li>
+                <li onClick={manejadorCierre}><Link to={nosotros}>Nosotros</Link></li>
+                <li onClick={manejadorCierre}><Link to={contacto}>Contacto</Link></li>
+                <li onClick={manejadorCierre}><Link to={faq}>FAQ</Link></li>
+                <li onClick={manejadorCierre}><Link to={carga}>Cargas</Link></li>
                  {currentUser ? (
                     <>
                     <li className="HEADER_LOGGED_LI_NAV">
                         <Link to="/profile">
-                            <span className="HEADER_LOGOUT_SPAN" onClick={cambiarEstado}>
+                            <span className="HEADER_LOGOUT_SPAN" onClick={manejadorCierre}>
                                 Mi Perfil
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
@@ -38,7 +48,7 @@ export default function BaseMenu({estadoMenu,cambiarEstado}){
                             </span>
                         </Link>
 
-                        <span onClick={()=>{logout();cambiarEstado();}} className="HEADER_LOGOUT_SPAN">
+                        <span onClick={()=>{logout();manejadorCierre();}} className="HEADER_LOGOUT_SPAN">
                             Salir
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
@@ -50,8 +60,8 @@ export default function BaseMenu({estadoMenu,cambiarEstado}){
                 ) : (
                     <>
                     <li className="HEADER_LOGGED_LI_NAV">
-                        <Link to="/login"><span className="HEADER_LOGOUT_SPAN" onClick={cambiarEstado}>Iniciar</span></Link>
-                        <Link to="/register"><span className="HEADER_LOGOUT_SPAN" onClick={cambiarEstado}>Registrar</span></Link>
+                        <Link to="/login"><span className="HEADER_LOGOUT_SPAN" onClick={manejadorCierre}>Iniciar</span></Link>
+                        <Link to="/register"><span className="HEADER_LOGOUT_SPAN" onClick={manejadorCierre}>Registrar</span></Link>
                     </li>
                     </>
                 )}

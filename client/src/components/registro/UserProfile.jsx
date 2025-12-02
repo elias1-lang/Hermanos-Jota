@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import URL_BASE from "../../config/api";
 import { AuthContext } from "../../context/AuthContext";
 
-export default function UserProfile({estadoMenu}){
+export default function UserProfile({}){
 
     const [errorProfile, setErrorProfile] = useState("Aguarde...");
     const [user, setUser] = useState({name:"" , username: "", email: "", role:""});
@@ -47,9 +47,7 @@ export default function UserProfile({estadoMenu}){
     useEffect(() => {
         fetchUserProfile();
     }, [errorProfile]);
-
-    if(estadoMenu)return null;
-
+    
     return(
         <>
             <div className="Tablero_Wrapper_Principal">

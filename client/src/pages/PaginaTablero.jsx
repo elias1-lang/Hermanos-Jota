@@ -12,7 +12,7 @@ import FormUser from "../components/carga/FormUser";
 import FormSetUserPassword from "../components/carga/FormSetUserPassword";
 import { AuthContext } from "../context/AuthContext";
 
-function PaginaTablero ({estadoMenu}){
+function PaginaTablero ({}){
     const [tableroConfiguraciones, setTableroConfiguraciones] = useState("Productos");
     const [productos, setProductos] = useState([]);
     const [categorias, setCategorias] = useState([]);
@@ -130,7 +130,6 @@ function PaginaTablero ({estadoMenu}){
         if(userRole=="admin")fetchStateFuncion(urlAPIUsuarios,setUsuarios,setErrorFetchConjunto,"Error en la conexión con el servidor");
     },[userRole]);
     
-    if(estadoMenu)return null;
     if(!currentUser){return <div className="Tablero_Wrapper_Principal"><div className="Tablero_DIV_Info_API">NO AUTENTICADO</div></div>}
     if(currentUser.role=="user"){return <div className="Tablero_Wrapper_Principal"><div className="Tablero_DIV_Info_API">SIN PERMISOS SUFICIENTES</div></div>}; //Resolver despues con respuesta del middleware del backend
     

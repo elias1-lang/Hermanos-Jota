@@ -14,7 +14,7 @@ import botonbuscarIco from "../img/header-footer/search.svg";
 import {addCarrito, cantidadElementosCarrito} from "../utils/carritoFunciones"
 import { AuthContext } from "../context/AuthContext";
 
-export default function BaseHeader({cambiarEstado, estadoMenu, cantidadElementosCarrito,cambiarEstadoCarrito}){
+export default function BaseHeader({cambiarEstado, cantidadElementosCarrito,cambiarEstadoCarrito}){
     const [busqueda,setBusqueda] = useState('');
     const navigate = useNavigate();
     const {currentUser, logout} = useContext(AuthContext);
@@ -34,8 +34,6 @@ export default function BaseHeader({cambiarEstado, estadoMenu, cantidadElementos
         }
     }
 
-
-if(estadoMenu) return null; //Si el menu esta abierto, que no renderice nada
 const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/nosotros","/contacto","/faq","/admin/crear-producto"];
     return (
         <header>
