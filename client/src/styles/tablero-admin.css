@@ -241,3 +241,55 @@
     justify-content: center;
     align-items: center;
 }
+
+.Profile_Data_DIV{
+    width: 80%;
+    font-size: 1em;
+}   
+    .Profile_Data_DIV h2{
+        color: var(--color-principal);
+        padding-bottom: .5em;
+        margin-bottom: .5em;
+        border-bottom: 1px solid #E8E8E8;
+    }
+
+.Content_Data{
+    margin-bottom: 1em;
+    text-align: center;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    .Content_Data:last-child{
+        margin-bottom: none;
+    }
+
+    .Profile_Data_P_Header{
+        width: 25% !important;
+        display: inline-block;
+        background-color: #8B4513;
+        color: #ffffff;
+        border-radius: 4px 0 0 4px !important;
+        font-weight: 600;
+        padding-top: .15em;
+        padding-bottom: .15em;
+        min-height: 1.3em;
+    }
+    
+    .Profile_Data_P_Data{
+        width: 40%;
+        display: inline-block;
+        background-color: #ecf0f1;
+        color: #2c3e50;
+        border-radius: 0 4px 4px 0 !important;
+        padding-top: .15em;
+        padding-bottom: .15em;
+        min-height: 1.3em;
+    }
+
+@media (max-width: 800px){
+    .Profile_Data_DIV{
+        width: 90% !important;
+    }
+}

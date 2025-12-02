@@ -133,6 +133,7 @@ function PaginaTablero ({estadoMenu}){
     if(estadoMenu)return null;
     if(!currentUser){return <div className="Tablero_Wrapper_Principal"><div className="Tablero_DIV_Info_API">NO AUTENTICADO</div></div>}
     if(currentUser.role=="user"){return <div className="Tablero_Wrapper_Principal"><div className="Tablero_DIV_Info_API">SIN PERMISOS SUFICIENTES</div></div>}; //Resolver despues con respuesta del middleware del backend
+    
     return (
         <>
         <div className="Tablero_Wrapper_Principal">

@@ -20,8 +20,8 @@ import BaseMenu from "./components/BaseMenu";
 import PaginaCatalogo from "./pages/Catalogo";
 import BaseCarritoModal from "./components/BaseCarritoModal";
 import PaginaTablero from "./pages/PaginaTablero";
-
 import LoginRegisterPage from "./pages/LoginRegisterPage";
+import UserProfile from "./components/registro/UserProfile";
 
 function App() {
   const [estadoMenu, setEstadoMenu] = useState(false);
@@ -133,6 +133,11 @@ function App() {
         <Route
           path="/register"
           element={<LoginRegisterPage typeForm={"register"} />}
+        />
+
+        <Route 
+          path="/profile"
+          element={<UserProfile />}
         />
         
       </Routes>

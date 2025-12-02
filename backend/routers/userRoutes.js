@@ -104,7 +104,7 @@ router.get("/profile", authMiddleware, async (req,res)=>{
   try {
       const userData = req.user; //se obtiene la información del usuario que el middleware asignó cuando verifico token (token ok) {id:_id,name,username,iat(creado),exp(expira)}
       if(!userData){return res.status(400).json({ message: "Error en los datos del token"})};
-      const user = await User.findById(userData.id); //userData.id es el ObjectID del documento de usuario
+      const user = await User.findById(userData.id).select("_id name username email role"); //userData.id es el ObjectID del documento de usuario
       if(!user){return res.status(404).json({ message: "Error en la captura de recursos"})};
 
       res.status(200).json({message:"Token Verificado", user:user, //Devuelve la contraseña hasheada, se deja porque se está probando...
