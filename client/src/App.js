@@ -21,7 +21,6 @@ import PaginaCatalogo from "./pages/Catalogo";
 import BaseCarritoModal from "./components/BaseCarritoModal";
 import PaginaTablero from "./pages/PaginaTablero";
 
-import { jwtDecode } from "jwt-decode";
 import LoginRegisterPage from "./pages/LoginRegisterPage";
 
 function App() {
@@ -37,24 +36,9 @@ function App() {
 
   const [carrito, setCarrito] = useState({});
 
-  const [currentUser, setCurrentUser] = useState(null);
-
   useEffect(() => {
     const carritoAuxiliar = JSON.parse(sessionStorage.getItem("carrito")) || {};
     setCarrito(carritoAuxiliar);
-
-    
-    const token = localStorage.getItem("authToken");
-    if (token) {
-      try {
-        const decodedUser = jwtDecode(token); //decodifica el payload del token
-        setCurrentUser(decodedUser);
-      } catch (error) {
-        // Token inválido o expirado, lo borramos
-        localStorage.removeItem("authToken");
-      }
-    }
-
   }, []);
 
   const sitioMontado = useRef(false);
@@ -88,64 +72,62 @@ function App() {
     return cantidad;
   };
 
-  const handleLoginSuccess = (userData) => {
-    setCurrentUser(userData);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("authToken"); // Borramos el token
-    setCurrentUser(null); // Limpiamos el estado del usuario
-  };
-
   return (
-    <BrowserRouter>
-      <BaseMenu estadoMenu={estadoMenu} cambiarEstado={cambiarEstado} currentUser={currentUser} onLogout={handleLogout}/>
+    <>
+      <BaseMenu 
+        estadoMenu={estadoMenu} 
+        cambiarEstado={cambiarEstado} 
+      />
 
       <BaseHeader
         cambiarEstado={cambiarEstado}
         estadoMenu={estadoMenu}
         cantidadElementosCarrito={cantidadItemsCarrito()}
         cambiarEstadoCarrito={cambiarEstadoCarrito}
-        currentUser={currentUser}
-        onLogout={handleLogout}
       />
 
       <Routes>
-        <Route path="/" element={<PaginaIndex estadoMenu={estadoMenu} />} />
+
+        <Route path="/" 
+          element={<PaginaIndex estadoMenu={estadoMenu}/>} 
+        />
+      
         <Route
           path="/contacto"
           element={<PaginaContactoPruebaRutas estadoMenu={estadoMenu} />}
         />
-        <Route path="/faq" element={<PaginaFaq />} />
-        <Route path="/nosotros" element={<PaginaNosotros />} />
+
+        <Route path="/faq" 
+          element={<PaginaFaq />} 
+        />
+        
+        <Route path="/nosotros" 
+          element={<PaginaNosotros />} 
+        />
+        
         <Route
           path="/productos/:id"
           element={<ProductDetail funcionAgregar={actualizarCarrito} />}
         />
+
         <Route
           path="/catalogo/:cat/:busq"
           element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}
         />
+
         <Route
           path="/catalogo"
           element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}
         />
 
-        {/*
-        <Route
-          path="/admin/crear-producto"
-          element={<PaginaCarga estadoMenu={estadoMenu} />}
-        />
-        */}
-
         <Route 
           path="/admin/crear-producto"
-          element={<PaginaTablero estadoMenu={estadoMenu} currentUser={currentUser}/>}
+          element={<PaginaTablero estadoMenu={estadoMenu}/>}
         />
         
         <Route
           path="/login"
-          element={<LoginRegisterPage typeForm={"login"} onLoginSuccess={handleLoginSuccess} />}
+          element={<LoginRegisterPage typeForm={"login"}/>}
         />
 
         <Route
@@ -163,7 +145,8 @@ function App() {
         carrito={carrito}
         funcionActualizarCarrito={actualizarCarrito}
       />
-    </BrowserRouter>
+
+    </>
   );
 }
 

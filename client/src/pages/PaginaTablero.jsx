@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { fetchDeleteElemento, fetchPostFormularioFuncion, fetchPutFormularioFuncion, fetchStateFuncion } from "../utils/fetchFunciones";
 import ModalGenerico from "./ModalGenerico";
 import URL_BASE from "../config/api";
@@ -10,14 +10,17 @@ import "../styles/tablero-admin.css"
 import { useNavigate } from "react-router-dom";
 import FormUser from "../components/carga/FormUser";
 import FormSetUserPassword from "../components/carga/FormSetUserPassword";
+import { AuthContext } from "../context/AuthContext";
 
-function PaginaTablero ({estadoMenu,currentUser}){
+function PaginaTablero ({estadoMenu}){
     const [tableroConfiguraciones, setTableroConfiguraciones] = useState("Productos");
     const [productos, setProductos] = useState([]);
     const [categorias, setCategorias] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
         const[errorFetchConjunto,setErrorFetchConjunto] = useState("");
     const navigate = useNavigate();
+
+    const { currentUser } = useContext(AuthContext);
 
     //ESTADOS DE MODALES PARA FORMULARIOS DE REGISTRO:
 
@@ -125,14 +128,13 @@ function PaginaTablero ({estadoMenu,currentUser}){
         if(userRole=="editor"||userRole=="admin")fetchStateFuncion(urlAPIProductos,setProductos,setErrorFetchConjunto,"Error en la conexión con el servidor");
         if(userRole=="editor"||userRole=="admin")fetchStateFuncion(urlAPICategorias,setCategorias,setErrorFetchConjunto,"Error en la conexión con el servidor");
         if(userRole=="admin")fetchStateFuncion(urlAPIUsuarios,setUsuarios,setErrorFetchConjunto,"Error en la conexión con el servidor");
-    },[]);
+    },[userRole]);
     
     if(estadoMenu)return null;
     if(!currentUser){return <div className="Tablero_Wrapper_Principal"><div className="Tablero_DIV_Info_API">NO AUTENTICADO</div></div>}
     if(currentUser.role=="user"){return <div className="Tablero_Wrapper_Principal"><div className="Tablero_DIV_Info_API">SIN PERMISOS SUFICIENTES</div></div>}; //Resolver despues con respuesta del middleware del backend
     return (
         <>
-
         <div className="Tablero_Wrapper_Principal">
             <div className="Tablero_DIV_Principal">
                 <h3>Tablero de {tableroConfiguraciones}</h3>

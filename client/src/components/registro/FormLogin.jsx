@@ -3,7 +3,7 @@ import FormImputText from "../carga/FormInputText";
 import URL_BASE from "../../config/api";
 import { useNavigate } from "react-router-dom";
 
-function FormLogin({endpoint,onLoginSuccess}){
+function FormLogin({onLoginSuccess}){
     const [formData, setFormData] = useState({email: "", password: ""});
     const [enableSend, setEnableSend] = useState(notEmptyString(formData.email)&&notEmptyString(formData.password));
     const APIURLLogin = `${URL_BASE}/users/login`;
@@ -39,9 +39,7 @@ function FormLogin({endpoint,onLoginSuccess}){
             // ¡Éxito! Aquí recibimos el token desde el backend.
             console.log('Login exitoso, token:', data.token);
             setFormData({email: "", password: ""});
-            // alert(`Login exitoso para el usuario: ${data.user.username}`);
-            localStorage.setItem('authToken', data.token); // Guardamos el token, el inicio devuelve 
-            onLoginSuccess(data.user); // Actualizamos el estado de App.js
+            onLoginSuccess(data.token); // Actualizamos el estado de App.js -> onLoginSuccess es una funcion del contexto de decodifica el payload y lo asigna a un estado global
             navigate("/");
             // El siguiente paso es guardar este token en el cliente. e ir a la pagina de perfil
         

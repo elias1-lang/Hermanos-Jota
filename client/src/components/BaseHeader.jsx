@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useContext, useState} from "react";
 import {Link, Navigate, useNavigate} from 'react-router-dom';
     //Se importa Link, es analogo a <a> pero maneja mejor las direcciones dentro de react y no recarga la pagina por cada clic. Recordar que se trabaja sobre un solo archivo index.js que 
     //representa al componente App.js
@@ -12,10 +12,12 @@ import carritoIco from "../img/header-footer/cart.svg";
 import botonbuscarIco from "../img/header-footer/search.svg";
 
 import {addCarrito, cantidadElementosCarrito} from "../utils/carritoFunciones"
+import { AuthContext } from "../context/AuthContext";
 
-export default function BaseHeader({cambiarEstado, estadoMenu, cantidadElementosCarrito,cambiarEstadoCarrito, currentUser, onLogout}){
+export default function BaseHeader({cambiarEstado, estadoMenu, cantidadElementosCarrito,cambiarEstadoCarrito}){
     const [busqueda,setBusqueda] = useState('');
     const navigate = useNavigate();
+    const {currentUser, logout} = useContext(AuthContext);
 
     const manejadorTeclaEnter = (e) => {
         if(e.key === "Enter"){
@@ -84,7 +86,7 @@ const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/no
                             </span>
                          </Link>
 
-                         <span onClick={onLogout} className="HEADER_LOGOUT_SPAN">
+                         <span onClick={logout} className="HEADER_LOGOUT_SPAN">
                                 Salir
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
