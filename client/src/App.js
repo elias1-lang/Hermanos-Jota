@@ -21,7 +21,7 @@ import PaginaCatalogo from "./pages/Catalogo";
 import BaseCarritoModal from "./components/BaseCarritoModal";
 import PaginaTablero from "./pages/PaginaTablero";
 
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import LoginRegisterPage from "./pages/LoginRegisterPage";
 
 function App() {
@@ -43,19 +43,18 @@ function App() {
     const carritoAuxiliar = JSON.parse(sessionStorage.getItem("carrito")) || {};
     setCarrito(carritoAuxiliar);
 
-    /*
+    
     const token = localStorage.getItem("authToken");
     if (token) {
       try {
-        const decodedUser = jwt_decode(token);
+        const decodedUser = jwtDecode(token); //decodifica el payload del token
         setCurrentUser(decodedUser);
       } catch (error) {
         // Token inválido o expirado, lo borramos
         localStorage.removeItem("authToken");
       }
     }
-    */
-   
+
   }, []);
 
   const sitioMontado = useRef(false);
@@ -100,7 +99,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <BaseMenu estadoMenu={estadoMenu} cambiarEstado={cambiarEstado} />
+      <BaseMenu estadoMenu={estadoMenu} cambiarEstado={cambiarEstado} currentUser={currentUser} onLogout={handleLogout}/>
 
       <BaseHeader
         cambiarEstado={cambiarEstado}
@@ -141,7 +140,7 @@ function App() {
 
         <Route 
           path="/admin/crear-producto"
-          element={<PaginaTablero estadoMenu={estadoMenu}/>}
+          element={<PaginaTablero estadoMenu={estadoMenu} currentUser={currentUser}/>}
         />
         
         <Route
@@ -151,7 +150,7 @@ function App() {
 
         <Route
           path="/register"
-          element={<LoginRegisterPage typeForm={"register"} onLoginSuccess={handleLoginSuccess} />}
+          element={<LoginRegisterPage typeForm={"register"} />}
         />
         
       </Routes>

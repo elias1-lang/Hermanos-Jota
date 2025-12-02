@@ -176,7 +176,7 @@
         padding: 10px;
         border: none;
         border-radius: 5px;
-        background: var(--color-principal);
+        background: #8B4513;
         color: white;
         font-weight: 600;
         cursor: pointer;
@@ -184,13 +184,14 @@
     }
 
     .TABLERO_DIV_MODAL_CONFIRMACION_BOT_ELIMINAR:hover{
-        background: red !important;
+        background: #E53935 !important;
     }
 
     .TABLERO_DIV_MODAL_CONFIRMACION_BOT_MANTENER:hover{
-        background: green !important;
+        background: #43A047 !important;
     }
 
+        
 .TABLERO_DIV_SELECTOR_TABLAS{
     margin-top: 1em;
     margin-bottom: 1em;
@@ -226,3 +227,17 @@
     .TABLERO_CONFIGURACIONES_PRODUCTOS button:hover{
         background: rgb(85, 74, 74);
     }
+
+.Tablero_DIV_Info_API{
+    width: 80vw;
+    min-height: 100px;
+    background: #fff;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px;
+    padding: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

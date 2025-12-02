@@ -7,6 +7,7 @@ export default function LoginRegisterPage({typeForm="register", onLoginSuccess})
         <>
         {typeForm=="login"?
             <FormLogin
+                onLoginSuccess={onLoginSuccess}
             />
         :
             <FormRegistro

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FormImputText from "../carga/FormInputText"
 import URL_BASE from "../../config/api";
+import { useNavigate } from "react-router-dom";
 
 function FormRegistro({}){
     const [formData, setFormData] = useState({name:"", username: "", email: "", password: ""});
@@ -22,6 +23,8 @@ function FormRegistro({}){
         setEnableSend(notEmptyString(formData.name)&&notEmptyString(formData.email)&&notEmptyString(formData.username)&&notEmptyString(formData.password));
      },[formData]);
     
+     const navigate = useNavigate();
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -39,6 +42,7 @@ function FormRegistro({}){
         const data = await response.json();
         alert("Registro exitoso.");
         setFormData({name:"", username: "", email: "", password: ""});
+        navigate("/login");
     } catch (error) {
         alert(error.message);
     }

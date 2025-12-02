@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import FormImputText from "../carga/FormInputText";
 import URL_BASE from "../../config/api";
+import { useNavigate } from "react-router-dom";
 
-function FormLogin({endpoint,actualizarPagina}){
+function FormLogin({endpoint,onLoginSuccess}){
     const [formData, setFormData] = useState({email: "", password: ""});
     const [enableSend, setEnableSend] = useState(notEmptyString(formData.email)&&notEmptyString(formData.password));
     const APIURLLogin = `${URL_BASE}/users/login`;
@@ -20,7 +21,8 @@ function FormLogin({endpoint,actualizarPagina}){
     useEffect(()=>{ //para cambiar el color del boton con cada cambio en el formulario
         setEnableSend(notEmptyString(formData.email)&&notEmptyString(formData.password));
     },[formData]);
-
+    
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,14 +39,14 @@ function FormLogin({endpoint,actualizarPagina}){
             // ¡Éxito! Aquí recibimos el token desde el backend.
             console.log('Login exitoso, token:', data.token);
             setFormData({email: "", password: ""});
-            alert(`Login exitoso para el usuario: ${data.user.username}`);
-            //localStorage.setItem('authToken', data.token); // Guardamos el token
-            //props.onLoginSuccess(data.user); // Actualizamos el estado de App.js
-
+            // alert(`Login exitoso para el usuario: ${data.user.username}`);
+            localStorage.setItem('authToken', data.token); // Guardamos el token, el inicio devuelve 
+            onLoginSuccess(data.user); // Actualizamos el estado de App.js
+            navigate("/");
             // El siguiente paso es guardar este token en el cliente. e ir a la pagina de perfil
         
         } catch (error) {
-            alert(`Error en el login: ${error.message}`);
+            alert(`Error: ${error.message}`);
         }
     };
 

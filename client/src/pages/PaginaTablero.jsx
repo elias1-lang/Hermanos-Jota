@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import FormUser from "../components/carga/FormUser";
 import FormSetUserPassword from "../components/carga/FormSetUserPassword";
 
-function PaginaTablero ({estadoMenu}){
+function PaginaTablero ({estadoMenu,currentUser}){
     const [tableroConfiguraciones, setTableroConfiguraciones] = useState("Productos");
     const [productos, setProductos] = useState([]);
     const [categorias, setCategorias] = useState([]);
@@ -117,14 +117,19 @@ function PaginaTablero ({estadoMenu}){
     const urlAPIProductos = `${URL_BASE}/productos`;
     const urlAPICategorias = `${URL_BASE}/categorias`;
     const urlAPIUsuarios = `${URL_BASE}/users`;
+    
+    const userRole = currentUser?currentUser.role:"";
 
     useEffect(()=>{
-        fetchStateFuncion(urlAPIProductos,setProductos,setErrorFetchConjunto,"Error en la conexión con el servidor");
-        fetchStateFuncion(urlAPICategorias,setCategorias,setErrorFetchConjunto,"Error en la conexión con el servidor");
-        fetchStateFuncion(urlAPIUsuarios,setUsuarios,setErrorFetchConjunto,"Error en la conexión con el servidor");
+        if(!userRole){return} //mostrar error en el div: Tablero_DIV_Info_API
+        if(userRole=="editor"||userRole=="admin")fetchStateFuncion(urlAPIProductos,setProductos,setErrorFetchConjunto,"Error en la conexión con el servidor");
+        if(userRole=="editor"||userRole=="admin")fetchStateFuncion(urlAPICategorias,setCategorias,setErrorFetchConjunto,"Error en la conexión con el servidor");
+        if(userRole=="admin")fetchStateFuncion(urlAPIUsuarios,setUsuarios,setErrorFetchConjunto,"Error en la conexión con el servidor");
     },[]);
-
+    
     if(estadoMenu)return null;
+    if(!currentUser){return <div className="Tablero_Wrapper_Principal"><div className="Tablero_DIV_Info_API">NO AUTENTICADO</div></div>}
+    if(currentUser.role=="user"){return <div className="Tablero_Wrapper_Principal"><div className="Tablero_DIV_Info_API">SIN PERMISOS SUFICIENTES</div></div>}; //Resolver despues con respuesta del middleware del backend
     return (
         <>
 
@@ -133,7 +138,7 @@ function PaginaTablero ({estadoMenu}){
                 <h3>Tablero de {tableroConfiguraciones}</h3>
                 <div className="TABLERO_DIV_SELECTOR_TABLAS">
                     <button className={tableroConfiguraciones=="Productos"?"TABLERO_DIV_SELECTOR_TABLAS_BOTON_SELECCIONADO":""} onClick={()=>setTableroConfiguraciones("Productos")}>PRODUCTOS</button>
-                    <button className={tableroConfiguraciones=="Usuarios"?"TABLERO_DIV_SELECTOR_TABLAS_BOTON_SELECCIONADO":""} onClick={()=>setTableroConfiguraciones("Usuarios")}>USUARIOS</button>
+                    {userRole=="admin"?<button className={tableroConfiguraciones=="Usuarios"?"TABLERO_DIV_SELECTOR_TABLAS_BOTON_SELECCIONADO":""} onClick={()=>setTableroConfiguraciones("Usuarios")}>USUARIOS</button>:""}
                 </div>
                 <div>
                 </div>

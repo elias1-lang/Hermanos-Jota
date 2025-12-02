@@ -70,7 +70,7 @@ router.post("/login", async (req, res) => {
 
     // 3. Si las credenciales son correctas, generamos el JWT
     const token = jwt.sign(
-      { id: user._id, name:user.name, username: user.username }, // Payload: datos que queremos en el token
+      { id: user._id, name:user.name, username: user.username, email: user.email, role: user.role }, // Payload: datos que queremos en el token
       process.env.JWT_SECRET, // La clave secreta desde .env
       { expiresIn: "1h" } // Opciones (ej: expira en 1 hora)
     );
@@ -78,7 +78,7 @@ router.post("/login", async (req, res) => {
     // 4. Respondemos con el token y datos del usuario (sin el password)
     res.status(200).json({
       token,
-      user: {
+      user: { //podría quitarse y que solo se acceda con la decodificacion del payload
         id: user._id,
         name: user.name,
         username: user.username,

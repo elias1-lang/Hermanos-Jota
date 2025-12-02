@@ -296,6 +296,37 @@ footer
     }
 }
 
+.HEADER_LOGGED_LI_NAV{
+    display: flex !important;
+    gap: .8em;
+    justify-content: center;
+    align-items: center;
+}
+
+.HEADER_LOGOUT_SPAN{
+    font-family: "Inter", sans-serif !important;
+        text-transform: capitalize;
+        color: white;
+        font-weight: 600;
+    display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: .4em !important;
+    background-color: var(--color-principal);
+    border-radius: 5px !important;
+    padding: 3px !important;
+    font-size: 0.9em !important;
+    margin: 0;
+    cursor: pointer;
+    transition: .3s ease all !important;
+    height: 30px !important;              
+}
+
+    .HEADER_LOGOUT_SPAN:hover{
+        background: rgb(85, 74, 74);
+    }
+
+
 .base_footer_contenedor{
     max-width: 2000px;
     min-width: 300px;
