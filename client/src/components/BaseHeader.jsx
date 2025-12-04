@@ -1,23 +1,27 @@
 import React,{useContext, useState} from "react";
-import {Link, Navigate, useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
     //Se importa Link, es analogo a <a> pero maneja mejor las direcciones dentro de react y no recarga la pagina por cada clic. Recordar que se trabaja sobre un solo archivo index.js que 
     //representa al componente App.js
         //adicionalmente, mantiene la memoria
 
-import stylesbase from "../styles/base/styles-base.css";
+import "../styles/base/styles-base.css";
 //Imagenes que usara el sitio que no estan en la carpeta publica: 
 import logoSitio from "../img/header-footer/logo.svg";
 import menuIco from "../img/header-footer/list.svg";
 import carritoIco from "../img/header-footer/cart.svg";
 import botonbuscarIco from "../img/header-footer/search.svg";
-
-import {addCarrito, cantidadElementosCarrito} from "../utils/carritoFunciones"
 import { AuthContext } from "../context/AuthContext";
+import { CartContext } from "../context/CartContext";
 
-export default function BaseHeader({cambiarEstado, cantidadElementosCarrito,cambiarEstadoCarrito}){
-    const [busqueda,setBusqueda] = useState('');
-    const navigate = useNavigate();
+export default function BaseHeader({cambiarEstadoMenuModal}){ //eliminar props
+    
     const {currentUser, logout} = useContext(AuthContext);
+    const {currentCart, cambiarEstadoModalCarrito} = useContext(CartContext);  
+    
+    const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/nosotros","/contacto","/faq","/admin/crear-producto"];
+    const [busqueda,setBusqueda] = useState('');
+        
+    const navigate = useNavigate();
 
     const manejadorTeclaEnter = (e) => {
         if(e.key === "Enter"){
@@ -34,11 +38,10 @@ export default function BaseHeader({cambiarEstado, cantidadElementosCarrito,camb
         }
     }
 
-const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/nosotros","/contacto","/faq","/admin/crear-producto"];
     return (
         <header>
         <div className="base_header_contenedor">
-            <div className="base_menu" onClick={cambiarEstado}>
+            <div className="base_menu" onClick={cambiarEstadoMenuModal}>
                 <img src={menuIco} alt="Menu del sitio" />
             </div>
 
@@ -48,10 +51,10 @@ const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/no
 
             <div className="base_carrito">
                 <div className="base_carrito_content_grid">
-                    <div className="base_carrito_img_div" onClick={cambiarEstadoCarrito}>
+                    <div className="base_carrito_img_div" onClick={cambiarEstadoModalCarrito}>
                         <img src={carritoIco} alt="Carrito de compras" />
                         {/*El contador debe ser un componente que se implementa con localstoragge y se calcula por cada renderizado*/}
-                        { Boolean(cantidadElementosCarrito) && <p id="carrito-contador">{cantidadElementosCarrito>99?"99+":cantidadElementosCarrito}</p>}
+                        { Boolean(currentCart.length) && <p id="carrito-contador">{currentCart.length>99?"99+":currentCart.length}</p>}
                     </div>
                 </div>
             </div>
@@ -77,7 +80,7 @@ const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/no
                         <Link to="/profile" className="HEADER_LOGOUT_A">
                             <span className="HEADER_LOGOUT_SPAN">
                                 Mi Perfil
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
                                 </svg>
@@ -86,7 +89,7 @@ const [inicio, catalogo, nosotros, contacto, faq, carga] = ["/","/catalogo","/no
 
                          <span onClick={logout} className="HEADER_LOGOUT_SPAN">
                                 Salir
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
                                         <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
                                 </svg>

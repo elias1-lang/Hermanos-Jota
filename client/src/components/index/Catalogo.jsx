@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import "../../styles/productos.css";
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { CartContext } from '../../context/CartContext';
 
 function filtrarCatologo(catalogo,categoria,busqueda){
     if(!catalogo.length){return};
@@ -17,9 +18,11 @@ function filtrarCatologo(catalogo,categoria,busqueda){
     return catalogoFiltrado;
 }
 
-export default function Catalogo({ productosArray, loading, funcionAgregar }) {
+export default function Catalogo({ productosArray, loading }) {
   const params = useParams();
   const productosFiltrados = filtrarCatologo(productosArray,params.cat,params.busq);
+  
+  const { AddItemToCart } = useContext(CartContext);
 
   const navigate = useNavigate();
   const irProducto = (url) => {navigate(url)}
@@ -49,7 +52,7 @@ export default function Catalogo({ productosArray, loading, funcionAgregar }) {
                 <div className="acciones">
                   <button className="btn btn-carrito" onClick={(e) => {
                     e.preventDefault();
-                    funcionAgregar(producto.id,1);
+                    AddItemToCart(producto.id);
                 }}>
                     Agregar al carrito
                   </button>

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Catalogo from "../components/index/Catalogo";
 import URL_BASE from '../config/api';
 import { fetchStateFuncion } from '../utils/fetchFunciones';
-import { useParams } from 'react-router-dom';
 
-export default function PaginaCatalogo({funcionAgregar}) {
+export default function PaginaCatalogo() {
 
     const [catalogo, setCatalogo] = useState([]);
     const [errorState,setErrorState] = useState("");
@@ -15,7 +14,7 @@ export default function PaginaCatalogo({funcionAgregar}) {
 
     const mostrarCatalogo = ()=>{
         return(
-            <Catalogo productosArray={catalogo} loading={false} funcionAgregar={funcionAgregar}/>
+            <Catalogo productosArray={catalogo} loading={false}/>
         );
     }
 

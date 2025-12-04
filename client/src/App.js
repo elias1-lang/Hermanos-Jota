@@ -3,15 +3,13 @@ import "./styles/base/styles-base.css";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  BrowserRouter,
+  Route
 } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
   
 import PaginaIndex from "./pages/Index";
 import PaginaFaq from "./pages/faq";
 import PaginaNosotros from "./pages/Nosotros";
-import PaginaCarga from "./pages/CargaForm";
 import PaginaContactoPruebaRutas from "./pages/ContactoPruebaRutas";
 import ProductDetail from "./pages/ProductDetail";
 import BaseHeader from "./components/BaseHeader";
@@ -24,53 +22,13 @@ import LoginRegisterPage from "./pages/LoginRegisterPage";
 import UserProfile from "./components/registro/UserProfile";
 
 function App() {
+
   const [estadoMenu, setEstadoMenu] = useState(false);
+
   const cambiarEstado = () => {
     setEstadoMenu(!estadoMenu);
   };
 
-  const [estadoCarrito, setEstadoCarrito] = useState(false);
-  const cambiarEstadoCarrito = () => {
-    setEstadoCarrito(!estadoCarrito);
-  };
-
-  const [carrito, setCarrito] = useState({});
-
-  useEffect(() => {
-    const carritoAuxiliar = JSON.parse(sessionStorage.getItem("carrito")) || {};
-    setCarrito(carritoAuxiliar);
-  }, []);
-
-  const sitioMontado = useRef(false);
-
-  useEffect(() => {
-    if (sitioMontado.current) {
-      sessionStorage.setItem("carrito", JSON.stringify(carrito));
-    } else {
-      sitioMontado.current = true;
-    }
-  }, [carrito]);
-
-  const actualizarCarrito = (idProducto, cantidad) => {
-    const nuevoCarrito = { ...carrito };
-    if (nuevoCarrito[idProducto]) {
-      nuevoCarrito[idProducto] += cantidad;
-      if (nuevoCarrito[idProducto] == 0) {
-        delete nuevoCarrito[idProducto];
-      }
-    } else {
-      nuevoCarrito[idProducto] = cantidad;
-    }
-    setCarrito(nuevoCarrito);
-  };
-
-  const cantidadItemsCarrito = () => {
-    let cantidad = 0;
-    for (const key in carrito) {
-      cantidad += carrito[key];
-    }
-    return cantidad;
-  };
 
   return (
     <>
@@ -80,9 +38,7 @@ function App() {
       />
 
       <BaseHeader
-        cambiarEstado={cambiarEstado}
-        cantidadElementosCarrito={cantidadItemsCarrito()}
-        cambiarEstadoCarrito={cambiarEstadoCarrito}
+        cambiarEstadoMenuModal={cambiarEstado}
       />
 
       <Routes>
@@ -93,7 +49,7 @@ function App() {
       
         <Route
           path="/contacto"
-          element={<PaginaContactoPruebaRutas />}
+          element={<PaginaIndex />}
         />
 
         <Route path="/faq" 
@@ -106,17 +62,17 @@ function App() {
         
         <Route
           path="/productos/:id"
-          element={<ProductDetail funcionAgregar={actualizarCarrito} />}
+          element={<ProductDetail />}
         />
 
         <Route
           path="/catalogo/:cat/:busq"
-          element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}
+          element={<PaginaCatalogo />}
         />
 
         <Route
           path="/catalogo"
-          element={<PaginaCatalogo funcionAgregar={actualizarCarrito} />}
+          element={<PaginaCatalogo />}
         />
 
         <Route 
@@ -144,10 +100,6 @@ function App() {
       <BaseFooter />
 
       <BaseCarritoModal
-        estadoCarrito={estadoCarrito}
-        cambiarEstadoCarrito={cambiarEstadoCarrito}
-        carrito={carrito}
-        funcionActualizarCarrito={actualizarCarrito}
       />
 
     </>

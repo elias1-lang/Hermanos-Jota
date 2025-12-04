@@ -57,7 +57,7 @@ export default function FormUser ({name="",email="",username="",role="",handlePo
                     <label htmlFor="newRole">Rol del Usuario</label>
                     <br/>
                     <select name="newRole" id="newRole" onChange={manejadorCambios} value={formData.newRole} className={!notEmptyString(formData.newRole)?"FORM_IMPUT_INVALID":""}>
-                        <FormOption valueCampo={""} nameOption={"Selecciona un Rol"} selected={"true"} disabled={"true"}/>
+                        <FormOption valueCampo={""} nameOption={"Selecciona un Rol"} selected={true} disabled={true}/>
                         <FormOption valueCampo={"user"} nameOption={"user"} selected={""} disabled={""}/>
                         <FormOption valueCampo={"admin"} nameOption={"admin"} selected={""} disabled={""}/>
                         <FormOption valueCampo={"editor"} nameOption={"editor"} selected={""} disabled={""}/>

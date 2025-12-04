@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import FormImputText from "../carga/FormInputText";
 import URL_BASE from "../../config/api";
 import { useNavigate } from "react-router-dom";
+import "../../styles/form.css"
 
 function FormLogin({onLoginSuccess}){
     const [formData, setFormData] = useState({email: "", password: ""});
@@ -37,7 +38,7 @@ function FormLogin({onLoginSuccess}){
             if (!response.ok) throw new Error(data.message);
         
             // ¡Éxito! Aquí recibimos el token desde el backend.
-            console.log('Login exitoso, token:', data.token);
+            // console.log('Login exitoso, token:', data.token);
             setFormData({email: "", password: ""});
             onLoginSuccess(data.token); // Actualizamos el estado de App.js -> onLoginSuccess es una funcion del contexto de decodifica el payload y lo asigna a un estado global
             navigate("/profile");

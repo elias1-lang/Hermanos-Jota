@@ -75,13 +75,13 @@ function FormEditarProducto({endpoint,productoData,categorias,cambiarEstadoModal
                         <label htmlFor="categoria">Categoria del Producto</label>
                         <br/>
                         <select name="categoria" id="categoria" onChange={manejadorCambios} value={formData.categoria}>
-                            <FormOption valueCampo={""} nameOption={"Selecciona una Categoria"} selected={"true"} disabled={"true"}/>
+                            <FormOption valueCampo={""} nameOption={"Selecciona una Categoria"} selected={true} disabled={true}/>
                             {categorias.map(cat=>(
                                 <FormOption
                                     key={cat._id}
                                     valueCampo={cat._id}
                                     nameOption={cat.nombre}
-                                    disabled={""}
+                                    disabled={false}
                                 />
                             ))
                             }

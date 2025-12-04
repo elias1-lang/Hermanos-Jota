@@ -1,15 +1,12 @@
 import React,{ use, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import BaseHeader from "../components/BaseHeader";
-import BaseFooter from "../components/BaseFooter";
-import BaseMenu from "../components/BaseMenu";
 import ProductoContenido from "../components/producto/ProductoContenido";
 import ProductoOtrosDestacados from "../components/producto/ProductoOtrosDestacados";
 import ProductoOtrasCategorias from "../components/producto/ProductoOtrasCategorias";
 
 import '../styles/producto.css';
 
-function ProductDetail({funcionAgregar}){
+function ProductDetail(){
     const [estadoMenu, setEstadoMenu] = useState(false);
     const cambiarEstado = () => {setEstadoMenu(!estadoMenu)};
 
@@ -19,7 +16,7 @@ function ProductDetail({funcionAgregar}){
     return (
         <React.Fragment>
 
-            <ProductoContenido id={id} funcionAgregar={funcionAgregar}/>
+            <ProductoContenido id={id} />
             
             <ProductoOtrosDestacados id={id} />
             <ProductoOtrasCategorias />

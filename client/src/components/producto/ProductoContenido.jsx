@@ -1,13 +1,16 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import URL_BASE from '../../config/api';
+import { CartContext } from '../../context/CartContext';
 // import ProductoModalImg from './ProductoModalImg';
 
 
-export default function ProductoContenido({ id , funcionAgregar}) {
+export default function ProductoContenido({ id }) {
 
     const [producto, setProducto] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const { AddItemToCart } = useContext(CartContext);
 
     useEffect(() => {
         const fetchProducto = async () => {
@@ -66,7 +69,7 @@ export default function ProductoContenido({ id , funcionAgregar}) {
                     <p className="precio-producto">
                         <strong>Precio: $ <span>{producto.precio}</span></strong>
                     </p>
-                    <button className="boton-comprar" onClick={()=>funcionAgregar(producto.id,1)}>
+                    <button className="boton-comprar" onClick={()=>AddItemToCart(producto.id)}>
                         Comprar ahora
                     </button>
                 </div>

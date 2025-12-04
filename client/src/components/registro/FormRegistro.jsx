@@ -52,7 +52,7 @@ function FormRegistro({}){
         <>
             <form className="carga-form" onSubmit={handleSubmit}>    
                 <fieldset>
-                    <legend>Registrar Usuario</legend>
+                    <legend>Regístrese</legend>
                         <FormImputText
                             nameCampo={"name"}
                             nameLabel={"Ingrese un nombre"}

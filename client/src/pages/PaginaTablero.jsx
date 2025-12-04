@@ -2,17 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { fetchDeleteElemento, fetchPostFormularioFuncion, fetchPutFormularioFuncion, fetchStateFuncion } from "../utils/fetchFunciones";
 import ModalGenerico from "./ModalGenerico";
 import URL_BASE from "../config/api";
-import FormProducto from "../components/carga/FormProducto";
 import FormCategoria from "../components/carga/FormCategoria";
 import FormEditarProducto from "../components/carga/FormEditarProducto";
-
+import "../styles/form.css"
 import "../styles/tablero-admin.css"
 import { useNavigate } from "react-router-dom";
 import FormUser from "../components/carga/FormUser";
 import FormSetUserPassword from "../components/carga/FormSetUserPassword";
 import { AuthContext } from "../context/AuthContext";
 
-function PaginaTablero ({}){
+function PaginaTablero (){
     const [tableroConfiguraciones, setTableroConfiguraciones] = useState("Productos");
     const [productos, setProductos] = useState([]);
     const [categorias, setCategorias] = useState([]);
@@ -306,6 +305,7 @@ const TablaUsuariosFila = ({name,email,username,role,handleActualizacionesUsuari
         <>
         
         <tr>
+
             <td>{name}</td>
             <td>{email}</td>
             <td>{username}</td>
@@ -313,7 +313,7 @@ const TablaUsuariosFila = ({name,email,username,role,handleActualizacionesUsuari
             <td>
                 <div className="Tablero_Etiqueta_Contenedor_TD_Boton">
                     <button className="Tablero_Etiqueta_Boton_Editar" onClick={()=>(setEstadoModalEditar(true))}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                         </svg>
@@ -321,22 +321,21 @@ const TablaUsuariosFila = ({name,email,username,role,handleActualizacionesUsuari
                     </button>
 
                     <button className="Tablero_Etiqueta_Boton_Editar" onClick={()=>(setEstadoModalCambiarContraseña(true))}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                         </svg>
                         Cambiar Contraseña
                     </button>
                     <button className="Tablero_Etiqueta_Boton_Borrar" onClick={()=>setEstadoModalEliminar(true)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash3" viewBox="0 0 16 16">
                             <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
                         </svg>
                         Eliminar
                     </button>
                 </div>
-            </td>
-        </tr>
-
+            
+     
             <ModalGenerico
                 titulo={`Editar al Usuario "${username}"`}
                 estado={estadoModalEditar}
@@ -374,6 +373,10 @@ const TablaUsuariosFila = ({name,email,username,role,handleActualizacionesUsuari
                     <button className="TABLERO_DIV_MODAL_CONFIRMACION_BOT_MANTENER" onClick={()=>setEstadoModalEliminar(false)}>MANTENER</button>
                 </div>
             </ModalGenerico>
+               
+               
+                </td>
+            </tr>
         </>
     );
 }
@@ -487,7 +490,7 @@ const TableroProductoFila = ({nombre,categoria,precio,stock,destacado,IDProducto
             <td>
                 <div className="Tablero_Etiqueta_Contenedor_TD_Boton">
                     <button onClick={manejadorDestacar}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-fill" viewBox="0 0 16 16" className={claseDestacadoSVG}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className={`bi bi-pin-fill ${claseDestacadoSVG}`} viewBox="0 0 16 16">
                             <path d="M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-.342 1.174-.646 1.479-.126.125-.25.224-.354.298v4.431l.078.048c.203.127.476.314.751.555C12.36 7.775 13 8.527 13 9.5a.5.5 0 0 1-.5.5h-4v4.5c0 .276-.224 1.5-.5 1.5s-.5-1.224-.5-1.5V10h-4a.5.5 0 0 1-.5-.5c0-.973.64-1.725 1.17-2.189A6 6 0 0 1 5 6.708V2.277a3 3 0 0 1-.354-.298C4.342 1.674 4 1.179 4 .5a.5.5 0 0 1 .146-.354"/>
                         </svg>
                         <spam className="claseDestacadoSpam">{estadoDestacado?"SI":"NO"}</spam>
@@ -498,7 +501,7 @@ const TableroProductoFila = ({nombre,categoria,precio,stock,destacado,IDProducto
             <td>
                 <div className="Tablero_Etiqueta_Contenedor_TD_Boton">
                     <button className="Tablero_Etiqueta_Boton_Editar Predefect_Width_40" onClick={()=>setEstadoModalEditarProducto(true)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                         </svg>
@@ -506,42 +509,42 @@ const TableroProductoFila = ({nombre,categoria,precio,stock,destacado,IDProducto
                     </button>
                     
                     <button className="Tablero_Etiqueta_Boton_Borrar Predefect_Width_45" onClick={()=>setEstadoModalConfirmacionEliminar(true)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash3" viewBox="0 0 16 16">
                         <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
                         </svg>
                         Eliminar
                     </button>
                 </div>
+
+            <ModalGenerico
+                titulo={`Se eliminará el Producto "${nombre}"`}
+                estado={estadoModalConfirmacionEliminar}
+                cambiarEstado={setEstadoModalConfirmacionEliminar}
+                >
+                <div className="TABLERO_DIV_MODAL_CONFIRMACION_ELIMINAR">
+                    <button className="TABLERO_DIV_MODAL_CONFIRMACION_BOT_ELIMINAR" onClick={()=>manejadorConfirmarEliminacion()}>ELIMINAR</button>   
+                    <button className="TABLERO_DIV_MODAL_CONFIRMACION_BOT_MANTENER" onClick={()=>setEstadoModalConfirmacionEliminar(!estadoModalConfirmacionEliminar)}>MANTENER</button>
+                </div>
+            </ModalGenerico>
+
+            <ModalGenerico
+                titulo={`Edición del Producto "${nombre}"`}
+                estado={estadoModalEditarProducto}
+                cambiarEstado={setEstadoModalEditarProducto}
+                >
+                {
+                <FormEditarProducto
+                    endpoint={`${URL_BASE}/productos/${IDProducto}`}
+                    productoData={datosProducto.productoEditar}
+                    categorias={datosProducto.categorias}
+                    cambiarEstadoModal={setEstadoModalEditarProducto}
+                    handleActualizaciones={handleActualizaciones}
+                    />
+                }
+
+            </ModalGenerico>
             </td>
         </tr>
-
-        <ModalGenerico
-            titulo={`Se eliminará el Producto "${nombre}"`}
-            estado={estadoModalConfirmacionEliminar}
-            cambiarEstado={setEstadoModalConfirmacionEliminar}
-        >
-            <div className="TABLERO_DIV_MODAL_CONFIRMACION_ELIMINAR">
-                <button className="TABLERO_DIV_MODAL_CONFIRMACION_BOT_ELIMINAR" onClick={()=>manejadorConfirmarEliminacion()}>ELIMINAR</button>   
-                <button className="TABLERO_DIV_MODAL_CONFIRMACION_BOT_MANTENER" onClick={()=>setEstadoModalConfirmacionEliminar(!estadoModalConfirmacionEliminar)}>MANTENER</button>
-            </div>
-        </ModalGenerico>
-
-        <ModalGenerico
-            titulo={`Edición del Producto "${nombre}"`}
-            estado={estadoModalEditarProducto}
-            cambiarEstado={setEstadoModalEditarProducto}
-        >
-            {
-            <FormEditarProducto
-                endpoint={`${URL_BASE}/productos/${IDProducto}`}
-                productoData={datosProducto.productoEditar}
-                categorias={datosProducto.categorias}
-                cambiarEstadoModal={setEstadoModalEditarProducto}
-                handleActualizaciones={handleActualizaciones}
-            />
-            }
-
-        </ModalGenerico>
 
         </>
     );

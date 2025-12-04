@@ -1,5 +1,5 @@
 import react from "react";
-import stylesbase from "../styles/base/styles-base.css";
+import "../styles/base/styles-base.css";
 import {Link} from 'react-router-dom';
     //Se importa Link, es analogo a <a> pero maneja mejor las direcciones dentro de react y no recarga la pagina por cada clic. Recordar que se trabaja sobre un solo archivo index.js que 
     //representa al componente App.js

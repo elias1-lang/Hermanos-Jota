@@ -1,19 +1,21 @@
-import React,{useEffect, useState} from "react";
-import stylesbase from "../styles/base/styles-base.css";
-import { retornarCarrito } from "../utils/carritoFunciones";
+import React,{useContext, useEffect, useState} from "react";
+import "../styles/base/styles-base.css";
 import URL_BASE from "../config/api"
 import BaseCarritoItem from "./BaseCarritoItem";
+import { CartContext } from "../context/CartContext";
 
 
-export default function BaseCarritoModal({estadoCarrito, cambiarEstadoCarrito,carrito,funcionActualizarCarrito}){
+export default function BaseCarritoModal(){
 
-    // Hooks must be called unconditionally at the top level
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const {currentCart, estadoModalCarrito, cambiarEstadoModalCarrito} = useContext(CartContext);
+
     useEffect(() => {
-        if (!estadoCarrito) return; // solo cargar cuando el modal está abierto
+
+        if (!estadoModalCarrito) return; // solo cargar cuando el modal está abierto
         const fetchProductos = async () => {
             try {
                 const response = await fetch(`${URL_BASE}/productos`);
@@ -29,9 +31,9 @@ export default function BaseCarritoModal({estadoCarrito, cambiarEstadoCarrito,ca
             }
         };
         fetchProductos();
-    }, [estadoCarrito]);
+    }, [estadoModalCarrito]);
 
-    if(!estadoCarrito){ return null }
+    if(!estadoModalCarrito){ return null }
 
     let total = 0;
     const estilosTotal = {
@@ -45,23 +47,24 @@ export default function BaseCarritoModal({estadoCarrito, cambiarEstadoCarrito,ca
 
     <div id="carrito-modal" className="activo">
         <div className="carrito-modal-contenido">
-            <button id="carrito-modal-cerrar" onClick={cambiarEstadoCarrito}>&times;</button>
+            <button id="carrito-modal-cerrar" onClick={cambiarEstadoModalCarrito}>&times;</button>
             <h2>Productos en el carrito</h2>
             <div id="carrito-modal-lista">
                 {loading && <div>Cargando productos...</div>}
                 {error && <div>Error al cargar productos</div>}
-                {!loading && !error && Object.entries(carrito).map(([nombre,cantidad])=>{
-                    const productoEncontrado = productos.find(p => p.id === nombre);
+
+                {!loading && !error && currentCart.map( item => {
+                    const productoEncontrado = productos.find(p => p.id === item.id);
                     if (!productoEncontrado) return null;
-                    total += cantidad * productoEncontrado.precio;
+                    total += item.cantidad * productoEncontrado.precio;
+
                     return (
                         <BaseCarritoItem
                             key={productoEncontrado.id}
                             nombre={productoEncontrado.nombre}
-                            cantidad={cantidad}
+                            cantidad={item.cantidad}
                             precio={productoEncontrado.precio}
                             id={productoEncontrado.id}
-                            actualizarCarrito={funcionActualizarCarrito}
                         />
                     )
                 })}

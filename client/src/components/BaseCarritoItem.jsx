@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import stylesbase from "../styles/base/styles-base.css";
 import { eliminarCarrito } from "../utils/carritoFunciones";
+import { CartContext } from "../context/CartContext";
 
-export default function BaseCarritoItem({nombre,cantidad,precio,id,actualizarCarrito}){
-    
+export default function BaseCarritoItem({nombre,cantidad,precio,id}){
+
+    const { DeleteItemInCart } = useContext(CartContext);
+
     const estilosContenedor = {
         marginBottom:"1rem",
         borderBottom:"1px solid #eee",
@@ -38,7 +41,7 @@ export default function BaseCarritoItem({nombre,cantidad,precio,id,actualizarCar
                  Cantidad: {cantidad}<br />
                 <span style={estilosPrecio}>${precio}</span><br />
                 <span style={estilosSubtotal}>Subtotal: ${precio*cantidad}</span><br />
-                <button className='carrito-eliminar' data-id={id} style={estilosBoton} onClick={()=>{actualizarCarrito(id,-1)}}>Eliminar</button>
+                <button className='carrito-eliminar' data-id={id} style={estilosBoton} onClick={()=>{DeleteItemInCart(id)}}>Eliminar</button>
             </div>
         </>
     );
