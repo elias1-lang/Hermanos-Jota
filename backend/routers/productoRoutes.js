@@ -4,6 +4,8 @@ const Producto = require("../models/Producto");
 const ProductoDestacado = require("../models/ProductoDestacado");
 
 const authMiddleware = require("../middleware/authMiddleware");
+const authRole = require("../middleware/authRole");
+const authAdminEditor = require("../middleware/AuthAdminEditor");
 
 const User = require("../models/User");
 
@@ -25,13 +27,9 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post("/", authMiddleware, async (req, res, next) => {
+router.post("/", authMiddleware, authRole, authAdminEditor, async (req, res, next) => {
   try {
-    const userData = req.user;
-    const userRequest = await User.findById(userData.id);
-    if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
-    if(userRequest.role!="admin" && userRequest.role!="editor"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
-    
+
     const productoPeticion = req.body;
 
     let idProducto = productoPeticion.nombre;
@@ -90,13 +88,8 @@ router.get("/:id/destacados", async (req, res, next) => {
   }
 });
 
-router.delete("/:id", authMiddleware, async (req, res, next) => {
+router.delete("/:id", authMiddleware, authRole, authAdminEditor, async (req, res, next) => {
   try {
-
-    const userData = req.user;
-    const userRequest = await User.findById(userData.id);
-    if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
-    if(userRequest.role!="admin" && userRequest.role!="editor"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
 
     const idProducto = req.params.id;
     const productoEliminado = await Producto.findOneAndDelete({
@@ -117,13 +110,8 @@ router.delete("/:id", authMiddleware, async (req, res, next) => {
   }
 });
 
-router.put("/:id",authMiddleware, async (req,res,next)=>{
+router.put("/:id",authMiddleware, authRole, authAdminEditor, async (req,res,next)=>{
   try {
-
-    const userData = req.user;
-    const userRequest = await User.findById(userData.id);
-    if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
-    if(userRequest.role!="admin" && userRequest.role!="editor"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
 
     const idProducto = req.params.id;
     const datosActualizados = req.body;
@@ -143,12 +131,8 @@ router.put("/:id",authMiddleware, async (req,res,next)=>{
   }
 });
 
-router.put("/destacar/:id", authMiddleware, async (req, res, next)=>{
+router.put("/destacar/:id", authMiddleware, authRole, authAdminEditor, async (req, res, next)=>{
   try {
-      const userData = req.user;
-      const userRequest = await User.findById(userData.id);
-      if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
-      if(userRequest.role!="admin" && userRequest.role!="editor"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
 
     const idProducto = req.params.id;
     const productoADestacar = await Producto.findOne({id:idProducto});

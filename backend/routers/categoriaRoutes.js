@@ -1,8 +1,12 @@
 const express = require("express");
 
-const Categoria = require("../models/Categoria");
 const authMiddleware = require("../middleware/authMiddleware");
+const authRole = require("../middleware/authRole");
+const authAdminEditor = require("../middleware/AuthAdminEditor");
+
+const Categoria = require("../models/Categoria");
 const User = require("../models/User");
+
 const router = express.Router();
 
 router.get("/", async (req,res,next)=>{
@@ -18,7 +22,7 @@ router.get("/", async (req,res,next)=>{
 });
 
 
-router.post("/", authMiddleware, async (req,res,next)=>{
+router.post("/", authMiddleware, authRole, authAdminEditor, async (req,res,next)=>{
     try {
         const userData = req.user;
         const userRequest = await User.findById(userData.id);

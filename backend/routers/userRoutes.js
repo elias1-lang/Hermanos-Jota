@@ -3,6 +3,8 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middleware/authMiddleware"); // Importamos nuestro guardia
+const authRole = require("../middleware/authRole");
+const authAdmin = require("../middleware/authAdmin");
 
 //const userController = require("../controllers/userController"); // Importamos los controladores -> todavia no existen, no se importan
 
@@ -169,13 +171,8 @@ router.put("/change/data",authMiddleware, async (req,res)=>{ //para que un usuar
 //RUTAS SOLO PARA EL ADMINISTRADOR
 
 
-router.get("/", authMiddleware, async (req,res,next)=>{ //Obtiene la información sobre los usuarios.
+router.get("/", authMiddleware, authRole, authAdmin, async (req,res,next)=>{ //Obtiene la información sobre los usuarios.
   try {
-    const userData = req.user;
-    //buscar usuario en la bdd y se verifica si sigue teniendo el estatus de "admin", podría el token ser antiguo, con un payload de admin
-    const userRequest = await User.findById(userData.id);
-    if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
-    if(userRequest.role != "admin"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
 
       const users = await User.find({}).select("_id name username email role");
 
@@ -195,14 +192,9 @@ router.get("/", authMiddleware, async (req,res,next)=>{ //Obtiene la informació
 });
 
   //endpoint para eliminar a un usuario con su username
-router.delete("/:username", authMiddleware, async (req,res,next)=>{ //agregar middleware de comprobacion de token administrador -> ver si existe forma de comprobar si se trata de un mismo usuario a si mismo y permitir eliminar
+router.delete("/:username", authMiddleware, authRole, authAdmin, async (req,res,next)=>{ //agregar middleware de comprobacion de token administrador -> ver si existe forma de comprobar si se trata de un mismo usuario a si mismo y permitir eliminar
   try {
-      
-      const userData = req.user;
-      const userRequest = await User.findById(userData.id);
-      if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
-      if(userRequest.role!="admin"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
-      
+
       const usernameDelete = req.params.username;
       const user = await User.findOneAndDelete({username: usernameDelete}).select("_id name username email role");
 
@@ -219,12 +211,8 @@ router.delete("/:username", authMiddleware, async (req,res,next)=>{ //agregar mi
   }
 });
 
-router.put("/change/password/:username",authMiddleware,async (req,res,next)=>{ //EndPoint para cambiar la contraseña de un usuario solo con su username, solo para administradores
+router.put("/change/password/:username",authMiddleware, authRole, authAdmin, async (req,res,next)=>{ //EndPoint para cambiar la contraseña de un usuario solo con su username, solo para administradores
   try {
-      const userData = req.user;
-      const userRequest = await User.findById(userData.id);
-      if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
-      if(userRequest.role != "admin"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
 
       const usernameUpdate = req.params.username;
       const newPassword = req.body.newPassword;
@@ -246,14 +234,9 @@ router.put("/change/password/:username",authMiddleware,async (req,res,next)=>{ /
   }
 });
 
-router.put("/change/data/:username", authMiddleware, async (req,res,next)=>{ //endpoint para cambiar los datos generales de un usuario solo con su username, solo para administradores
+router.put("/change/data/:username", authMiddleware, authRole, authAdmin, async (req,res,next)=>{ //endpoint para cambiar los datos generales de un usuario solo con su username, solo para administradores
 
   try {
-    
-    const userData = req.user;
-    const userRequest = await User.findById(userData.id);
-    if(!userRequest){return res.status(404).json({ message: "Error en la captura de recursos"})};
-    if(userRequest.role!="admin"){return res.status(404).json({ message: "No cuenta con los permisos suficientes para esta operación."})};
 
     const usernameUpdate = req.params.username;
     let {newName, newEmail, newUsername, newRole, newPassword} = req.body;

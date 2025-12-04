@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const Producto = require("./models/Producto");
 const Categoria = require("./models/Categoria");
 const cors = require("cors");
-const productoRouter = require("./routers/productoRouter");
-const categoriaRouter = require("./routers/categoriaRouter");
+const productoRoutes = require("./routers/productoRoutes");
+const categoriaRoutes = require("./routers/categoriaRoutes");
 const userRoutes = require("./routers/userRoutes");
 
 const app = express();
@@ -39,8 +39,8 @@ app.get("/", (req, res) => {
   res.send("Bienvenido a hermanos jota");
 });
 
-app.use("/api/productos/", productoRouter);
-app.use("/api/categorias/", categoriaRouter);
+app.use("/api/productos/", productoRoutes);
+app.use("/api/categorias/", categoriaRoutes);
 app.use("/api/users/",userRoutes);
 
 app.use((req, res, next) => {
