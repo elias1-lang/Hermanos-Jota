@@ -19,7 +19,7 @@ async function fetchStateFuncion(urlFuente, setterDatosFuncion,setterErrorFuncio
         if(!response.ok){
             throw new Error(mensajeError);
         }
-        const data = await response.json()
+        const data = await response.json();
         setterDatosFuncion(data);
     } catch (error) {
         setterErrorFuncion(mensajeError);

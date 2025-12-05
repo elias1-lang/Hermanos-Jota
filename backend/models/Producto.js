@@ -44,7 +44,7 @@ const productoSchema = mongoose.Schema({
     capacidad:{type: String},
     peso:{type: String},
     destacado:{type:Boolean, default: false},
-},{/*strict:false, timestamps:true*/}); 
+},{/*strict:false*/ timestamps:true}); 
 
     //si strick:false, entonces se permine insertar campos no definidos en el esquema -> necesario, porque el archivo
     //original tenia productos con campos no existentes en otros productos.

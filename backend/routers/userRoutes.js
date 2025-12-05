@@ -5,12 +5,13 @@ const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middleware/authMiddleware"); // Importamos nuestro guardia
 const authRole = require("../middleware/authRole");
 const authAdmin = require("../middleware/authAdmin");
+const registerRoleAdmin = require("../middleware/registerRoleAdmin");
 
 //const userController = require("../controllers/userController"); // Importamos los controladores -> todavia no existen, no se importan
 
 // RUTA PÚBLICA (cualquiera puede acceder)
 
-router.post("/register", async (req, res) => {
+router.post("/register", registerRoleAdmin, async (req, res) => {
   try {
     // 1. Recibimos los datos del formulario
     const { name, username, email, password, role} = req.body;

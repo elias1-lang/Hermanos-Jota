@@ -17,8 +17,6 @@ export default function IndexUnDestacado({imagen,nombre,descripcion,precio,urlPr
                 <h2>{nombre}</h2>
                 <p>{descripcion}</p>
             </div>
-
-         
                                 
             <div className="index_productoDestacado_Producto_Boton">
              <button onClick={() => irProducto(urlProducto)}>Ver Detalle</button>

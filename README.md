@@ -70,6 +70,7 @@ _[Valentín Criado](https://github.com/valencriado) |_
 - Implementación del modelo vista-controlador en el servidor.
 - Mejora de estilos.
 - Integración del carrito de compras con el servidor.
+- Añadido de ventanas de carga y alertas de errores.
 
 <p align="center">
   <img src="./client/public/favicon.svg" alt="Logo Mueblería" width="200">

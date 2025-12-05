@@ -33,12 +33,20 @@ router.post("/", authMiddleware, authRole, authAdminEditor, async (req, res, nex
     const productoPeticion = req.body;
 
     let idProducto = productoPeticion.nombre;
+
     idProducto = idProducto.trim().toLowerCase().split(/\s+/).join("-");
-    let coincidencias = await Producto.find({ id: idProducto });
-    while (coincidencias.length) {
-      idProducto = idProducto + "-" + 1;
-      coincidencias = await Producto.find({ id: idProducto });
-    }
+    
+    let coincidencias = await Producto.find({ id: { $regex: `^${idProducto}$`,$options:'i' }});
+      //$regex permite buscar por expresiones regulares o patrones de texto
+      //con ^cadena, se buscan coincidencias de id que comiencen con "cadena"
+        //con ^cadena$, ancla "$" al final se indica que deben coincidir de inicio a fin de cadena.
+      //con $options:"i", se hace que la busqueda no sea case sensitive.
+      //regex es una funcionalidad de js permitida en mongoDB.
+
+      if(coincidencias.length){
+        idProducto = idProducto + "-" + (coincidencias.length);
+      }
+
     productoPeticion.id = idProducto;
     productoPeticion.link = `/productos/${idProducto}`;
     productoPeticion.alt = productoPeticion.nombre;

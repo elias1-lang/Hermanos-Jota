@@ -31,13 +31,13 @@ export default function ProductoContenido({ id }) {
     }, [id]); //depende del id, cada vez que cambie el id, se vuelve a ejecutar fetchProducto()
 
     if (error) {
-        return <p>{error}</p>;
+        return <p>{error.message}</p>;
     }
     if (loading) {
         return <p>Cargando producto...</p>;
     }
 
-    const excluir = ["id", "_id", "nombre", "descripcion", "precio", "imageUrl", "alt", "link", "categoria"];
+    const excluir = ["id", "_id", "nombre", "descripcion", "precio", "imageUrl", "alt", "link", "categoria","destacado","createdAt","updatedAt"];
     const atributos = Object.entries(producto).filter(([key, value]) => 
         !excluir.includes(key) && value
     );
