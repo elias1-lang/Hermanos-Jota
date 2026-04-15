@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true, match: [/^\S+@\S+\.\S+$/, 'Email inválido']},
     password: { type: String, required: true }, // Aquí irá el hash
     passwordChangedAt:{ type: Date },
-    role:{type: String, enum:["admin","user","editor"], default:"admin"}
+    role:{type: String, enum:["admin","user","editor"], default:"user"}
   },
   { timestamps: true }
 );

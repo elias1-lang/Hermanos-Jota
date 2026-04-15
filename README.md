@@ -1,5 +1,5 @@
 
-# Sprint 7 y 8  Hermanos - Full Stack Developer - ITBA Grupo 12
+# Sprint 7 y 8 Hermanos Jota - Full Stack Developer - ITBA Grupo 12
 
 El proyecto consiste en un sitio web de e-commerce para una mueblería.  
 En estos sprints se implementaron los apartados de inicio de sesión y registro, además de funcionalidades básicas según los roles dentro de la aplicación. Se crearon puntos de acceso protegidos en el servidor, que validan el rol del usuario antes de entregar información o permitir alguna modificación, según corresponda.
